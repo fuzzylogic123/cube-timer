@@ -1,8 +1,12 @@
+body {
+  user-select: none;
+}
+
 .ball {
     position: absolute;
     border-radius: 100%;
     opacity: 0.7;
-    z-index: 0;
+    z-index: -1;
   }
 
 .timer {
@@ -12,7 +16,24 @@
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  z-index: 1;
+}
+
+#averages {
+  z-index: 2;
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  bottom: 10vh;
+  /* display: none; */
+}
+
+h4 {
+  font-size: 30px;
+}
+
+#clock {
+  font-size: 15vw;
+  font-family: monospace;
 }
 
 .tool-bar {
@@ -20,12 +41,20 @@
   bottom: 0;
   left: 0;
   margin: 10px;
-  z-index: 1;
+  z-index: 3;
+}
+
+#scramble {
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+  margin-top: 80px;
+  width: 100vw;
+  user-select: text;
 }
 
 .icon {
-  height: 30px;
-  width: auto;
+  font-size: 40px;
   margin: 5px;
   opacity: 0.8;
 }
