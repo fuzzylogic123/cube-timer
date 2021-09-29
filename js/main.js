@@ -60,6 +60,7 @@ function timerReady() {
     scramble.style.display = 'none';
     averages.style.display = 'none';
     menus.style.display = 'none';
+    document.body.style.cursor = 'none';
     removeEventListener("keyup", clearWait);
     removeEventListener("keydown", setDelay);
     addEventListener("keyup", confirmStart, once);
@@ -97,6 +98,7 @@ function stopTimer(e) {
         scramble.style.display = 'block';
         averages.style.display = 'block';
         menus.style.display = 'block';
+        document.body.style.cursor = 'auto';
         addEventListener("keydown", setDelay);
         addEventListener("keyup", clearWait);
     }
