@@ -1,37 +1,37 @@
 "use strict"
 
-let timer;
-let mili = 0;
-let sec = 0;
+//repeats timer function every specified time interval
+let timerHandle;
+//keeps track of the total miliseconds passed since timer began
+let totalMiliSec = 0;
+//timer interval by which the timer updates
 let increment = 1;
+//creates global variable for the lag between timer updates
 let offset;
+//retrives clock div
 let clock = document.getElementById('clock');
 
+//starts the timer and sets callback function to update the timer ever increment
 function startTimer() {
-    let offset = Date.now();
-    let timer = setInterval(updateTimer, increment);
+    offset = Date.now();
+    timerHandle = setInterval(updateTimer, increment);
 }
 
+//updates the timer
 function updateTimer() {
-    offset = Date.now()
-    mili += timeElapsed();
-    if (mili === 1000) {
-        sec += 1;
-        mili = 0;
-    }
-    
-    clock.innerHTML = `${sec}.${mili}`;
+    totalMiliSec += timeElapsed();
+    let dispSeconds = Math.floor(totalMiliSec/1000);
+    let dispMiliSec = totalMiliSec % 1000;
+    clock.innerHTML = `${dispSeconds}.${dispMiliSec}`;
 }
 
+//calculates the time passed since the timer was last updated
 function timeElapsed() {
     let now = Date.now();
-    let adjustedTime = now - offset;
+    let timeDiff = now - offset;
     offset = now;
-    return adjustedTime
+    return timeDiff
 }
 
 
 startTimer()
-
-
-
