@@ -14,6 +14,7 @@ let clock = document.getElementById('clock');
 //starts the timer and sets callback function to update the timer ever increment
 function startTimer() {
     offset = Date.now();
+    totalMiliSec = 0;
     timerHandle = setInterval(updateTimer, increment);
 }
 
@@ -55,6 +56,8 @@ function confirmStart(e) {
         clock.style.color = 'Black';
         startTimer();
         removeEventListener("keydown", setDelay);
+        removeEventListener("keyup", confirmStart);
+        addEventListener("keydown", stopTimer);
     }
 }
 
@@ -70,6 +73,20 @@ function clearWait(e) {
     if (e.key === " ") {
         clearTimeout(timerDelay);
         clock.style.color = 'Black'
-        addEventListener("keydown", setDelay); 
     }
+}
+
+function stopTimer(e) {
+    if (e.key ===" ") {
+        clearInterval(timerHandle);
+        removeEventListener("keydown", stopTimer);
+        addEventListener('keyup', restartTimer);
+    }
+}
+
+function restartTimer(e) {
+    if (e.key === " ") {
+        addEventListener("keydown", setDelay);
+        addEventListener("keyup", clearWait);
+    } 
 }
