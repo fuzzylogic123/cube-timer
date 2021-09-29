@@ -36,27 +36,40 @@ function timeElapsed() {
 
 //global timeout handler
 let timerDelay;
-let spaceDownThreshold = 333;
+let spaceDownThreshold = 400;
+
+//waits for a key down, then sets a delay to run initiateTiming after delay
+addEventListener("keydown", setDelay);
+
+//If the user releases the space bar before the timing threshold, then initiateTiming will not run
+addEventListener("keyup", clearWait);
 
 //checks if space bar is released and then starts timer
 function initiateTiming() {
-    addEventListener("keyup", (e) => {
-        if (e.key === " ") {
-            startTimer();
-        }
-    })
+    clock.style.color = 'Green';
+    addEventListener("keyup", confirmStart);
 }
 
-//waits for a key down, then sets a delay to run initiateTiming after delay
-addEventListener("keydown", (e) => {
+function confirmStart(e) {
     if (e.key === " ") {
+        clock.style.color = 'Black';
+        startTimer();
+        removeEventListener("keydown", setDelay);
+    }
+}
+
+function setDelay(e) {
+    if (e.key === " ") {
+        clock.style.color = 'Red';
+        removeEventListener("keydown", setDelay);
         timerDelay = setTimeout(initiateTiming, spaceDownThreshold);
     }
-})
+}
 
-//If the user releases the space bar before the timing threshold, then initiateTiming will not run
-addEventListener("keyup", (e) => {
+function clearWait(e) {
     if (e.key === " ") {
         clearTimeout(timerDelay);
+        clock.style.color = 'Black'
+        addEventListener("keydown", setDelay); 
     }
-})
+}
