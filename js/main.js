@@ -23,8 +23,6 @@ let menus = document.getElementById('tool-bar');
 function startTimer() {
     startTime = Date.now();
     requestAnimationFrame(updateTimer);
-    console.log('startTimer has been called');
-    console.log(updateTimer);
 }
 
 //updates the timer
@@ -33,8 +31,6 @@ function updateTimer() {
         let timeElapsed = Date.now() - startTime;
         clock.innerHTML = formatTime(timeElapsed);
         updateTimerHandle = requestAnimationFrame(updateTimer);
-    } else {
-        cancelAnimationFrame(updateTimerHandle);
     }
 }
 
