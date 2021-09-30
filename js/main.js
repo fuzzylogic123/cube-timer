@@ -44,9 +44,6 @@ let spaceDownThreshold = 400;
 let startColor = '#32CD30';
 let holdColor = '#FF0000';
 let defaultColor = 'white';
-const once = {
-    once: true
-};
 
 //waits for a key down, then sets a delay to run timerReady after delay
 addEventListener("keydown", setDelay);
@@ -63,7 +60,7 @@ function timerReady() {
     document.body.style.cursor = 'none';
     removeEventListener("keyup", clearWait);
     removeEventListener("keydown", setDelay);
-    addEventListener("keyup", confirmStart, once);
+    addEventListener("keyup", confirmStart);
 }
 
 //waits for user to release the space bar, and then starts the timer
@@ -71,7 +68,8 @@ function confirmStart(e) {
     if (e.key === " ") {
         clock.style.color = defaultColor;
         startTimer();
-        addEventListener("keydown", stopTimer, once);
+        removeEventListener("keyup", confirmStart);
+        addEventListener("keydown", stopTimer);
     }
 }
 
@@ -101,5 +99,6 @@ function stopTimer(e) {
         document.body.style.cursor = 'auto';
         addEventListener("keydown", setDelay);
         addEventListener("keyup", clearWait);
+        removeEventListener("keydown", stopTimer);
     }
 }
