@@ -21,6 +21,7 @@ body {
   text-align: center;
   bottom: 10vh;
   /* display: none; */
+  pointer-events:none;
 }
 
 h4 {
