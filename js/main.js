@@ -6,6 +6,13 @@ let updateTimerHandle;
 let totalMiliSec = 0;
 //creates global variable to the timers initilisation
 let startTime;
+//global timeout handler
+let timerDelay;
+let cancelled = false;
+let spaceDownThreshold = 400;
+let startColor = '#32CD30';
+let holdColor = '#FF0000';
+let defaultColor = 'white';
 //retrives DOM elements
 let clock = document.getElementById('clock');
 let scramble = document.getElementById('scramble');
@@ -16,13 +23,19 @@ let menus = document.getElementById('tool-bar');
 function startTimer() {
     startTime = Date.now();
     requestAnimationFrame(updateTimer);
+    console.log('startTimer has been called');
+    console.log(updateTimer);
 }
 
 //updates the timer
 function updateTimer() {
-    let timeElapsed = Date.now() - startTime;
-    clock.innerHTML = formatTime(timeElapsed);
-    updateTimerHandle = requestAnimationFrame(updateTimer);
+    if (!cancelled) {
+        let timeElapsed = Date.now() - startTime;
+        clock.innerHTML = formatTime(timeElapsed);
+        updateTimerHandle = requestAnimationFrame(updateTimer);
+    } else {
+        cancelAnimationFrame(updateTimerHandle);
+    }
 }
 
 //takes total miliseconds and returns a formatted string to display
@@ -33,62 +46,57 @@ function formatTime(totalMiliSec) {
     return `${dispSeconds}.${dispMiliSec}`;
 }
 
-//global timeout handler
-let timerDelay;
-let spaceDownThreshold = 400;
-let startColor = '#32CD30';
-let holdColor = '#FF0000';
-let defaultColor = 'white';
-
 //waits for a key down, then sets a delay to run timerReady after delay
 addEventListener("keydown", setDelay);
-
-//If the user releases the space bar before the timing threshold, then timerReady will not run
-addEventListener("keyup", clearDelay);
 
 //once the space key is held down, this turns the clock red until spaceDownThreshold has passed
 function setDelay(e) {
     if (e.key === " ") {
+        removeEventListener("keydown", setDelay);
         clock.style.color = holdColor;
         timerDelay = setTimeout(timerReady, spaceDownThreshold);
+        //If the user releases the space bar before the timing threshold, then timerReady will not run
+        addEventListener("keyup", clearDelay);
     }
 }
 
 //if space is released before required time interval, then the timer start action is cancelled
 function clearDelay(e) {
     if (e.key === " ") {
+        removeEventListener("keyup", clearDelay);
         clearTimeout(timerDelay);
         clock.style.color = defaultColor;
+        addEventListener("keydown", setDelay);
     }
 }
 
-//runs if user has held space bar for required spaceDownThreshold
+//runs if user has held space bar for required spaceDownThreshold (waits for space release to start timer)
 function timerReady() {
+    removeEventListener("keyup", clearDelay);
     clock.style.color = startColor;
+    //everything is hidden to simplify the timer
     scramble.style.display = 'none';
     averages.style.display = 'none';
     menus.style.display = 'none';
     document.body.style.cursor = 'none';
-    removeEventListener("keyup", clearDelay);
-    removeEventListener("keydown", setDelay);
     addEventListener("keyup", confirmStart);
 }
 
-//waits for user to release the space bar, and then starts the timer
+//starts the timer
 function confirmStart(e) {
     if (e.key === " ") {
+        removeEventListener("keyup", confirmStart);
         clock.style.color = defaultColor;
         startTimer();
-        removeEventListener("keyup", confirmStart);
-        addEventListener("keydown", stopTimer);
+        addEventListener("keydown", stopTimer, { once: true });
     }
 }
 
 //runs when space is clicked to stop timer
 function stopTimer() {
-    cancelAnimationFrame(updateTimerHandle);
-    removeEventListener("keydown", stopTimer);
+    cancelled = true;
     clock.innerHTML = formatTime(Date.now() - startTime);
+    //redisplay all components that were hidden
     scramble.style.display = 'block';
     averages.style.display = 'block';
     menus.style.display = 'block';
@@ -99,5 +107,5 @@ function stopTimer() {
 function resetTimer() {
     removeEventListener("keyup", resetTimer);
     addEventListener("keydown", setDelay);
-    addEventListener("keyup", clearDelay);
+    cancelled = false;
 }
