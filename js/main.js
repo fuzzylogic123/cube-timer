@@ -90,11 +90,17 @@ function clearWait(e) {
 //runs when space is clicked to stop timer
 function stopTimer() {
     cancelAnimationFrame(timerHandle);
+    removeEventListener("keydown", stopTimer);
     clock.innerHTML = formatTime(Date.now() - startTime);
     scramble.style.display = 'block';
     averages.style.display = 'block';
     menus.style.display = 'block';
     document.body.style.cursor = 'auto';
+    addEventListener("keyup", allowReset);
+}
+
+function allowReset() {
+    removeEventListener("keyup", allowReset);
     addEventListener("keydown", setDelay);
     addEventListener("keyup", clearWait);
 }
