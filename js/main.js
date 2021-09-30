@@ -7,7 +7,7 @@ let totalMiliSec = 0;
 //timer interval by which the timer updates
 let increment = 1;
 //creates global variable for the lag between timer updates
-let offset;
+let startTime;
 //retrives clock div
 let clock = document.getElementById('clock');
 let scramble = document.getElementById('scramble');
@@ -16,26 +16,24 @@ let menus = document.getElementById('tool-bar');
 
 //starts the timer and sets callback function to update the timer ever increment
 function startTimer() {
-    offset = Date.now();
+    startTime = Date.now();
     totalMiliSec = 0;
-    timerHandle = setInterval(updateTimer, increment);
+    requestAnimationFrame(updateTimer);
 }
 
 //updates the timer
 function updateTimer() {
-    totalMiliSec += timeElapsed();
+    let timeElapsed = Date.now() - startTime;
+    clock.innerHTML = formatTime(timeElapsed);
+    timerHandle = requestAnimationFrame(updateTimer);
+}
+
+//takes total miliseconds and returns a formatted string to display
+function formatTime(totalMiliSec) {
     let dispSeconds = Math.floor(totalMiliSec / 1000);
     let dispMiliSec = totalMiliSec % 1000;
     dispMiliSec = `00${dispMiliSec}`.substr(-3);
-    clock.innerHTML = `${dispSeconds}.${dispMiliSec}`;
-}
-
-//calculates the time passed since the timer was last updated
-function timeElapsed() {
-    let now = Date.now();
-    let timeDiff = now - offset;
-    offset = now;
-    return timeDiff
+    return `${dispSeconds}.${dispMiliSec}`;
 }
 
 //global timeout handler
@@ -92,14 +90,13 @@ function clearWait(e) {
 }
 
 //runs when space is clicked to stop timer
-function stopTimer(e) {
-    if (e.key ===" ") {
-        clearInterval(timerHandle);
-        scramble.style.display = 'block';
-        averages.style.display = 'block';
-        menus.style.display = 'block';
-        document.body.style.cursor = 'auto';
-        addEventListener("keydown", setDelay);
-        addEventListener("keyup", clearWait);
-    }
+function stopTimer() {
+    cancelAnimationFrame(timerHandle);
+    clock.innerHTML = formatTime(Date.now() - startTime);
+    scramble.style.display = 'block';
+    averages.style.display = 'block';
+    menus.style.display = 'block';
+    document.body.style.cursor = 'auto';
+    addEventListener("keydown", setDelay);
+    addEventListener("keyup", clearWait);
 }
