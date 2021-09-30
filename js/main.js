@@ -1,23 +1,20 @@
 "use strict"
 
 //repeats timer function every specified time interval
-let timerHandle;
+let updateTimerHandle;
 //keeps track of the total miliseconds passed since timer began
 let totalMiliSec = 0;
-//timer interval by which the timer updates
-let increment = 1;
-//creates global variable for the lag between timer updates
+//creates global variable to the timers initilisation
 let startTime;
-//retrives clock div
+//retrives DOM elements
 let clock = document.getElementById('clock');
 let scramble = document.getElementById('scramble');
 let averages = document.getElementById('averages');
 let menus = document.getElementById('tool-bar');
 
-//starts the timer and sets callback function to update the timer ever increment
+//starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
     startTime = Date.now();
-    totalMiliSec = 0;
     requestAnimationFrame(updateTimer);
 }
 
@@ -25,7 +22,7 @@ function startTimer() {
 function updateTimer() {
     let timeElapsed = Date.now() - startTime;
     clock.innerHTML = formatTime(timeElapsed);
-    timerHandle = requestAnimationFrame(updateTimer);
+    updateTimerHandle = requestAnimationFrame(updateTimer);
 }
 
 //takes total miliseconds and returns a formatted string to display
@@ -47,7 +44,23 @@ let defaultColor = 'white';
 addEventListener("keydown", setDelay);
 
 //If the user releases the space bar before the timing threshold, then timerReady will not run
-addEventListener("keyup", clearWait);
+addEventListener("keyup", clearDelay);
+
+//once the space key is held down, this turns the clock red until spaceDownThreshold has passed
+function setDelay(e) {
+    if (e.key === " ") {
+        clock.style.color = holdColor;
+        timerDelay = setTimeout(timerReady, spaceDownThreshold);
+    }
+}
+
+//if space is released before required time interval, then the timer start action is cancelled
+function clearDelay(e) {
+    if (e.key === " ") {
+        clearTimeout(timerDelay);
+        clock.style.color = defaultColor;
+    }
+}
 
 //runs if user has held space bar for required spaceDownThreshold
 function timerReady() {
@@ -56,7 +69,7 @@ function timerReady() {
     averages.style.display = 'none';
     menus.style.display = 'none';
     document.body.style.cursor = 'none';
-    removeEventListener("keyup", clearWait);
+    removeEventListener("keyup", clearDelay);
     removeEventListener("keydown", setDelay);
     addEventListener("keyup", confirmStart);
 }
@@ -71,36 +84,20 @@ function confirmStart(e) {
     }
 }
 
-//once the space key is held down, this turns the clock red until spaceDownThreshold has passed
-function setDelay(e) {
-    if (e.key === " ") {
-        clock.style.color = holdColor;
-        timerDelay = setTimeout(timerReady, spaceDownThreshold);
-    }
-}
-
-//if space is released before required time interval, then the timer start action is cancelled
-function clearWait(e) {
-    if (e.key === " ") {
-        clearTimeout(timerDelay);
-        clock.style.color = defaultColor;
-    }
-}
-
 //runs when space is clicked to stop timer
 function stopTimer() {
-    cancelAnimationFrame(timerHandle);
+    cancelAnimationFrame(updateTimerHandle);
     removeEventListener("keydown", stopTimer);
     clock.innerHTML = formatTime(Date.now() - startTime);
     scramble.style.display = 'block';
     averages.style.display = 'block';
     menus.style.display = 'block';
     document.body.style.cursor = 'auto';
-    addEventListener("keyup", allowReset);
+    addEventListener("keyup", resetTimer);
 }
 
-function allowReset() {
-    removeEventListener("keyup", allowReset);
+function resetTimer() {
+    removeEventListener("keyup", resetTimer);
     addEventListener("keydown", setDelay);
-    addEventListener("keyup", clearWait);
+    addEventListener("keyup", clearDelay);
 }
