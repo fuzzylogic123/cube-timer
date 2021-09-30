@@ -43,7 +43,7 @@ let timerDelay;
 let spaceDownThreshold = 400;
 let startColor = '#32CD30';
 let holdColor = '#FF0000';
-let defaultColor = '#212529';
+let defaultColor = 'white';
 const once = {
     once: true
 };
