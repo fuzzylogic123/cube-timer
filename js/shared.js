@@ -2,13 +2,21 @@
 
 let sessionKey = 'yourBeefsYourMuttons';
 
+//takes total miliseconds and returns a formatted string to display
+function formatTime(totalMiliSec) {
+    let dispSeconds = Math.floor(totalMiliSec / 1000);
+    let dispMiliSec = totalMiliSec % 1000;
+    dispMiliSec = `00${dispMiliSec}`.substr(-3);
+    return `${dispSeconds}.${dispMiliSec}`;
+}
+
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
  * @param {string} key LS Key to be used
  * @returns true or false representing if data exists at key in LS
  */
- function checkLSData(key) {
+function checkLSData(key) {
     if (localStorage.getItem(key) != null) {
         return true;
     }
@@ -79,6 +87,20 @@ class Session {
     }
     addSolve(solve) {
         this._solveList.push(solve);
+    }
+    getAverage(numberOfSolves) {
+        if (this._solveList.length >= numberOfSolves) {
+            let end = this._solveList.length + 1;
+            let start = end - numberOfSolves - 1;
+            let chosenSolves = this._solveList.slice(start, end);
+            let sum = 0;
+            for (let i = 0; i < chosenSolves.length; i++) {
+                sum += chosenSolves[i].time;
+            }
+            return formatTime(Math.round(sum / chosenSolves.length));
+        } else {
+            return '--';
+        }
     }
     fromData(data) {
         this._solveList = [];

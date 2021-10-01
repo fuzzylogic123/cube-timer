@@ -8,8 +8,6 @@ let startTime;
 let timerDelay;
 //defines whether or not the timer animation should cease
 let cancelled = false;
-//the button that was used to stop the timer
-let buttonStop;
 //how long the user must hold space for the timer to initiate
 let spaceDownThreshold = 400;
 //colours for the clock
@@ -19,9 +17,12 @@ let defaultColor = 'white';
 //retrives DOM elements
 let clock = document.getElementById('clock');
 let scramble = document.getElementById('scramble');
-let averages = document.getElementById('averages');
+let ao5 = document.getElementById('ao5');
+let ao12 = document.getElementById('ao12');
 let menus = document.getElementById('tool-bar');
 
+ao5.innerHTML = session.getAverage(5);
+ao12.innerHTML = session.getAverage(12);
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
     cancelled = false;
@@ -37,14 +38,6 @@ function updateTimer() {
         clock.innerHTML = formatTime(timeElapsed);
         updateTimerHandle = requestAnimationFrame(updateTimer);
     }
-}
-
-//takes total miliseconds and returns a formatted string to display
-function formatTime(totalMiliSec) {
-    let dispSeconds = Math.floor(totalMiliSec / 1000);
-    let dispMiliSec = totalMiliSec % 1000;
-    dispMiliSec = `00${dispMiliSec}`.substr(-3);
-    return `${dispSeconds}.${dispMiliSec}`;
 }
 
 //waits for a key down, then sets a delay to run timerReady after delay
@@ -90,13 +83,13 @@ function confirmStart(e) {
         removeEventListener("keyup", confirmStart);
         clock.style.color = defaultColor;
         startTimer();
-        addEventListener("keydown", stopTimer, { once: true });
+        addEventListener("keydown", stopTimer);
     }
 }
 
 //runs when space is clicked to stop timer
-function stopTimer(e) {
-    buttonStop = e;
+function stopTimer() {
+    removeEventListener("keydown", stopTimer);
     cancelled = true;
     console.log('timer has been stopped');
     let solveTime = Date.now() - startTime;
@@ -109,14 +102,14 @@ function stopTimer(e) {
     let currentSolve = new Solve(solveTime);
     session.addSolve(currentSolve);
     updateLSData(sessionKey, session);
+    ao5.innerHTML = session.getAverage(5);
+    ao12.innerHTML = session.getAverage(12);
     addEventListener("keyup", resetTimer);
 }
 
 //resets timer function
-function resetTimer(e) {
-    if (e.key === buttonStop.key) {
-        removeEventListener("keyup", resetTimer);
-        addEventListener("keydown", setDelay);
-        console.log("this shouldn't run if the glitch has occured");
-    }
+function resetTimer() {
+    removeEventListener("keyup", resetTimer);
+    addEventListener("keydown", setDelay);
+    console.log("this shouldn't run if the glitch has occured");
 }
