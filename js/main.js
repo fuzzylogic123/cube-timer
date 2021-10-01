@@ -98,15 +98,17 @@ function confirmStart(e) {
 function stopTimer(e) {
     buttonStop = e;
     cancelled = true;
-    console.log(`the timer was cancelled: ${cancelled}`);
-    clock.innerHTML = formatTime(Date.now() - startTime);
+    console.log('timer has been stopped');
+    let solveTime = Date.now() - startTime;
+    clock.innerHTML = formatTime(solveTime);
     //redisplay all components that were hidden
     scramble.style.display = 'block';
     averages.style.display = 'block';
     menus.style.display = 'block';
     document.body.style.cursor = 'auto';
-    let currentSolve = new Solve(clock.innerHTML);
+    let currentSolve = new Solve(solveTime);
     session.addSolve(currentSolve);
+    updateLSData(sessionKey, session);
     addEventListener("keyup", resetTimer);
 }
 
