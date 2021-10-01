@@ -8,8 +8,6 @@ let startTime;
 let timerDelay;
 //defines whether or not the timer animation should cease
 let cancelled = false;
-//the button that was used to stop the timer
-let buttonStop;
 //how long the user must hold space for the timer to initiate
 let spaceDownThreshold = 400;
 //colours for the clock
@@ -85,13 +83,13 @@ function confirmStart(e) {
         removeEventListener("keyup", confirmStart);
         clock.style.color = defaultColor;
         startTimer();
-        addEventListener("keydown", stopTimer, { once: true });
+        addEventListener("keydown", stopTimer);
     }
 }
 
 //runs when space is clicked to stop timer
-function stopTimer(e) {
-    buttonStop = e;
+function stopTimer() {
+    removeEventListener("keydown", stopTimer);
     cancelled = true;
     console.log('timer has been stopped');
     let solveTime = Date.now() - startTime;
@@ -110,10 +108,8 @@ function stopTimer(e) {
 }
 
 //resets timer function
-function resetTimer(e) {
-    if (e.key === buttonStop.key) {
-        removeEventListener("keyup", resetTimer);
-        addEventListener("keydown", setDelay);
-        console.log("this shouldn't run if the glitch has occured");
-    }
+function resetTimer() {
+    removeEventListener("keyup", resetTimer);
+    addEventListener("keydown", setDelay);
+    console.log("this shouldn't run if the glitch has occured");
 }
