@@ -1,5 +1,7 @@
 "use strict";
 
+let sessionKey = 'yourBeefsYourMuttons';
+
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
@@ -41,14 +43,18 @@ function updateLSData(key, data) {
 
 class Solve {
     constructor(solveTime) {
-        this._date = new Date;
         this._solveTime = solveTime;
+        this._date = new Date;
     }
     get date() {
         return this._date;
     }
     get solveTime() {
         return this._solveTime;
+    }
+    fromData(data) {
+        this._date = data._date;
+        this._solveTime = data._solveTime;
     }
 }
 
@@ -74,8 +80,25 @@ class Session {
     addSolve(solve) {
         this._solveList.push(solve);
     }
+    fromData(data) {
+        this._solveList = [];
+        let storedSolveList = data._solveList;
+        for (let i = 0; i < storedSolveList.length; i++) {
+            let solve = new Solve();
+            solve.fromData(storedSolveList[i]);
+            this._solveList.push(solve);
+        }
+    }
 }
 
-let sessionList = [];
+let session;
+let data;
 
-let session = new Session('Session 1', [], "3x3");
+if (checkLSData(sessionKey)) {
+    session = new Session()
+    data = retrieveLSData(sessionKey)
+    console.log(data);
+    session.fromData(data);
+} else {
+    session = new Session('Session 1', [], "3x3");
+}
