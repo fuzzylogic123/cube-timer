@@ -41,8 +41,8 @@ function updateLSData(key, data) {
 
 class Solve {
     constructor(solveTime) {
+        this._time = solveTime;
         this._date = new Date;
-        this._solveTime = solveTime;
     }
     get date() {
         return this._date;

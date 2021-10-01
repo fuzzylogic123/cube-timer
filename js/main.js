@@ -2,14 +2,17 @@
 
 //repeats timer function every specified time interval
 let updateTimerHandle;
-//keeps track of the total miliseconds passed since timer began
-let totalMiliSec = 0;
 //creates global variable to the timers initilisation
 let startTime;
 //global timeout handler
 let timerDelay;
+//defines whether or not the timer animation should cease
 let cancelled = false;
+//the button that was used to stop the timer
+let buttonStop;
+//how long the user must hold space for the timer to initiate
 let spaceDownThreshold = 400;
+//colours for the clock
 let startColor = '#32CD30';
 let holdColor = '#FF0000';
 let defaultColor = 'white';
@@ -21,6 +24,7 @@ let menus = document.getElementById('tool-bar');
 
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
+    cancelled = false;
     startTime = Date.now();
     requestAnimationFrame(updateTimer);
 }
@@ -28,6 +32,7 @@ function startTimer() {
 //updates the timer
 function updateTimer() {
     if (!cancelled) {
+        console.log('the timer is still updating')
         let timeElapsed = Date.now() - startTime;
         clock.innerHTML = formatTime(timeElapsed);
         updateTimerHandle = requestAnimationFrame(updateTimer);
@@ -68,6 +73,7 @@ function clearDelay(e) {
 
 //runs if user has held space bar for required spaceDownThreshold (waits for space release to start timer)
 function timerReady() {
+    console.clear()
     removeEventListener("keyup", clearDelay);
     clock.style.color = startColor;
     //everything is hidden to simplify the timer
@@ -89,8 +95,10 @@ function confirmStart(e) {
 }
 
 //runs when space is clicked to stop timer
-function stopTimer() {
+function stopTimer(e) {
+    buttonStop = e;
     cancelled = true;
+    console.log(`the timer was cancelled: ${cancelled}`);
     clock.innerHTML = formatTime(Date.now() - startTime);
     //redisplay all components that were hidden
     scramble.style.display = 'block';
@@ -103,8 +111,10 @@ function stopTimer() {
 }
 
 //resets timer function
-function resetTimer() {
-    removeEventListener("keyup", resetTimer);
-    addEventListener("keydown", setDelay);
-    cancelled = false;
+function resetTimer(e) {
+    if (e.key === buttonStop.key) {
+        removeEventListener("keyup", resetTimer);
+        addEventListener("keydown", setDelay);
+        console.log("this shouldn't run if the glitch has occured");
+    }
 }
