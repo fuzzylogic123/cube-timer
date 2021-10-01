@@ -97,9 +97,12 @@ function stopTimer() {
     averages.style.display = 'block';
     menus.style.display = 'block';
     document.body.style.cursor = 'auto';
+    let currentSolve = new Solve(clock.innerHTML);
+    session.addSolve(currentSolve);
     addEventListener("keyup", resetTimer);
 }
 
+//resets timer function
 function resetTimer() {
     removeEventListener("keyup", resetTimer);
     addEventListener("keydown", setDelay);
