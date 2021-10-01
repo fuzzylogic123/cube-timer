@@ -19,9 +19,12 @@ let defaultColor = 'white';
 //retrives DOM elements
 let clock = document.getElementById('clock');
 let scramble = document.getElementById('scramble');
-let averages = document.getElementById('averages');
+let ao5 = document.getElementById('ao5');
+let ao12 = document.getElementById('ao12');
 let menus = document.getElementById('tool-bar');
 
+ao5.innerHTML = session.getAverage(5);
+ao12.innerHTML = session.getAverage(12);
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
     cancelled = false;
@@ -37,14 +40,6 @@ function updateTimer() {
         clock.innerHTML = formatTime(timeElapsed);
         updateTimerHandle = requestAnimationFrame(updateTimer);
     }
-}
-
-//takes total miliseconds and returns a formatted string to display
-function formatTime(totalMiliSec) {
-    let dispSeconds = Math.floor(totalMiliSec / 1000);
-    let dispMiliSec = totalMiliSec % 1000;
-    dispMiliSec = `00${dispMiliSec}`.substr(-3);
-    return `${dispSeconds}.${dispMiliSec}`;
 }
 
 //waits for a key down, then sets a delay to run timerReady after delay
@@ -109,6 +104,8 @@ function stopTimer(e) {
     let currentSolve = new Solve(solveTime);
     session.addSolve(currentSolve);
     updateLSData(sessionKey, session);
+    ao5.innerHTML = session.getAverage(5);
+    ao12.innerHTML = session.getAverage(12);
     addEventListener("keyup", resetTimer);
 }
 
