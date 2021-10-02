@@ -6,8 +6,16 @@ let sessionKey = 'yourBeefsYourMuttons';
 function formatTime(totalMiliSec) {
     let dispSeconds = Math.floor(totalMiliSec / 1000);
     let dispMiliSec = totalMiliSec % 1000;
-    dispMiliSec = `00${dispMiliSec}`.substr(-3);
-    return `${dispSeconds}.${dispMiliSec}`;
+    if (dispSeconds >= 60) {
+        let dispMinutes = Math.floor(dispSeconds / 60);
+        dispSeconds = dispSeconds - 60 * dispMinutes;
+        dispMiliSec = `00${dispMiliSec}`.substr(-3);
+        dispSeconds = `0${dispSeconds}`.substr(-2);
+        return `${dispMinutes}:${dispSeconds}.${dispMiliSec}`;
+    } else {
+        dispMiliSec = `00${dispMiliSec}`.substr(-3);
+        return `${dispSeconds}.${dispMiliSec}`;
+    }
 }
 
 /**
