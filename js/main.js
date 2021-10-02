@@ -23,6 +23,48 @@ let menus = document.getElementById('tool-bar');
 
 ao5.innerHTML = session.getAverage(5);
 ao12.innerHTML = session.getAverage(12);
+
+let scrambleNotation = [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]]
+
+scrambleToHTML(scrambleGen(scrambleNotation));
+
+function selectRandom(array) {
+    return Math.floor(Math.random()*array.length);
+}
+
+//function to generate a new scramble
+function scrambleGen(scrambleNotation, len=20) {
+    let scramble = [];
+    let groupIndex;
+    let scrambleNotationCopy = JSON.parse(JSON.stringify(scrambleNotation));
+    for (let i = 0; i < len; i++) {
+        groupIndex = selectRandom(scrambleNotation);
+        let scrambleGroup = scrambleNotation[groupIndex];
+        let index = selectRandom(scrambleGroup);
+        let letter = scrambleGroup[index];
+        scramble.push(letter);
+        scrambleNotation = JSON.parse(JSON.stringify(scrambleNotationCopy));
+        scrambleNotation.splice(groupIndex, 1);
+
+    }
+    return scramble;
+}
+
+//
+function scrambleToHTML(scramble) {
+    let scrambleRef = document.getElementById('scramble');
+    scrambleRef.innerHTML = '';
+    let h2 = document.createElement("h2");
+    scrambleRef.appendChild(h2);
+    for (let i = 0; i < scramble.length; i++) {
+        const newDiv = document.createElement("div");
+        newDiv.classList.add('scrambleLetter');
+        newDiv.innerHTML = scramble[i];
+        h2.appendChild(newDiv);
+    }
+}
+
+
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
     cancelled = false;
@@ -104,6 +146,7 @@ function stopTimer() {
     updateLSData(sessionKey, session);
     ao5.innerHTML = session.getAverage(5);
     ao12.innerHTML = session.getAverage(12);
+    scrambleToHTML(scrambleGen(scrambleNotation));
     addEventListener("keyup", resetTimer);
 }
 
