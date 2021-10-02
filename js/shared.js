@@ -110,6 +110,8 @@ class Session {
             solve.fromData(storedSolveList[i]);
             this._solveList.push(solve);
         }
+        this._sessionName = data._sessionName;
+        this._solveType = data._solveType;
     }
 }
 
