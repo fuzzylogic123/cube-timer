@@ -44,7 +44,7 @@ h2 {
 
 #clock {
   font-size: 15vw;
-  font-family: 'Play', sans-serif;
+  font-family: monospace, 'Play', sans-serif;
   font-size-adjust: 0.58;
   z-index: 4;
 }
