@@ -21,12 +21,16 @@ let ao5 = document.getElementById('ao5');
 let ao12 = document.getElementById('ao12');
 let menus = document.getElementById('tool-bar');
 
+//fill averages on screen
 ao5.innerHTML = session.getAverage(5);
 ao12.innerHTML = session.getAverage(12);
 
+
+//generates scramble
 let scrambleNotation = [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]]
 
-scrambleToHTML(scrambleGen(scrambleNotation));
+let currentScramble = scrambleGen(scrambleNotation)
+scrambleToHTML(currentScramble);
 
 function selectRandom(array) {
     return Math.floor(Math.random() * array.length);
@@ -140,12 +144,16 @@ function stopTimer() {
     averages.style.display = 'block';
     menus.style.display = 'block';
     document.body.style.cursor = 'auto';
-    let currentSolve = new Solve(solveTime);
+    //store solve
+    let currentSolve = new Solve(solveTime, currentScramble);
     session.addSolve(currentSolve);
     updateLSData(sessionKey, session);
+    //update averages
     ao5.innerHTML = session.getAverage(5);
     ao12.innerHTML = session.getAverage(12);
-    scrambleToHTML(scrambleGen(scrambleNotation));
+    //generate new scramble
+    currentScramble = scrambleGen(scrambleNotation);
+    scrambleToHTML(currentScramble);
     addEventListener("keyup", resetTimer);
 }
 
@@ -153,5 +161,4 @@ function stopTimer() {
 function resetTimer() {
     removeEventListener("keyup", resetTimer);
     addEventListener("keydown", setDelay);
-    console.log("this shouldn't run if the glitch has occured");
 }

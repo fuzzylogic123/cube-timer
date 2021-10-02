@@ -4,16 +4,14 @@ let sessionKey = 'yourBeefsYourMuttons';
 
 //takes total miliseconds and returns a formatted string to display
 function formatTime(totalMiliSec) {
-    let dispSeconds = Math.floor(totalMiliSec / 1000);
+    let dispMinutes = Math.floor(totalMiliSec / 60000);
+    let dispSeconds = Math.floor((totalMiliSec % 60000) / 1000);
     let dispMiliSec = totalMiliSec % 1000;
-    if (dispSeconds >= 60) {
-        let dispMinutes = Math.floor(dispSeconds / 60);
-        dispSeconds = dispSeconds - 60 * dispMinutes;
-        dispMiliSec = `00${dispMiliSec}`.substr(-3);
+    dispMiliSec = `00${dispMiliSec}`.substr(-3);
+    if (dispMinutes > 0) {
         dispSeconds = `0${dispSeconds}`.substr(-2);
         return `${dispMinutes}:${dispSeconds}.${dispMiliSec}`;
     } else {
-        dispMiliSec = `00${dispMiliSec}`.substr(-3);
         return `${dispSeconds}.${dispMiliSec}`;
     }
 }
@@ -58,9 +56,11 @@ function updateLSData(key, data) {
 }
 
 class Solve {
-    constructor(solveTime) {
+    constructor(solveTime, scramble, penatly = '') {
         this._solveTime = solveTime;
+        this._scramble = scramble
         this._date = new Date;
+        this._penatly = penatly;
     }
     get date() {
         return this._date;
@@ -68,9 +68,16 @@ class Solve {
     get time() {
         return this._solveTime;
     }
+    get penatly() {
+        return this._penatly;
+    }
+    set penatly(penatly) {
+        this._penatly = penatly;
+    }
     fromData(data) {
         this._date = data._date;
         this._solveTime = data._solveTime;
+        this._scramble = data._scramble;
     }
 }
 
@@ -98,14 +105,23 @@ class Session {
     }
     getAverage(numberOfSolves) {
         if (this._solveList.length >= numberOfSolves) {
-            let end = this._solveList.length + 1;
-            let start = end - numberOfSolves - 1;
-            let chosenSolves = this._solveList.slice(start, end);
-            let sum = 0;
+            //get the most recent n solves
+            let chosenSolves = this._solveList.slice(-numberOfSolves);
+            let chosenTimes = [];
             for (let i = 0; i < chosenSolves.length; i++) {
-                sum += chosenSolves[i].time;
+                chosenTimes.push(chosenSolves[i].time);
             }
-            return formatTime(Math.round(sum / chosenSolves.length));
+            console.log(chosenTimes);
+            let min = Math.min(...chosenTimes);
+            let max = Math.max(...chosenTimes);
+            console.log(min,max);
+            chosenTimes = chosenTimes.filter(e => e != min && e != max);
+            console.log(chosenTimes);
+            let sum = 0;
+            for (let i = 0; i < chosenTimes.length; i++) {
+                sum += chosenTimes[i];
+            }
+            return formatTime(Math.round(sum / chosenTimes.length));
         } else {
             return '--';
         }
