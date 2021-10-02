@@ -29,28 +29,26 @@ let scrambleNotation = [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"],
 scrambleToHTML(scrambleGen(scrambleNotation));
 
 function selectRandom(array) {
-    return Math.floor(Math.random()*array.length);
+    return Math.floor(Math.random() * array.length);
 }
 
 //function to generate a new scramble
-function scrambleGen(scrambleNotation, len=20) {
+function scrambleGen(scrambleNotation, len = 20) {
     let scramble = [];
-    let groupIndex;
-    let scrambleNotationCopy = JSON.parse(JSON.stringify(scrambleNotation));
+    let removed;
     for (let i = 0; i < len; i++) {
-        groupIndex = selectRandom(scrambleNotation);
+        let groupIndex = selectRandom(scrambleNotation);
         let scrambleGroup = scrambleNotation[groupIndex];
-        let index = selectRandom(scrambleGroup);
-        let letter = scrambleGroup[index];
+        let letter = scrambleGroup[selectRandom(scrambleGroup)];
         scramble.push(letter);
-        scrambleNotation = JSON.parse(JSON.stringify(scrambleNotationCopy));
-        scrambleNotation.splice(groupIndex, 1);
-
+        //replace the previously removed entry if it exists
+        if (i > 0) scrambleNotation.push(removed[0]);
+        removed = scrambleNotation.splice(groupIndex, 1);
     }
     return scramble;
 }
 
-//
+//converts scramble array to HTML
 function scrambleToHTML(scramble) {
     let scrambleRef = document.getElementById('scramble');
     scrambleRef.innerHTML = '';
@@ -64,6 +62,7 @@ function scrambleToHTML(scramble) {
     }
 }
 
+/*timer code*/
 
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
