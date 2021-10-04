@@ -15,16 +15,21 @@ let startColor = '#32CD30';
 let holdColor = '#FF0000';
 let defaultColor = 'white';
 //retrives DOM elements
-let clock = document.getElementById('clock');
-let scramble = document.getElementById('scramble');
-let ao5 = document.getElementById('ao5');
-let ao12 = document.getElementById('ao12');
-let menus = document.getElementById('tool-bar');
+const clock = document.getElementById('clock');
+const scramble = document.getElementById('scramble');
+const ao5 = document.getElementById('ao5');
+const ao12 = document.getElementById('ao12');
+const menus = document.getElementById('tool-bar');
+const statIcon = document.getElementById('stat-icon');
 
 //fill averages on screen
 ao5.innerHTML = session.getAverage(5);
 ao12.innerHTML = session.getAverage(12);
 
+statIcon.addEventListener('click', () => {
+    updateLSData(sessionKey, session);
+    window.location.href = "../stats/stats.html";
+})
 
 //generates scramble
 let scrambleNotation = [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]]
