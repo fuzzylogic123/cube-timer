@@ -28,7 +28,7 @@ ao12.innerHTML = session.getAverage(12);
 
 statIcon.addEventListener('click', () => {
     updateLSData(sessionKey, session);
-    window.location.href = "../stats/stats.html";
+    window.location.href = "./stats.html";
 })
 
 //generates scramble
