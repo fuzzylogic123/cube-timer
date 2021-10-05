@@ -54,6 +54,7 @@ function scrambleGen(scrambleNotation, len = 20) {
         if (i > 0) scrambleNotation.push(removed[0]);
         removed = scrambleNotation.splice(groupIndex, 1);
     }
+    scrambleNotation.push(removed[0]);
     return scramble;
 }
 
