@@ -59,7 +59,7 @@ class Solve {
     constructor(solveTime, scramble, penatly = '') {
         this._solveTime = solveTime;
         this._scramble = scramble
-        this._date = new Date;
+        this._date = new Date();
         this._penatly = penatly;
     }
     get date() {
@@ -71,11 +71,14 @@ class Solve {
     get penatly() {
         return this._penatly;
     }
+    get scramble() {
+        return this._scramble;
+    }
     set penatly(penatly) {
         this._penatly = penatly;
     }
     fromData(data) {
-        this._date = data._date;
+        this._date = new Date(data._date);
         this._solveTime = data._solveTime;
         this._scramble = data._scramble;
     }
@@ -111,12 +114,9 @@ class Session {
             for (let i = 0; i < chosenSolves.length; i++) {
                 chosenTimes.push(chosenSolves[i].time);
             }
-            console.log(chosenTimes);
             let min = Math.min(...chosenTimes);
             let max = Math.max(...chosenTimes);
-            console.log(min,max);
             chosenTimes = chosenTimes.filter(e => e != min && e != max);
-            console.log(chosenTimes);
             let sum = 0;
             for (let i = 0; i < chosenTimes.length; i++) {
                 sum += chosenTimes[i];
@@ -145,7 +145,6 @@ let data;
 if (checkLSData(sessionKey)) {
     session = new Session()
     data = retrieveLSData(sessionKey)
-    console.log(data);
     session.fromData(data);
 } else {
     session = new Session('Session 1', [], "3x3");

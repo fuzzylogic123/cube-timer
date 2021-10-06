@@ -43,13 +43,13 @@ function selectRandom(array) {
 
 //function to generate a new scramble
 function scrambleGen(scrambleNotation, len = 20) {
-    let scramble = [];
+    let scramble = '';
     let removed;
     for (let i = 0; i < len; i++) {
         let groupIndex = selectRandom(scrambleNotation);
         let scrambleGroup = scrambleNotation[groupIndex];
         let letter = scrambleGroup[selectRandom(scrambleGroup)];
-        scramble.push(letter);
+        scramble += letter + ' ';
         //replace the previously removed entry if it exists
         if (i > 0) scrambleNotation.push(removed[0]);
         removed = scrambleNotation.splice(groupIndex, 1);
@@ -60,6 +60,8 @@ function scrambleGen(scrambleNotation, len = 20) {
 
 //converts scramble array to HTML
 function scrambleToHTML(scramble) {
+    scramble = scramble.split(' ');
+    console.log(scramble);
     let scrambleRef = document.getElementById('scramble');
     scrambleRef.innerHTML = '';
     let h2 = document.createElement("h2");
