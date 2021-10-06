@@ -1,11 +1,15 @@
-
 .list-group {
-    display: block;
-    width: 100%;
-  }
-  
-  .main-content {
-    padding: 20px;
-    width: 100%;
-    overflow: auto;
-  }
+  display: block;
+  width: 100%;
+}
+
+.main-content {
+  padding: 20px;
+  width: 100%;
+  overflow: auto;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+}
