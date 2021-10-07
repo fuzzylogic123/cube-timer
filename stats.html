@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Statistics</title>
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -242,7 +245,13 @@
             data-bs-toggle="tooltip"
             data-bs-placement="right"
           >
-            <svg class="text-dark bi" width="24" height="24" role="img" aria-label="Home">
+            <svg
+              class="text-dark bi"
+              width="24"
+              height="24"
+              role="img"
+              aria-label="Home"
+            >
               <use xlink:href="#gear" />
             </svg>
           </a>
@@ -262,16 +271,37 @@
               <th scope="col">Time</th>
               <th scope="col">Scramble</th>
               <th scope="col">Date</th>
+              <td>
+                <button type="button" class="remove btn" data-bs-toggle="modal" data-bs-target="#delete-all-modal">
+                  <i class="x bi bi-x-lg"></i>
+                </button>
+              </td>
             </tr>
           </thead>
-          <tbody id="table-contents">
-
-          </tbody>
+          <tbody id="table-contents"></tbody>
         </table>
+
+        <div class="modal fade" id="delete-all-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete this session</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                This action cannot be undone
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="b-example-divider"></div>
     </main>
-
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="./sidebars/sidebars.js"></script>

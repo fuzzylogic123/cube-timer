@@ -9,6 +9,7 @@ function solveListHTML(session) {
         <td>${formatTime(solve.time)}</td>
         <td>${solve.scramble}</td>
         <td>${solve.date.toLocaleDateString("en-AU")}</td>
+        <td><button type="button" class="remove btn"><i class="x bi bi-x-lg"></i></button></td>
       </tr>`
     }
 }

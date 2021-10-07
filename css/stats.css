@@ -19,6 +19,15 @@
   
 }
 
+.remove:hover {
+  color: white;
+  background-color: rgb(231, 49, 49);
+}
+
+.remove:focus {
+  box-shadow: none;
+}
+
 .cube {
   width: 100%;
   height: 100%;
