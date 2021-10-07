@@ -66,9 +66,10 @@
   height: 100%;
 }
 
-/*background anim*/
+/*background anim
+ratios: 9, 12, 15*/
 .bg {
-  animation:slide 9s ease-in-out infinite alternate;
+  animation:slide 27s ease-in-out infinite alternate;
   background-image: linear-gradient(-60deg, rgb(31, 31, 31) 50%, rgb(255, 255, 255) 50%);
   bottom:0;
   left:-50%;
@@ -81,11 +82,11 @@
 
 .bg2 {
   animation-direction:alternate-reverse;
-  animation-duration:12s;
+  animation-duration:36s;
 }
 
 .bg3 {
-  animation-duration:15s;
+  animation-duration:45s;
 }
 
 .content {
