@@ -63,6 +63,7 @@ h2 {
   z-index: 2;
   margin-top: 80px;
   width: 100vw;
+  pointer-events: none;
 }
 
 .icon {
