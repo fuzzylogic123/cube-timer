@@ -1,10 +1,13 @@
 "use strict";
 
 function solveListHTML(session) {
-    const list = document.getElementById('solve-list')
+  const tableContents = document.getElementById('table-contents');
+  if (session.solveList.length === 0) {
+    tableContents.innerHTML = "<tr><td>-</td><td>-</td><td>-</td></tr>"
+  }
     for (let i = 0; i < session.solveList.length; i++) {
         const solve = session.solveList[i];
-        document.getElementById('table-contents').innerHTML += `
+        tableContents.innerHTML += `
         <tr>
         <td>${formatTime(solve.time)}</td>
         <td>${solve.scramble}</td>
