@@ -2,12 +2,11 @@
 
 function solveListHTML(session) {
   const tableContents = document.getElementById('table-contents');
-  if (session.solveList.length === 0) {
-    tableContents.innerHTML = "<tr><td>-</td><td>-</td><td>-</td><td> </td></tr>"
-  }
+  if (session.solveList.length !== 0) {
+    tableContents.innerHTML = '';
     for (let i = 0; i < session.solveList.length; i++) {
-        const solve = session.solveList[i];
-        tableContents.innerHTML += `
+      const solve = session.solveList[i];
+      tableContents.innerHTML += `
         <tr>
         <td class="list-items">${formatTime(solve.time)}</td>
         <td class="list-items">${solve.scramble}</td>
@@ -15,6 +14,7 @@ function solveListHTML(session) {
         <td><button type="button" class="remove btn"><i class="x bi bi-x-lg"></i></button></td>
       </tr>`
     }
+  }
 }
 
 solveListHTML(session);
