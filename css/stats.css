@@ -24,6 +24,7 @@
   height: 100%;
 }
 
+/*background anim*/
 .bg {
   animation:slide 9s ease-in-out infinite alternate;
   background-image: linear-gradient(-60deg, rgb(31, 31, 31) 50%, rgb(255, 255, 255) 50%);
