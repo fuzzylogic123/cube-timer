@@ -12,19 +12,19 @@ function selectRandom(array) {
 
 //function to generate a new scramble
 function scrambleGen(scrambleNotation, len = 20) {
-    let scramble = '';
+    let scramble = [];
     let removed;
     for (let i = 0; i < len; i++) {
         let groupIndex = selectRandom(scrambleNotation);
         let scrambleGroup = scrambleNotation[groupIndex];
         let letter = scrambleGroup[selectRandom(scrambleGroup)];
-        scramble += letter + ' ';
+        scramble.push(letter);
         //replace the previously removed entry if it exists
         if (i > 0) scrambleNotation.push(removed[0]);
         removed = scrambleNotation.splice(groupIndex, 1);
     }
     scrambleNotation.push(removed[0]);
-    return scramble.substring(0, scramble.length - 1);
+    return scramble.join(' ');
 }
 
 //converts scramble array to HTML
