@@ -110,3 +110,41 @@ ratios: 9, 12, 15*/
     transform:translateX(25%);
   }
 }
+
+.sort {
+  position: relative;
+  text-align: right;
+  margin: 25px;
+  margin-right: 40px;
+  color: whitesmoke;
+  font-weight: 400;
+}
+
+.filter {
+  display: inline-block;
+  margin: 7px;
+  font-weight: 300;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.filter:hover {
+  text-decoration: underline whitesmoke 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.filter-active {
+  text-decoration: underline whitesmoke 2px;
+  text-underline-offset: 3px;
+}
+
+/* .dropdown {
+  z-index: 3;
+  display: inline-block;
+  position: relative;
+  margin: 25px;
+  text-align: left;
+  width: 100%;
+  
+} */

@@ -1,5 +1,6 @@
 "use strict"
 
+const session = sessionList.active;
 //repeats timer function every specified time interval
 let updateTimerHandle;
 //creates global variable to the timers initilisation
@@ -26,7 +27,7 @@ ao5.innerHTML = session.getAverage(5);
 ao12.innerHTML = session.getAverage(12);
 
 statIcon.addEventListener('click', () => {
-    updateLSData(sessionKey, session);
+    updateLSData(sessionKey, sessionList);
     window.location.href = "./stats.html";
 })
 
@@ -112,8 +113,8 @@ function stopTimer() {
     document.body.style.cursor = 'auto';
     //store solve
     let currentSolve = new Solve(solveTime, currentScramble);
-    session.addSolve(currentSolve);
-    updateLSData(sessionKey, session);
+    session.add(currentSolve);
+    updateLSData(sessionKey, sessionList);
     //update averages
     ao5.innerHTML = session.getAverage(5);
     ao12.innerHTML = session.getAverage(12);

@@ -85,7 +85,7 @@ class Solve {
 }
 
 class Session {
-    constructor(sessionName, solveList, solveType) {
+    constructor(sessionName, solveType, solveList=[]) {
         this._solveList = solveList;
         this._solveType = solveType;
         this._sessionName = sessionName;
@@ -97,14 +97,17 @@ class Session {
     get solveType() {
         return this._solveType;
     }
-    get sessionName() {
+    get name() {
         return this._sessionName;
     }
     get date() {
         return this._date;
     }
-    addSolve(solve) {
+    add(solve) {
         this._solveList.push(solve);
+    }
+    remove(i) {
+        this._solveList.splice(i, 1);
     }
     getAverage(numberOfSolves) {
         if (this._solveList.length >= numberOfSolves) {
@@ -139,13 +142,49 @@ class Session {
     }
 }
 
-let session;
+class SessionList {
+    constructor(sessions=[], activeIndex=0) {
+        this._sessionList = sessions;
+        this._activeSession = this._sessionList[activeIndex];
+    }
+    get list() {
+        return this._sessionList;
+    }
+    get active() {
+        return this._activeSession;
+    }
+    add(session) {
+        this._sessionList.push(session);
+    }
+    remove(i) {
+        return this._sessionList.splice(i, 1);
+    }
+    fromData(data) {
+        this._sessionList = [];
+        let sessionList = data._sessionList
+        for (let i = 0; i < sessionList.length; i++) {
+            const session = new Session();
+            session.fromData(sessionList[i])
+            this._sessionList.push(session);
+            console.log(this._sessionList);
+
+        }
+        const activeSession = new Session();
+        activeSession.fromData(data._activeSession);
+        console.log(activeSession.sessionName);
+        this._activeSession = activeSession;
+        console.log(this._activeSession);
+    }
+}
+
+let sessionList;
 let data;
 
 if (checkLSData(sessionKey)) {
-    session = new Session()
-    data = retrieveLSData(sessionKey)
-    session.fromData(data);
+    data = retrieveLSData(sessionKey);
+    sessionList = new SessionList();
+    sessionList.fromData(data);
+    console.log(sessionList.active);
 } else {
-    session = new Session('Session 1', [], "3x3");
+    sessionList = new SessionList([new Session('Session 1', "3x3")]);
 }
