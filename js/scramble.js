@@ -30,7 +30,6 @@ function scrambleGen(scrambleNotation, len = 20) {
 //converts scramble array to HTML
 function scrambleToHTML(scramble) {
     scramble = scramble.split(' ');
-    console.log(scramble);
     const scrambleRef = document.getElementById('scramble');
     scrambleRef.innerHTML = '';
     let h2 = document.createElement("h2");

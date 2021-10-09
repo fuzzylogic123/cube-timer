@@ -184,22 +184,27 @@
       <div class="bg bg3"></div>
       <h1>Solve List</h1>
       <br />
-      <div class="options">
-      <div class="dropdown">
-        <select name="session" id="session-select">
-        
-        </select>
-      </div>
       <div class="sort">
+        <div id="session-select" class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+
+          </button>
+          <ul id="session-options" class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+
+          </ul>
+        </div>
+        <button id="add-session" type="button" class="btn btn-secondary">
+          Add Session <i class="bi bi-plus"></i>
+        </button>
         <h3>
           Sort by:
         </h3>
         <h5 class="filter-active filter" id="newest">Newest</h5>
-          <h5 class="filter" id="oldest">Oldest</h5>
-        <h5 class="filter"id="fastest">Fastest</h5>
-        <h5 class="filter"id="slowest">Slowest</h5>
+        <h5 class="filter" id="oldest">Oldest</h5>
+        <h5 class="filter" id="fastest">Fastest</h5>
+        <h5 class="filter" id="slowest">Slowest</h5>
       </div>
-    </div>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -207,7 +212,8 @@
             <th class="lists" scope="col">Scramble</th>
             <th class="lists" scope="col">Date</th>
             <td>
-              <button type="button" class="delete-all remove btn" data-bs-toggle="modal" data-bs-target="#delete-all-modal">
+              <button type="button" class="delete-all remove btn" data-bs-toggle="modal"
+                data-bs-target="#delete-all-modal">
                 <i class="x bi bi-x-lg"></i>
               </button>
             </td>
@@ -246,6 +252,7 @@
     <div class="b-example-divider"></div>
   </main>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
 
   <script src="./sidebars/sidebars.js"></script>
   <script src="../js/shared.js"></script>

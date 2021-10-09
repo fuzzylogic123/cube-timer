@@ -129,22 +129,32 @@ ratios: 9, 12, 15*/
 }
 
 .filter:hover {
-  text-decoration: underline whitesmoke 2px;
+  text-decoration: underline;
+  text-decoration-color: whitesmoke;
+  text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   cursor: pointer;
 }
 
 .filter-active {
-  text-decoration: underline whitesmoke 2px;
+  text-decoration: underline;
+  text-decoration-color: whitesmoke;
+  text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
 
-/* .dropdown {
-  z-index: 3;
-  display: inline-block;
-  position: relative;
-  margin: 25px;
-  text-align: left;
-  width: 100%;
-  
-} */
+#session-select {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#add-session {
+  position: absolute;
+  top: 50%;
+  left: 130px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

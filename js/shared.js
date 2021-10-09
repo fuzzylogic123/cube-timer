@@ -145,35 +145,36 @@ class Session {
 class SessionList {
     constructor(sessions=[], activeIndex=0) {
         this._sessionList = sessions;
-        this._activeSession = this._sessionList[activeIndex];
+        this._activeIndex = activeIndex;
     }
     get list() {
         return this._sessionList;
     }
     get active() {
-        return this._activeSession;
+        return this._activeIndex;
+    }
+    set setActiveIndex(newActiveIndex) {
+        this._activeIndex = newActiveIndex;
     }
     add(session) {
         this._sessionList.push(session);
     }
     remove(i) {
-        return this._sessionList.splice(i, 1);
+        if (this._activeIndex === i) {
+            this._activeIndex = 0;
+        }
+        this._sessionList.splice(i, 1);
     }
     fromData(data) {
         this._sessionList = [];
-        let sessionList = data._sessionList
+        let sessionList = data._sessionList;
         for (let i = 0; i < sessionList.length; i++) {
             const session = new Session();
             session.fromData(sessionList[i])
             this._sessionList.push(session);
-            console.log(this._sessionList);
 
         }
-        const activeSession = new Session();
-        activeSession.fromData(data._activeSession);
-        console.log(activeSession.sessionName);
-        this._activeSession = activeSession;
-        console.log(this._activeSession);
+        this._activeIndex  = data._activeIndex;
     }
 }
 
@@ -184,7 +185,6 @@ if (checkLSData(sessionKey)) {
     data = retrieveLSData(sessionKey);
     sessionList = new SessionList();
     sessionList.fromData(data);
-    console.log(sessionList.active);
 } else {
     sessionList = new SessionList([new Session('Session 1', "3x3")]);
 }

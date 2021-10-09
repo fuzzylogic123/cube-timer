@@ -1,6 +1,7 @@
 "use strict"
 
-const session = sessionList.active;
+const activeIndex = sessionList.active;
+const session = sessionList.list[0];
 //repeats timer function every specified time interval
 let updateTimerHandle;
 //creates global variable to the timers initilisation
