@@ -194,7 +194,8 @@
 
           </ul>
         </div>
-        <button id="add-session" type="button" class="btn btn-secondary">
+        <button id="add-session" type="button" class="btn btn-secondary" data-bs-toggle="modal"
+        data-bs-target="#new-session-modal">
           Add Session <i class="bi bi-plus"></i>
         </button>
         <h3>
@@ -242,8 +243,41 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Delete</button>
+              <button id="clear-session" type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Delete</button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="new-session-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create new session</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" placeholder="session name">
+              <label for="floatingInput" class="form-label">Session name</label>
+            </div>
+            <select id="solve-type" class="form-select" aria-label="Default select example">
+              <option selected>--Solve type--</option>
+              <option value="3x3">3x3</option>
+              <option value="2x2">2x2</option>
+              <option value="4x4">4x4</option>
+              <option value="5x5">5x5</option>
+              <option value="6x6">6x6</option>
+              <option value="7x7">7x7</option>
+              <option value="Skweb">Skweb</option>
+              <option value="Pyraminx">Pyraminx</option>
+              <option value="Megaminx">Megaminx</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="confirm-new-session" type="button" class="btn btn-primary btn-success" data-bs-dismiss="modal">Confirm</button>
           </div>
         </div>
       </div>

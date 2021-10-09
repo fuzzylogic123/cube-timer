@@ -36,9 +36,10 @@ function solveListHTML() {
       solveListHTML();
     });
   });
-  const deleteAll = document.querySelector('.delete-all');
+  const deleteAll = document.querySelector('#clear-session');
   deleteAll.addEventListener('click', () => {
-    if (sessionList.list > 1) {
+    console.log(sessionList);
+    if (sessionList.list.length > 1) {
       sessionList.remove(activeIndex);
       sessionList = updateLSData(sessionKey, sessionList);
       activeIndex = sessionList.active
@@ -46,7 +47,13 @@ function solveListHTML() {
       console.log(sessionList);
       solveListHTML();
     } else {
-      console.log('session was not deleted, you only have one...')
+      const len = sessionList.list[activeIndex].solveList.length;
+      for (let i = 0; i < len; i++) {
+        const session = sessionList.list[activeIndex];
+        session.remove(0);
+      }
+      updateLSData(sessionKey, sessionList);
+      solveListHTML();
     }
   });
   //add filter function to filters
@@ -84,11 +91,13 @@ function solveListHTML() {
   }
 }
 
+//todo: use bootstrap select element
 function sessionSelect(sessionList) {
   const listOfSessions = sessionList.list;
   const activeIndex = sessionList.active;
   const activeSession = listOfSessions[activeIndex];
   const buttonLabel = document.querySelector('#dropdownMenuButton1');
+  debugger;
   const dropdown = document.querySelector('#session-options');
   console.log(activeSession);
   buttonLabel.innerHTML = activeSession.name;
@@ -100,8 +109,20 @@ function sessionSelect(sessionList) {
   console.log(sessionList.list);
   for (let i = 0; i < listOfSessions.length; i++) {
     const element = listOfSessions[i];
+    if (i === activeIndex) {
+      `<li id="${i}" class="dropdownMenuButton1 dropdown-item disabled">${element.name}</li>`;
+    }
     dropdown.innerHTML += `<li id="${i}" class="dropdown-item">${element.name}</li>`;
   }
+}
+
+function addSession() {
+  const sessionName = document.querySelector('#floatingInput');
+  const solveType = document.querySelector('#solve-type');
+  const session = new Session(sessionName.value, solveType.value);
+  sessionList.add(session);
+  activeIndex = sessionList.list.length - 1;
+  sessionSelect(sessionList);
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
@@ -115,3 +136,6 @@ if (sessionList.list.length > 0) {
   solveListHTML();
   sessionSelect(sessionList);
 }
+
+const addSessionButton = document.querySelector('#confirm-new-session');
+addSessionButton.addEventListener('click', addSession);
