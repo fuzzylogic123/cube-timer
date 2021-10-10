@@ -7,16 +7,15 @@
   padding: 20px;
   width: 100%;
   overflow: auto;
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 
-.main-content::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+.main-content::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .table {
   background-color: rgba(255, 255, 255, 0.562);
-  
 }
 
 .remove {
@@ -28,9 +27,8 @@
 
 .menu {
   background-color: #f8f9faf1;
-  
-  /* rgba(255, 255, 255, 0.877); */
 
+  /* rgba(255, 255, 255, 0.877); */
 }
 
 .x {
@@ -56,7 +54,6 @@
   font-size: 20px;
 }
 
-
 .remove:focus {
   box-shadow: none;
 }
@@ -69,45 +66,49 @@
 /*background anim
 ratios: 9, 12, 15*/
 .bg {
-  animation:slide 27s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, rgb(31, 31, 31) 50%, rgb(255, 255, 255) 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
-  position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-1;
+  animation: slide 27s ease-in-out infinite alternate;
+  background-image: linear-gradient(
+    -60deg,
+    rgb(31, 31, 31) 50%,
+    rgb(255, 255, 255) 50%
+  );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
 }
 
 .bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:36s;
+  animation-direction: alternate-reverse;
+  animation-duration: 36s;
 }
 
 .bg3 {
-  animation-duration:45s;
+  animation-duration: 45s;
 }
 
 .content {
-  background-color:rgba(255,255,255,.8);
-  border-radius:.25em;
-  box-shadow:0 0 .25em rgba(0,0,0,.25);
-  box-sizing:border-box;
-  left:50%;
-  padding:10vmin;
-  position:fixed;
-  text-align:center;
-  top:50%;
-  transform:translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 0.25em;
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  left: 50%;
+  padding: 10vmin;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes slide {
   0% {
-    transform:translateX(-25%);
+    transform: translateX(-25%);
   }
   100% {
-    transform:translateX(25%);
+    transform: translateX(25%);
   }
 }
 
@@ -116,8 +117,9 @@ ratios: 9, 12, 15*/
   text-align: right;
   margin: 25px;
   margin-right: 40px;
-  color: whitesmoke;
+  color: aliceblue;
   font-weight: 400;
+  text-shadow: -1px 1px 0 rgb(146, 146, 146);
 }
 
 .filter {
@@ -146,8 +148,10 @@ ratios: 9, 12, 15*/
 #session-select {
   float: left;
   margin-right: 25px;
+  margin-top: 35px;
 }
 
 #add-session {
-float: left;
+  float: left;
+  margin-top: 35px;
 }
