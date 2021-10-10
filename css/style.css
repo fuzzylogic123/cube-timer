@@ -3,7 +3,7 @@
 body {
   user-select: none;
   -webkit-user-select: none;
-  pointer-events: none;
+  /* pointer-events: none; */
   color: white;
 }
 
@@ -54,7 +54,6 @@ h2 {
   left: 0;
   margin: 25px;
   z-index: 3;
-  pointer-events: all;
 }
 
 #scramble {
