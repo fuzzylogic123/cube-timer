@@ -3,7 +3,6 @@
 body {
   user-select: none;
   -webkit-user-select: none;
-  /* pointer-events: none; */
   color: white;
 }
 
@@ -15,6 +14,7 @@ body {
   text-align: center;
   min-height: 100vh;
   z-index: 3;
+  pointer-events: none;
 }
 
 #averages {
@@ -23,6 +23,7 @@ body {
   width: 100vw;
   text-align: center;
   bottom: 10vh;
+  pointer-events: none;
 }
 
 h4 {
@@ -46,6 +47,7 @@ h2 {
   font-family: monospace, 'Play', sans-serif;
   font-size-adjust: 0.58;
   z-index: 4;
+  pointer-events: none;
 }
 
 #tool-bar {
@@ -62,6 +64,7 @@ h2 {
   z-index: 2;
   margin-top: 80px;
   width: 100vw;
+  pointer-events: none;
 }
 
 .icon {
