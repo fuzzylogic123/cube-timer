@@ -36,83 +36,62 @@ function solveListHTML() {
       solveListHTML();
     });
   });
-  const deleteAll = document.querySelector('#clear-session');
-  deleteAll.addEventListener('click', () => {
-    console.log(sessionList);
-    if (sessionList.list.length > 1) {
-      sessionList.remove(activeIndex);
-      sessionList = updateLSData(sessionKey, sessionList);
-      activeIndex = sessionList.active
-      session = sessionList.list[activeIndex];
-      console.log(sessionList);
-      solveListHTML();
-    } else {
-      const len = sessionList.list[activeIndex].solveList.length;
-      for (let i = 0; i < len; i++) {
-        const session = sessionList.list[activeIndex];
-        session.remove(0);
-      }
-      updateLSData(sessionKey, sessionList);
-      solveListHTML();
-    }
-  });
-  //add filter function to filters
-  const filters = document.querySelectorAll('.filter')
-  filters.forEach(element => {
-    element.addEventListener('click', sortList);
-  });
-  function sortList(e) {
-    document.querySelectorAll('.filter').forEach(e => {
-      if (e.classList.contains("filter-active")) {
-        e.classList.remove("filter-active");
-      }
-    });
-    let filter = e.target.id;
-    const filterRef = document.getElementById(filter);
-    switch (filter) {
-      case 'slowest':
-        filterRef.classList.add('filter-active');
-        session.solveList.sort((a, b) => b.time - a.time);
-        break;
-      case 'fastest':
-        filterRef.classList.add('filter-active');
-        session.solveList.sort((a, b) => a.time - b.time);
-        break;
-      case 'oldest':
-        filterRef.classList.add('filter-active');
-        session.solveList.sort((a, b) => a.date - b.date);
-        break;
-      case 'newest':
-        filterRef.classList.add('filter-active');
-        session.solveList.sort((a, b) => b.date - a.date);
-    }
+}
 
-    solveListHTML();
+function sortList(e) {
+  console.log(sessionList);
+  console.log(activeIndex);
+  const session = sessionList.list[activeIndex];
+  console.log(session);
+  document.querySelectorAll('.filter').forEach(e => {
+    if (e.classList.contains("filter-active")) {
+      e.classList.remove("filter-active");
+    }
+  });
+  let filter = e.target.id;
+  const filterRef = document.getElementById(filter);
+  switch (filter) {
+    case 'slowest':
+      filterRef.classList.add('filter-active');
+      session.solveList.sort((a, b) => b.time - a.time);
+      break;
+    case 'fastest':
+      filterRef.classList.add('filter-active');
+      session.solveList.sort((a, b) => a.time - b.time);
+      break;
+    case 'oldest':
+      filterRef.classList.add('filter-active');
+      session.solveList.sort((a, b) => a.date - b.date);
+      break;
+    case 'newest':
+      filterRef.classList.add('filter-active');
+      session.solveList.sort((a, b) => b.date - a.date);
   }
+
+  solveListHTML();
 }
 
 //todo: use bootstrap select element
-function sessionSelect(sessionList) {
+function initDropdown() {
   const listOfSessions = sessionList.list;
-  const activeIndex = sessionList.active;
-  const activeSession = listOfSessions[activeIndex];
-  const buttonLabel = document.querySelector('#dropdownMenuButton1');
-  debugger;
-  const dropdown = document.querySelector('#session-options');
-  console.log(activeSession);
-  buttonLabel.innerHTML = activeSession.name;
-  buttonLabel.id = activeSession.activeIndex;
-  // const option = document.createElement('option');
-  // option.innerHTML = session.name;
-  // option.value = i;
-  // dropdown.appendChild(option);
-  console.log(sessionList.list);
+  activeIndex = sessionList.active;
+  const dropdown = document.querySelector('#dropdown');
+  dropdown.innerHTML = '';
   for (let i = 0; i < listOfSessions.length; i++) {
-    const element = listOfSessions[i];
-    if (i === activeIndex) {
-      `<li id="${i}" class="dropdownMenuButton1 dropdown-item disabled">${element.name}</li>`;
-    }
-    dropdown.innerHTML += `<li id="${i}" class="dropdown-item">${element.name}</li>`;
+    const session = listOfSessions[i];
+    console.log(session);
+    console.log(session.solveType)
+    let selected = i === activeIndex;
+    console.log(selected, activeIndex);
+    const option = new Option(`${session.name} - ${session.solveType}`, i, false, selected);
+    dropdown.appendChild(option);
+    dropdown.addEventListener('change', (e) => {
+      activeIndex = e.target.value;
+      sessionList.setActiveIndex = activeIndex;
+      console.log(activeIndex);
+      solveListHTML();
+      updateLSData(sessionKey, sessionList);
+    })
   }
 }
 
@@ -122,19 +101,49 @@ function addSession() {
   const session = new Session(sessionName.value, solveType.value);
   sessionList.add(session);
   activeIndex = sessionList.list.length - 1;
-  sessionSelect(sessionList);
+  initDropdown(sessionList);
+  updateLSData(sessionKey, sessionList);
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
 
 // })
 
+
+const deleteAll = document.querySelector('#clear-session');
+deleteAll.addEventListener('click', () => {
+  console.log(sessionList);
+  if (sessionList.list.length > 1) {
+    sessionList.remove(activeIndex);
+    updateLSData(sessionKey, sessionList);
+    activeIndex = sessionList.active
+    const session = sessionList.list[activeIndex];
+    console.log(sessionList);
+    console.log(session);
+    initDropdown();
+    solveListHTML();
+  } else {
+    const len = sessionList.list[activeIndex].solveList.length;
+    for (let i = 0; i < len; i++) {
+      const session = sessionList.list[activeIndex];
+      session.remove(0);
+    }
+    updateLSData(sessionKey, sessionList);
+    solveListHTML();
+  }
+});
+//add filter function to filters
+const filters = document.querySelectorAll('.filter')
+filters.forEach(element => {
+  element.addEventListener('click', sortList);
+});
+
 //initialise the list (newest first)
 if (sessionList.list.length > 0) {
   console.log(sessionList);
   sessionList.list[activeIndex].solveList.sort((a, b) => b.date - a.date);
   solveListHTML();
-  sessionSelect(sessionList);
+  initDropdown();
 }
 
 const addSessionButton = document.querySelector('#confirm-new-session');

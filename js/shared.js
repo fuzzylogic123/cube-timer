@@ -153,6 +153,9 @@ class SessionList {
     get active() {
         return this._activeIndex;
     }
+    /**
+     * @param {number} newActiveIndex
+     */
     set setActiveIndex(newActiveIndex) {
         this._activeIndex = newActiveIndex;
     }
@@ -174,7 +177,7 @@ class SessionList {
             this._sessionList.push(session);
 
         }
-        this._activeIndex  = data._activeIndex;
+        this._activeIndex  = Number(data._activeIndex);
     }
 }
 
