@@ -87,7 +87,7 @@ function initDropdown() {
     dropdown.appendChild(option);
     dropdown.addEventListener('change', (e) => {
       activeIndex = e.target.value;
-      sessionList.setActiveIndex = activeIndex;
+      sessionList.active = activeIndex;
       console.log(activeIndex);
       solveListHTML();
       updateLSData(sessionKey, sessionList);
@@ -101,8 +101,12 @@ function addSession() {
   const session = new Session(sessionName.value, solveType.value);
   sessionList.add(session);
   activeIndex = sessionList.list.length - 1;
-  initDropdown(sessionList);
+  sessionList.active = activeIndex;
+  initDropdown();
+  solveListHTML();
   updateLSData(sessionKey, sessionList);
+  sessionName.value = '';
+  solveType.selectedIndex = null;
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
