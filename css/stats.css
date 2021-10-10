@@ -144,17 +144,10 @@ ratios: 9, 12, 15*/
 }
 
 #session-select {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  float: left;
+  margin-right: 25px;
 }
 
 #add-session {
-  position: absolute;
-  top: 50%;
-  left: 130px;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+float: left;
 }
