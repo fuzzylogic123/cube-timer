@@ -153,17 +153,18 @@ class SessionList {
     get active() {
         return this._activeIndex;
     }
-    set setActiveIndex(newActiveIndex) {
+    /**
+     * @param {number} newActiveIndex
+     */
+    set active(newActiveIndex) {
         this._activeIndex = newActiveIndex;
     }
     add(session) {
         this._sessionList.push(session);
     }
     remove(i) {
-        if (this._activeIndex === i) {
-            this._activeIndex = 0;
-        }
         this._sessionList.splice(i, 1);
+        this._activeIndex = i === 1 ? 0 : this._sessionList.length - 1;
     }
     fromData(data) {
         this._sessionList = [];
@@ -174,7 +175,7 @@ class SessionList {
             this._sessionList.push(session);
 
         }
-        this._activeIndex  = data._activeIndex;
+        this._activeIndex  = Number(data._activeIndex);
     }
 }
 

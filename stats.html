@@ -185,8 +185,7 @@
       <h1>Solve List</h1>
       <div class="sort">
         <div id="session-select">
-          <select class="form-select form-select-secondary" aria-label="Default select example">
-            <option selected>Session 1</option>
+          <select id="dropdown" class="form-select" aria-label="Default select example">
           </select>
         </div>
         <button id="add-session" type="button" class="btn btn-secondary" data-bs-toggle="modal"
@@ -258,7 +257,7 @@
               <label for="floatingInput" class="form-label">Session name</label>
             </div>
             <select id="solve-type" class="form-select" aria-label="Default select example">
-              <option selected>--Solve type--</option>
+              <option selected disabled>--Solve type--</option>
               <option value="3x3">3x3</option>
               <option value="2x2">2x2</option>
               <option value="4x4">4x4</option>
