@@ -81,3 +81,32 @@ body {
   overflow: hidden; /* Hide scrollbars */
 }
 
+#penalty {
+  z-index: 2;
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  bottom: 27vh;
+  pointer-events: none;
+}
+
+.penalty {
+  z-index: 3;
+  margin: 20px;
+  border-radius: 7px;
+  padding: 10px;
+  width: 100px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  pointer-events: all;
+}
+
+.penalty:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+  pointer-events: all;
+}
+
+.penalty:active {
+  transform: translateY(3px);
+}

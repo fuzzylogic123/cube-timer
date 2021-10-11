@@ -109,6 +109,18 @@ function addSession() {
   solveType.selectedIndex = null;
 }
 
+function editSession() {
+const sessionName = document.querySelector('#edit-input');
+const solveTypeInput = document.querySelector('#edit-solve-type');
+const activeIndex = sessionList.active;
+const activeSession = sessionList.list[activeIndex]
+activeSession.solveType = solveTypeInput.value;
+activeSession.name = sessionName.value;
+initDropdown();
+sessionName.value = '';
+solveType.selectedIndex = null;
+}
+
 // document.querySelector('#add-session').addEventListener('click', ()=> {
 
 // })
@@ -152,3 +164,5 @@ if (sessionList.list.length > 0) {
 
 const addSessionButton = document.querySelector('#confirm-new-session');
 addSessionButton.addEventListener('click', addSession);
+const editSessionButton = document.querySelector('#confirm-edit-session');
+editSessionButton.addEventListener('click', editSession);

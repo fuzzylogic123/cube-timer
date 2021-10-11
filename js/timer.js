@@ -22,6 +22,8 @@ const ao5 = document.getElementById('ao5');
 const ao12 = document.getElementById('ao12');
 const menus = document.getElementById('tool-bar');
 const statIcon = document.getElementById('stat-icon');
+const plusTwo = document.querySelector('#plusTwo');
+const dnf = document.querySelector('#DNF');
 
 //fill averages on screen
 ao5.innerHTML = session.getAverage(5);
@@ -86,7 +88,10 @@ function timerReady() {
     scramble.style.display = 'none';
     averages.style.display = 'none';
     menus.style.display = 'none';
+    plusTwo.style.display = 'none';
+    dnf.style.display = 'none';
     document.body.style.cursor = 'none';
+    
     addEventListener("keyup", confirmStart);
 }
 
@@ -111,6 +116,8 @@ function stopTimer() {
     scramble.style.display = 'block';
     averages.style.display = 'block';
     menus.style.display = 'block';
+    plusTwo.style.display = '';
+    dnf.style.display = '';
     document.body.style.cursor = 'auto';
     //store solve
     let currentSolve = new Solve(solveTime, currentScramble);

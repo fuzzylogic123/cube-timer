@@ -91,6 +91,12 @@ class Session {
         this._sessionName = sessionName;
         this._date = new Date;
     }
+    set name(newName) {
+        this._sessionName = newName;
+    }
+    set solveType(newType) {
+        this._solveType = newType;
+    }
     get solveList() {
         return this._solveList;
     }
