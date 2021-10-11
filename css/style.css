@@ -110,3 +110,11 @@ body {
 .penalty:active {
   transform: translateY(3px);
 }
+
+/* #DNF {
+  display: none;
+}
+
+#plusTwo {
+  display: none;
+} */

@@ -62,6 +62,15 @@ class Solve {
         this._date = new Date();
         this._penatly = penatly;
     }
+    /**
+     * @param {string} penalty
+     */
+    set penalty(penalty) {
+        this._penalty = penalty;
+    }
+    set time(newTime) {
+        this._solveTime = newTime;
+    }
     get date() {
         return this._date;
     }
@@ -81,6 +90,28 @@ class Solve {
         this._date = new Date(data._date);
         this._solveTime = data._solveTime;
         this._scramble = data._scramble;
+    }
+    toString() {
+        debugger;
+        if (this._penalty == 'DNF') {
+            return 'DNF'
+        }
+        let time;
+        let dispMinutes = Math.floor(this._solveTime / 60000);
+        let dispSeconds = Math.floor((this._solveTime % 60000) / 1000);
+        let dispMiliSec = this._solveTime % 1000;
+        dispMiliSec = `00${dispMiliSec}`.substr(-3);
+        if (dispMinutes > 0) {
+            dispSeconds = `0${dispSeconds}`.substr(-2);
+            time = `${dispMinutes}:${dispSeconds}.${dispMiliSec}`;
+        } else {
+            time =  `${dispSeconds}.${dispMiliSec}`;
+        }
+        if (this._penatly === '+2') {
+            return `${time}+`
+        } else {
+            return time;
+        }
     }
 }
 

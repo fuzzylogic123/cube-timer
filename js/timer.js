@@ -24,6 +24,8 @@ const menus = document.getElementById('tool-bar');
 const statIcon = document.getElementById('stat-icon');
 const plusTwo = document.querySelector('#plusTwo');
 const dnf = document.querySelector('#DNF');
+dnf.style.display = 'none';
+plusTwo.style.display = 'none';
 
 //fill averages on screen
 ao5.innerHTML = session.getAverage(5);
@@ -37,6 +39,18 @@ statIcon.addEventListener('click', () => {
 
 
 /*timer code*/
+function formatTime(totalMiliSec) {
+    let dispMinutes = Math.floor(totalMiliSec / 60000);
+    let dispSeconds = Math.floor((totalMiliSec % 60000) / 1000);
+    let dispMiliSec = totalMiliSec % 1000;
+    dispMiliSec = `00${dispMiliSec}`.substr(-3);
+    if (dispMinutes > 0) {
+        dispSeconds = `0${dispSeconds}`.substr(-2);
+        return `${dispMinutes}:${dispSeconds}.${dispMiliSec}`;
+    } else {
+        return `${dispSeconds}.${dispMiliSec}`;
+    }
+}
 
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
 function startTimer() {
@@ -108,6 +122,8 @@ function confirmStart(e) {
 //runs when space is clicked to stop timer
 function stopTimer() {
     removeEventListener("keydown", stopTimer);
+    plusTwo.style.display = '';
+    dnf.style.display = '';
     cancelled = true;
     console.log('timer has been stopped');
     let solveTime = Date.now() - startTime;
@@ -130,6 +146,25 @@ function stopTimer() {
     currentScramble = scrambleGen(scrambleNotation);
     scrambleToHTML(currentScramble);
     addEventListener("keyup", resetTimer);
+    //active penalty buttons
+    dnf.addEventListener('click', () => {
+        const recentSolve = session.solveList[session.solveList.length - 1];
+        recentSolve.time = null;
+        recentSolve.penalty = 'DNF';
+        clock.innerHTML = recentSolve.toString();
+        dnf.style.display = 'none';
+        plusTwo.style.display = 'none';
+        updateLSData(sessionKey, sessionList);
+    }, {once:true});
+    plusTwo.addEventListener('click', () => {
+        const recentSolve = session.solveList[session.solveList.length - 1];
+        recentSolve.time = recentSolve.time + 2000;
+        recentSolve.penalty = '+2'
+        clock.innerHTML = recentSolve.toString();
+        dnf.style.display = 'none';
+        plusTwo.style.display = 'none';
+        updateLSData(sessionKey, sessionList);
+    }, {once:true});
 }
 
 //resets timer function
