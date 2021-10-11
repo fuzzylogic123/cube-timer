@@ -56,11 +56,11 @@ function updateLSData(key, data) {
 }
 
 class Solve {
-    constructor(solveTime, scramble, penatly = '') {
+    constructor(solveTime, scramble, penalty = '') {
         this._solveTime = solveTime;
         this._scramble = scramble
         this._date = new Date();
-        this._penatly = penatly;
+        this._penalty = penalty;
     }
     /**
      * @param {string} penalty
@@ -77,22 +77,25 @@ class Solve {
     get time() {
         return this._solveTime;
     }
-    get penatly() {
-        return this._penatly;
+    get penalty() {
+        return this._penalty;
     }
     get scramble() {
         return this._scramble;
     }
-    set penatly(penatly) {
-        this._penatly = penatly;
+    /**
+     * @param {string} penalty
+     */
+    set penalty(penalty) {
+        this._penalty = penalty;
     }
     fromData(data) {
         this._date = new Date(data._date);
         this._solveTime = data._solveTime;
         this._scramble = data._scramble;
+        this._penalty = data._penalty;
     }
     toString() {
-        debugger;
         if (this._penalty == 'DNF') {
             return 'DNF'
         }
@@ -107,7 +110,7 @@ class Solve {
         } else {
             time =  `${dispSeconds}.${dispMiliSec}`;
         }
-        if (this._penatly === '+2') {
+        if (this._penalty === '+2') {
             return `${time}+`
         } else {
             return time;

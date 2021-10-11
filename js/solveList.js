@@ -10,9 +10,10 @@ function solveListHTML() {
     tableContents.innerHTML = '';
     for (let i = 0; i < session.solveList.length; i++) {
       const solve = session.solveList[i];
+      console.log(solve.toString());
       tableContents.innerHTML += `
         <tr>
-        <td class="list-items">${formatTime(solve.time)}</td>
+        <td class="list-items">${solve.toString()}</td>
         <td class="list-items">${solve.scramble}</td>
         <td class="list-items">${solve.date.toLocaleDateString("en-AU")}</td>
         <td>
@@ -110,15 +111,15 @@ function addSession() {
 }
 
 function editSession() {
-const sessionName = document.querySelector('#edit-input');
-const solveTypeInput = document.querySelector('#edit-solve-type');
-const activeIndex = sessionList.active;
-const activeSession = sessionList.list[activeIndex]
-activeSession.solveType = solveTypeInput.value;
-activeSession.name = sessionName.value;
-initDropdown();
-sessionName.value = '';
-solveType.selectedIndex = null;
+  const sessionName = document.querySelector('#edit-input');
+  const solveTypeInput = document.querySelector('#edit-solve-type');
+  const activeIndex = sessionList.active;
+  const activeSession = sessionList.list[activeIndex]
+  activeSession.solveType = solveTypeInput.value;
+  activeSession.name = sessionName.value;
+  initDropdown();
+  sessionName.value = '';
+  solveTypeInput.selectedIndex = null;
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
@@ -164,5 +165,16 @@ if (sessionList.list.length > 0) {
 
 const addSessionButton = document.querySelector('#confirm-new-session');
 addSessionButton.addEventListener('click', addSession);
-const editSessionButton = document.querySelector('#confirm-edit-session');
-editSessionButton.addEventListener('click', editSession);
+
+const confirmEditButton = document.querySelector('#confirm-edit-session');
+confirmEditButton.addEventListener('click', editSession);
+
+const editSessionButton = document.querySelector('#edit-session');
+editSessionButton.addEventListener('click', () => {
+  const sessionName = document.querySelector('#edit-input');
+  const solveTypeInput = document.querySelector('#edit-solve-type');
+  const activeIndex = sessionList.active;
+  const activeSession = sessionList.list[activeIndex]
+  solveTypeInput.value = activeSession.solveType;
+  sessionName.value = activeSession.name;
+})
