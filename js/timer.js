@@ -95,7 +95,7 @@ function clearDelay(e) {
 
 //runs if user has held space bar for required spaceDownThreshold (waits for space release to start timer)
 function timerReady() {
-    console.clear()
+    // console.clear()
     removeEventListener("keyup", clearDelay);
     clock.style.color = startColor;
     //everything is hidden to simplify the timer
@@ -149,7 +149,7 @@ function stopTimer() {
     //active penalty buttons
     dnf.addEventListener('click', () => {
         const recentSolve = session.solveList[session.solveList.length - 1];
-        recentSolve.time = null;
+        recentSolve.time = Infinity;
         recentSolve.penalty = 'DNF';
         clock.innerHTML = recentSolve.toString();
         dnf.style.display = 'none';
