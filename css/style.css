@@ -26,17 +26,23 @@ body {
 }
 
 #averages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   z-index: 2;
   position: absolute;
   width: 100vw;
   height: 35vh;
-  text-align: center;
   bottom: 0;
   pointer-events: none;
 }
 
 h4 {
+  text-align: center;
   font-size: 30px;
+  width: 100vw;
 }
 
 h2 {
@@ -91,6 +97,9 @@ body {
 }
 
 .penalty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 3;
   margin: 20px;
   margin-top: 10px;

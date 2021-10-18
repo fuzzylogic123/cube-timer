@@ -127,9 +127,9 @@ function stopTimer() {
   let solveTime = Date.now() - startTime;
   clock.innerHTML = formatTime(solveTime);
   //redisplay all components that were hidden
-  scramble.style.display = "block";
-  averages.style.display = "block";
-  menus.style.display = "block";
+  scramble.style.display = "";
+  averages.style.display = "";
+  menus.style.display = "";
   plusTwo.style.display = "";
   dnf.style.display = "";
   document.body.style.cursor = "auto";
