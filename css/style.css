@@ -29,8 +29,9 @@ body {
   z-index: 2;
   position: absolute;
   width: 100vw;
+  height: 35vh;
   text-align: center;
-  bottom: 6.5vh;
+  bottom: 0;
   pointer-events: none;
 }
 
@@ -89,18 +90,10 @@ body {
   overflow: hidden; /* Hide scrollbars */
 }
 
-#penalty {
-  z-index: 2;
-  position: absolute;
-  width: 100vw;
-  text-align: center;
-  bottom: 27vh;
-  pointer-events: none;
-}
-
 .penalty {
   z-index: 3;
   margin: 20px;
+  margin-top: 10px;
   border-radius: 7px;
   padding: 10px;
   width: 100px;
