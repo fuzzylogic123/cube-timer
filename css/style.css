@@ -31,6 +31,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  align-content: center;
   z-index: 2;
   position: absolute;
   width: 100vw;
