@@ -31,7 +31,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  /* align-content: center; */
   z-index: 2;
   position: absolute;
   width: 100vw;
@@ -98,6 +98,7 @@ body {
 }
 
 .penalty {
+  font-size: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +107,8 @@ body {
   margin-top: 10px;
   border-radius: 7px;
   padding: 10px;
-  width: 100px;
+  width: 15vh;
+  height: 5vh;
   background-color: transparent;
   color: white;
   border: 2px solid white;
