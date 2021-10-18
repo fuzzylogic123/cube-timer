@@ -89,9 +89,9 @@ class Solve {
     this._penalty = penalty;
   }
   fromData(data) {
-    console.log(data);
     this._date = new Date(data._date);
-    this._solveTime = data._solveTime === null ? Infinity : Number(data._solveTime);
+    this._solveTime =
+      data._solveTime === null ? Infinity : Number(data._solveTime);
     this._scramble = data._scramble;
     this._penalty = data._penalty;
   }
@@ -153,7 +153,6 @@ class Session {
     if (this._solveList.length >= numberOfSolves) {
       //get the most recent n solves
       let chosenSolves = this._solveList.slice(-numberOfSolves);
-      console.log(chosenSolves);
       let chosenTimes = [];
       for (let i = 0; i < chosenSolves.length; i++) {
         chosenTimes.push(chosenSolves[i].time);
@@ -170,18 +169,14 @@ class Session {
         }
       }
       let sum = 0;
-      console.log(chosenTimes.length);
-      console.log(chosenTimes);
       for (let i = 0; i < chosenTimes.length; i++) {
         sum += chosenTimes[i];
-        console.log(sum);
       }
       const average = sum / chosenTimes.length;
-      console.log(average);
       if (average === Infinity) {
-          return 'DNF'
+        return "DNF";
       } else {
-          return formatTime(Math.round(average));
+        return formatTime(Math.round(average));
       }
     } else {
       return "--";

@@ -1,6 +1,5 @@
 "use strict";
 
-console.log(sessionList);
 let activeIndex = sessionList.active;
 
 function solveListHTML() {
@@ -10,7 +9,6 @@ function solveListHTML() {
     tableContents.innerHTML = '';
     for (let i = 0; i < session.solveList.length; i++) {
       const solve = session.solveList[i];
-      console.log(solve.toString());
       tableContents.innerHTML += `
         <tr>
         <td class="list-items">${solve.toString()}</td>
@@ -40,10 +38,7 @@ function solveListHTML() {
 }
 
 function sortList(e) {
-  console.log(sessionList);
-  console.log(activeIndex);
   const session = sessionList.list[activeIndex];
-  console.log(session);
   document.querySelectorAll('.filter').forEach(e => {
     if (e.classList.contains("filter-active")) {
       e.classList.remove("filter-active");
@@ -80,16 +75,12 @@ function initDropdown() {
   dropdown.innerHTML = '';
   for (let i = 0; i < listOfSessions.length; i++) {
     const session = listOfSessions[i];
-    console.log(session);
-    console.log(session.solveType)
     let selected = i === activeIndex;
-    console.log(selected, activeIndex);
     const option = new Option(`${session.name} - ${session.solveType}`, i, false, selected);
     dropdown.appendChild(option);
     dropdown.addEventListener('change', (e) => {
       activeIndex = e.target.value;
       sessionList.active = activeIndex;
-      console.log(activeIndex);
       solveListHTML();
       updateLSData(sessionKey, sessionList);
     })
@@ -129,14 +120,11 @@ function editSession() {
 
 const deleteAll = document.querySelector('#clear-session');
 deleteAll.addEventListener('click', () => {
-  console.log(sessionList);
   if (sessionList.list.length > 1) {
     sessionList.remove(activeIndex);
     updateLSData(sessionKey, sessionList);
     activeIndex = sessionList.active
     const session = sessionList.list[activeIndex];
-    console.log(sessionList);
-    console.log(session);
     initDropdown();
     solveListHTML();
   } else {
@@ -157,7 +145,6 @@ filters.forEach(element => {
 
 //initialise the list (newest first)
 if (sessionList.list.length > 0) {
-  console.log(sessionList);
   sessionList.list[activeIndex].solveList.sort((a, b) => b.date - a.date);
   solveListHTML();
   initDropdown();
