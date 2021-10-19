@@ -20,25 +20,29 @@
   <!--settings modal-->
   <div class="settings-modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <select class="form-select select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+
+          <label class="form-check-label manEnt" for="flexSwitchCheckDefault">Manual Entry</label>
+          <div class="form-check form-switch manualEntryDiv">
+            <input class="form-check-input manualEntry" type="checkbox" role="switch" id="entryManual">
+          </div>
           <br>
-          <select class="form-select select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <form class="form-floating scrambleLength">
+            <input type="number" class="form-control" id="scrambleLength" placeholder="20" value="20">
+            <label for="floatingInputValue">Scramble Length</label>
+          </form>
+          <label class="form-check-label back">Background</label>
+          <select class="form-select select background" id="backgroundSelection" aria-label="Default select example">
+            <option selected>Matrix</option>
+            <option value="1">JellyFish</option>
+            <option value="2">Ballz</option>
+            <option value="3">Coloured Smoke</option>
           </select>
         </div>
 
@@ -46,7 +50,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-dark" id="saveSettings" data-bs-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>
@@ -68,7 +72,7 @@
   <div id="tool-bar">
     <i id="stat-icon" class="icon bi bi-clipboard-data"></i>
     <br />
-    <i class="icon bi bi-gear" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+    <i class="icon bi bi-gear" id="settings" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
@@ -77,6 +81,7 @@
   <script src="./backgrounds/particles/particles.js"></script>
   <script src="./js/shared.js"></script>
   <script src="./js/scramble.js"></script>
+  <script src="./js/settings.js"></script>
   <script src="./js/timer.js"></script>
 </body>
 

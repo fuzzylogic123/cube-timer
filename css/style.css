@@ -25,6 +25,44 @@ body {
   color: black;
 }
 
+.manualEntry:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.scrambleLength {
+  width: 210px;
+  margin: 20px;
+}
+
+.manEnt {
+  margin-left: 20px;
+}
+
+.back {
+  margin-left: 20px;
+}
+
+.scrambleLength:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.manualEntry {
+  width: auto;
+}
+
+.manualEntryDiv {
+  width: 20px;
+  display: inline-flex;
+  margin: 20px;
+}
+
+.background {
+  margin: 20px;
+  display: inline-flex;
+}
+
 #averages {
   display: flex;
   flex-direction: row;

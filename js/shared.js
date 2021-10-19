@@ -1,6 +1,7 @@
 "use strict";
 
-let sessionKey = "yourBeefsYourMuttons";
+const sessionKey = "yourBeefsYourMuttons";
+const settingsKey = "I sold all of Finlands's military for 50 Lions"
 
 //takes total miliseconds and returns a formatted string to display
 function formatTime(totalMiliSec) {
@@ -231,7 +232,39 @@ class SessionList {
   }
 }
 
+class Settings{
+  constructor(background = 'matrix', scrambleLen=20, manualEntry = false) {
+    this._background = background;
+    this._scrambleLen = scrambleLen;
+    this._manualEntry = manualEntry;
+  }
+  get scrambleLen() {
+    return this._scrambleLen;
+  }
+  get manualEntry() {
+    return this._manualEntry;
+  }
+  get background() {
+    return this._background;
+  }
+  set scrambleLen(newLen) {
+    this._scrambleLen = newLen;
+  }
+  set manualEntry(bool) {
+    this._manualEntry = bool;
+  }
+  set background(newBackground) {
+    this._background = newBackground;
+  }
+  fromData(data) {
+    this._background = data._background;
+    this._scrambleLen = Number(data._scrambleLen);
+    this.manualEntry = data._manualEntry;
+  }
+}
+
 let sessionList;
+let settings;
 let data;
 
 if (checkLSData(sessionKey)) {
@@ -240,4 +273,12 @@ if (checkLSData(sessionKey)) {
   sessionList.fromData(data);
 } else {
   sessionList = new SessionList([new Session("Session 1", "3x3")]);
+}
+
+if (checkLSData(settingsKey)) {
+  data = retrieveLSData(settingsKey);
+  settings = new Settings();
+  settings.fromData(data);
+} else {
+  settings = new Settings();
 }
