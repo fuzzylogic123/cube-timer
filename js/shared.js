@@ -233,7 +233,7 @@ class SessionList {
 }
 
 class Settings{
-  constructor(background = 'matrix', scrambleLen=20, manualEntry = false) {
+  constructor(background = 0, scrambleLen=20, manualEntry = false) {
     this._background = background;
     this._scrambleLen = scrambleLen;
     this._manualEntry = manualEntry;
@@ -257,7 +257,7 @@ class Settings{
     this._background = newBackground;
   }
   fromData(data) {
-    this._background = data._background;
+    this._background = Number(data._background);
     this._scrambleLen = Number(data._scrambleLen);
     this.manualEntry = data._manualEntry;
   }
