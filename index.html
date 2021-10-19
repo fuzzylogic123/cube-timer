@@ -15,44 +15,6 @@
 </head>
 
 <body>
-  <!--settings modal-->
-  <div class="settings-modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <label class="form-check-label manEnt" for="flexSwitchCheckDefault">Manual Entry</label>
-          <div class="form-check form-switch manualEntryDiv">
-            <input class="form-check-input manualEntry" type="checkbox" role="switch" id="entryManual">
-          </div>
-          <br>
-          <form class="form-floating scrambleLength">
-            <input type="number" class="form-control" id="scrambleLength" placeholder="20" value="20">
-            <label for="floatingInputValue">Scramble Length</label>
-          </form>
-          <label class="form-check-label back">Background</label>
-          <select class="form-select select background" id="backgroundSelection" aria-label="Default select example">
-            <option value="0">Matrix</option>
-            <option value="1">Ballz</option>
-            <option value="2">JellyFish</option>
-            <option value="3">Coloured Smoke</option>
-          </select>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-dark" id="saveSettings" data-bs-dismiss="modal">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <div id="particles-js"></div>
   <div id="scramble"></div>
   <div class="timer">
@@ -77,6 +39,47 @@
     <br />
     <i class="icon bi bi-gear" id="settings" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
   </div>
+
+   <!--settings modal-->
+   <div class="settings-modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+
+         <label class="form-check-label manEnt" for="flexSwitchCheckDefault">Manual Entry</label>
+         <div class="form-check form-switch manualEntryDiv">
+           <input class="form-check-input manualEntry" type="checkbox" role="switch" id="entryManual">
+         </div>
+         <br>
+         <form class="form-floating scrambleLength">
+           <input type="number" class="form-control" id="scrambleLength" placeholder="20" value="20">
+           <label for="floatingInputValue">Scramble Length</label>
+         </form>
+         <label class="form-check-label back">Background</label>
+         <select class="form-select select background" id="backgroundSelection" aria-label="Default select example">
+           <option value="0">Matrix</option>
+           <option value="1">Ballz</option>
+           <option value="2">Gradient</option>
+           <option value="3">JellyFish</option>
+           <option value="4">Coloured Smoke</option>
+         </select>
+       </div>
+
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+           Close
+         </button>
+         <button type="button" class="btn btn-dark" id="saveSettings" data-bs-dismiss="modal">Save changes</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"></script>

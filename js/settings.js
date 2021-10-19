@@ -6,6 +6,7 @@ const settingsIcon = document.querySelector('#settings');
 const backgrounds = {
     0: ['./backgrounds/particles/particles.js', './backgrounds/particles/particles.css'],
     1: ['./backgrounds/balls/balls.js', './backgrounds/balls/balls.css'],
+    2: ['', 'backgrounds/gradients/gradient.css']
 };
 
 const images = {
@@ -38,7 +39,7 @@ submit.addEventListener('click', () => {
 function setBackground() {
     const backgroundIndex = settings.background;
     console.log(backgroundIndex);
-    if (backgroundIndex > 1) {
+    if (backgroundIndex > 3) {
         const image = images[backgroundIndex];
         document.body.style.backgroundImage = `url(${image})`;
     } else {
