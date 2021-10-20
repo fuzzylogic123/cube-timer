@@ -5,6 +5,7 @@ body {
   -webkit-user-select: none;
   color: white;
   background-color: black;
+  background-size: cover;
 }
 
 .timer {
