@@ -1,6 +1,6 @@
 "use strict";
 
-const activeIndex = sessionList.active;
+let activeIndex = sessionList.active;
 const session = sessionList.list[activeIndex];
 //repeats timer function every specified time interval
 let updateTimerHandle;
@@ -182,7 +182,8 @@ function addPlusTwo() {
 function addManualSolve(e) {
   if (e.key === 'Enter') {
     console.log('this worked')
-    const manualTime = document.querySelector('#name').value;
+    const manualTimeRef = document.querySelector('#name');
+    const manualTime = Number(manualTimeRef.value);
     //store solve
     let currentSolve = new Solve(manualTime, currentScramble);
     session.add(currentSolve);
@@ -197,13 +198,16 @@ function addManualSolve(e) {
     //active penalty buttons
     dnf.addEventListener("click", addDNF);
     plusTwo.addEventListener("click", addPlusTwo);
-    manualTime = ' ';
+    manualTimeRef.value = '';
+    manualTimeRef.blur();
   }
 }
 
 //if statment to determine if manual entry is true
 if (settings.manualEntry) {
   console.log(settings.manualEntry)
+  plusTwo.style.display = "";
+  dnf.style.display = "";
   addEventListener("keydown", addManualSolve);
 } else {
   //waits for a key down, then sets a delay to run timerReady after delay

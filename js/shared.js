@@ -233,7 +233,7 @@ class SessionList {
 }
 
 class Settings{
-  constructor(background = 0, scrambleLen=20, manualEntry = false, backgroundColor = '#000000') {
+  constructor(background = 0, scrambleLen=25, manualEntry = false, backgroundColor = '#000000') {
     this._background = background;
     this._scrambleLen = scrambleLen;
     this._manualEntry = manualEntry;

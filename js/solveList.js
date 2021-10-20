@@ -108,6 +108,7 @@ function editSession() {
   const activeSession = sessionList.list[activeIndex]
   activeSession.solveType = solveTypeInput.value;
   activeSession.name = sessionName.value;
+  updateLSData(sessionKey, sessionList);
   initDropdown();
   sessionName.value = '';
   solveTypeInput.selectedIndex = null;
