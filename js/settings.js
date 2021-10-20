@@ -18,10 +18,6 @@ const backgrounds = {
 function initPreferences() {
     setBackground();
     document.body.style.backgroundColor = settings.backgroundColor;
-    console.log(settings.background);
-    if (settings.background > 2) {
-        document.querySelector('#colorPicker').style.display = 'none';
-    }
 }
 
 //when the user clicks to open the settings modal
@@ -30,6 +26,9 @@ settingsIcon.addEventListener('click', () => {
     const manualEntry = document.querySelector('#entryManual');
     const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
+    //if the background is set to a picture, background color picker is invisible
+    if (settings.background > 2) document.querySelector('#colorPicker').style.display = 'none';
+    console.log(settings.background);
     backgroundSelection.value = settings.background;
     backgroundColor.value = settings.backgroundColor;
     manualEntry.checked = settings.manualEntry;
