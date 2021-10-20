@@ -42,6 +42,8 @@ saveChanges.addEventListener('click', () => {
     settings.scrambleLen = Number(scrambleLen.value);
     settings.backgroundColor = backgroundColor.value;
     updateLSData(settingsKey, settings);
+    dnf.style.display = "none";
+    plusTwo.style.display = "none";
     window.location.reload();
 });
 

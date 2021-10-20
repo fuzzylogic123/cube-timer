@@ -128,6 +128,8 @@ function processSolve(solveTime) {
   //active penalty buttons
   dnf.addEventListener("click", addDNF);
   plusTwo.addEventListener("click", addPlusTwo);
+  plusTwo.style.display = "inline-block";
+  dnf.style.display = "inline-block";
 }
 //runs when space is clicked to stop timer
 function stopTimer() {
@@ -142,8 +144,6 @@ function stopTimer() {
   scramble.style.display = "";
   averages.style.display = "";
   menus.style.display = "";
-  plusTwo.style.display = "";
-  dnf.style.display = "";
   document.body.style.cursor = "auto";
   //store solve
   processSolve(solveTime);
@@ -163,7 +163,7 @@ function addDNF() {
   recentSolve.time = Infinity;
   recentSolve.penalty = "DNF";
   console.log(recentSolve);
-  clock.innerHTML = recentSolve.toString();
+  if (clock) clock.innerHTML = recentSolve.toString();
   dnf.style.display = "none";
   plusTwo.style.display = "none";
   updateLSData(sessionKey, sessionList);
@@ -176,7 +176,7 @@ function addPlusTwo() {
   console.log("This line ran");
   recentSolve.time = recentSolve.time + 2000;
   recentSolve.penalty = "+2";
-  clock.innerHTML = recentSolve.toString();
+  if (clock) clock.innerHTML = recentSolve.toString();
   dnf.style.display = "none";
   plusTwo.style.display = "none";
   updateLSData(sessionKey, sessionList);
