@@ -15,8 +15,14 @@ const backgrounds = {
     8: ['./img/owl.jpg']
 };
 
-setBackground();
-document.body.style.backgroundColor = settings.backgroundColor;
+function initPreferences() {
+    setBackground();
+    document.body.style.backgroundColor = settings.backgroundColor;
+    console.log(settings.background);
+    if (settings.background > 2) {
+        document.querySelector('#colorPicker').style.display = 'none';
+    }
+}
 
 //when the user clicks to open the settings modal
 settingsIcon.addEventListener('click', () => {
@@ -25,10 +31,9 @@ settingsIcon.addEventListener('click', () => {
     const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
     backgroundSelection.value = settings.background;
-    manualEntry.checked = settings.manualEntry;
-    console.log(scrambleLen);
-    scrambleLenRef.value = scrambleLen;
     backgroundColor.value = settings.backgroundColor;
+    manualEntry.checked = settings.manualEntry;
+    scrambleLenRef.value = scrambleLen;
 })
 
 //when the user saves their changes
@@ -49,7 +54,6 @@ saveChanges.addEventListener('click', () => {
 
 function setBackground() {
     const backgroundIndex = settings.background;
-    console.log(backgroundIndex);
     if (backgroundIndex > 2) {
         const image = backgrounds[backgroundIndex];
         document.body.style.backgroundImage = `url(${image})`;
@@ -63,3 +67,5 @@ function setBackground() {
         document.head.innerHTML += `<link rel="stylesheet" href="${currentCSS}">`;
     }
 }
+
+initPreferences();
