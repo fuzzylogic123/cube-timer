@@ -8,7 +8,9 @@ const backgrounds = {
     1: ['./backgrounds/balls/balls.js', './backgrounds/balls/balls.css'],
     2: ['', 'backgrounds/gradients/gradient.css'],
     3: ['./img/jellyfish.jpg'],
-    4: ['./img/colored-smoke.jpg']
+    4: ['./img/colored-smoke.jpg'],
+    5: ['./img/cube1.jpg'],
+    6: ['./img/cube2.jpg']
 };
 
 setBackground();
