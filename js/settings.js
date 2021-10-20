@@ -10,7 +10,9 @@ const backgrounds = {
     3: ['./img/jellyfish.jpg'],
     4: ['./img/colored-smoke.jpg'],
     5: ['./img/cube1.jpg'],
-    6: ['./img/cube2.jpg']
+    6: ['./img/fish.jpg'],
+    7: ['./img/orangeSpirals.jpg'],
+    8: ['./img/owl.jpg']
 };
 
 setBackground();
