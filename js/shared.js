@@ -233,10 +233,11 @@ class SessionList {
 }
 
 class Settings{
-  constructor(background = 0, scrambleLen=20, manualEntry = false) {
+  constructor(background = 0, scrambleLen=20, manualEntry = false, backgroundColor = '#000000') {
     this._background = background;
     this._scrambleLen = scrambleLen;
     this._manualEntry = manualEntry;
+    this._backgroundColor = backgroundColor;
   }
   get scrambleLen() {
     return this._scrambleLen;
@@ -247,6 +248,9 @@ class Settings{
   get background() {
     return this._background;
   }
+  get backgroundColor() {
+    return this._backgroundColor;
+  }
   set scrambleLen(newLen) {
     this._scrambleLen = newLen;
   }
@@ -256,10 +260,14 @@ class Settings{
   set background(newBackground) {
     this._background = newBackground;
   }
+  set backgroundColor(newColor) {
+    this._backgroundColor = newColor;
+  } 
   fromData(data) {
     this._background = Number(data._background);
     this._scrambleLen = Number(data._scrambleLen);
     this.manualEntry = data._manualEntry;
+    this.backgroundColor = data._backgroundColor;
   }
 }
 

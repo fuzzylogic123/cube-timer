@@ -1,6 +1,6 @@
 "use strict"
 
-const submit = document.querySelector('#saveSettings');
+const saveChanges = document.querySelector('#saveSettings');
 const settingsIcon = document.querySelector('#settings');
 
 const backgrounds = {
@@ -16,6 +16,7 @@ const backgrounds = {
 };
 
 setBackground();
+document.body.style.backgroundColor = settings.backgroundColor;
 
 settingsIcon.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
@@ -26,13 +27,15 @@ settingsIcon.addEventListener('click', () => {
     scrambleLen.value = settings.scrambleLen;
 })
 
-submit.addEventListener('click', () => {
+saveChanges.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
     const manualEntry = document.querySelector('#entryManual');
     const scrambleLen = document.querySelector('#scrambleLength');
+    const backgroundColor = document.querySelector('#backgroundColor');
     settings.background = backgroundSelection.value;
     settings.manualEntry = manualEntry.checked;
     settings.scrambleLen = Number(scrambleLen.value);
+    settings.backgroundColor = backgroundColor.value;
     updateLSData(settingsKey, settings);
     window.location.reload();
 });

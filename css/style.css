@@ -4,7 +4,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   color: white;
-  background-color: black;
+  background-color: rgb(255, 0, 0);
   background-size: cover;
   background-position: center;
 }
@@ -13,14 +13,14 @@ body {
   width: 30px;
   padding: 0px;
   border: none;
-  margin: 25px;
+  margin: 20px;
   margin-left: 5px;
   display: inline-flex;
   height: 15px;
 }
 
 .colorLabel {
-  margin: 25px;
+  margin: 20px;
 }
 
 .timer {
