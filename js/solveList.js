@@ -67,7 +67,6 @@ function sortList(e) {
   solveListHTML();
 }
 
-//todo: use bootstrap select element
 function initDropdown() {
   const listOfSessions = sessionList.list;
   activeIndex = sessionList.active;
@@ -82,8 +81,11 @@ function initDropdown() {
       activeIndex = e.target.value;
       sessionList.active = activeIndex;
       solveListHTML();
+      settings.scrambleLen = null;
+      console.log(settings)
+      updateLSData(settingsKey, settings);
       updateLSData(sessionKey, sessionList);
-    })
+    });
   }
 }
 

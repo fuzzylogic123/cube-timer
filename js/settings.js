@@ -18,17 +18,20 @@ const backgrounds = {
 setBackground();
 document.body.style.backgroundColor = settings.backgroundColor;
 
+//when the user clicks to open the settings modal
 settingsIcon.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
     const manualEntry = document.querySelector('#entryManual');
-    const scrambleLen = document.querySelector('#scrambleLength');
+    const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
     backgroundSelection.value = settings.background;
     manualEntry.checked = settings.manualEntry;
-    scrambleLen.value = settings.scrambleLen;
+    console.log(scrambleLen);
+    scrambleLenRef.value = scrambleLen;
     backgroundColor.value = settings.backgroundColor;
 })
 
+//when the user saves their changes
 saveChanges.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
     const manualEntry = document.querySelector('#entryManual');

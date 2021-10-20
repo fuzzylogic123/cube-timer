@@ -17,7 +17,7 @@ let startColor = "#32CD30";
 let holdColor = "#FF0000";
 let defaultColor = "white";
 //retrives DOM elements
-const clock = document.getElementById("clock");
+let clock;
 const ao5 = document.getElementById("ao5");
 const ao12 = document.getElementById("ao12");
 const menus = document.getElementById("tool-bar");
@@ -114,23 +114,7 @@ function confirmStart(e) {
   }
 }
 
-//runs when space is clicked to stop timer
-function stopTimer() {
-  removeEventListener("keydown", stopTimer);
-  plusTwo.style.display = "";
-  dnf.style.display = "";
-  cancelled = true;
-  console.log("timer has been stopped");
-  let solveTime = Date.now() - startTime;
-  clock.innerHTML = formatTime(solveTime);
-  //redisplay all components that were hidden
-  scramble.style.display = "";
-  averages.style.display = "";
-  menus.style.display = "";
-  plusTwo.style.display = "";
-  dnf.style.display = "";
-  document.body.style.cursor = "auto";
-  //store solve
+function processSolve(solveTime) {
   let currentSolve = new Solve(solveTime, currentScramble);
   session.add(currentSolve);
   updateLSData(sessionKey, sessionList);
@@ -140,11 +124,30 @@ function stopTimer() {
   //generate new scramble
   currentScramble = scrambleGen(scrambleNotation);
   scrambleToHTML(currentScramble);
-  addEventListener("keyup", resetTimer);
   console.log("this entire global code has ran");
   //active penalty buttons
   dnf.addEventListener("click", addDNF);
   plusTwo.addEventListener("click", addPlusTwo);
+}
+//runs when space is clicked to stop timer
+function stopTimer() {
+  removeEventListener("keydown", stopTimer);
+  plusTwo.style.display = "";
+  dnf.style.display = "";
+  cancelled = true;
+  console.log("timer has been stopped");
+  const solveTime = Date.now() - startTime;
+  clock.innerHTML = formatTime(solveTime);
+  //redisplay all components that were hidden
+  scramble.style.display = "";
+  averages.style.display = "";
+  menus.style.display = "";
+  plusTwo.style.display = "";
+  dnf.style.display = "";
+  document.body.style.cursor = "auto";
+  //store solve
+  processSolve(solveTime);
+  resetTimer();
 }
 
 //resets timer function
@@ -183,21 +186,9 @@ function addManualSolve(e) {
   if (e.key === 'Enter') {
     console.log('this worked')
     const manualTimeRef = document.querySelector('#name');
-    const manualTime = Number(manualTimeRef.value);
+    const solveTime = Number(manualTimeRef.value) * 1000;
     //store solve
-    let currentSolve = new Solve(manualTime, currentScramble);
-    session.add(currentSolve);
-    updateLSData(sessionKey, sessionList);
-    //update averages
-    ao5.innerHTML = session.getAverage(5);
-    ao12.innerHTML = session.getAverage(12);
-    //generate new scramble
-    currentScramble = scrambleGen(scrambleNotation);
-    scrambleToHTML(currentScramble);
-    console.log("this entire global code has ran");
-    //active penalty buttons
-    dnf.addEventListener("click", addDNF);
-    plusTwo.addEventListener("click", addPlusTwo);
+    processSolve(solveTime);
     manualTimeRef.value = '';
     manualTimeRef.blur();
   }
@@ -209,7 +200,15 @@ if (settings.manualEntry) {
   plusTwo.style.display = "";
   dnf.style.display = "";
   addEventListener("keydown", addManualSolve);
+  document.querySelector('.timer').innerHTML = `<div class="form__group field">
+  <input autocomplete="off" type="input" class="form__field" placeholder="Name" name="name" id="name" required />
+  <label for="name" class="form__label">Time (in seconds)</label>
+</div>`;
+
 } else {
   //waits for a key down, then sets a delay to run timerReady after delay
   addEventListener("keydown", setDelay);
+  document.querySelector('.timer').innerHTML = '<h1 id="clock">0.000</h1>'
+  clock = document.getElementById("clock")
+
 }
