@@ -67,9 +67,6 @@ function updateTimer() {
   }
 }
 
-//waits for a key down, then sets a delay to run timerReady after delay
-addEventListener("keydown", setDelay);
-
 //once the space key is held down, this turns the clock red until spaceDownThreshold has passed
 function setDelay(e) {
   if (e.key === " ") {
@@ -144,7 +141,7 @@ function stopTimer() {
   currentScramble = scrambleGen(scrambleNotation);
   scrambleToHTML(currentScramble);
   addEventListener("keyup", resetTimer);
-  console.log('this entire global code has ran')
+  console.log("this entire global code has ran");
   //active penalty buttons
   dnf.addEventListener("click", addDNF);
   plusTwo.addEventListener("click", addPlusTwo);
@@ -157,27 +154,58 @@ function resetTimer() {
 }
 
 function addDNF() {
-    dnf.removeEventListener('click', addDNF);
-    const recentSolve = session.solveList[session.solveList.length - 1];
-    console.log(recentSolve);
-    recentSolve.time = Infinity;
-    recentSolve.penalty = "DNF";
-    console.log(recentSolve);
-    clock.innerHTML = recentSolve.toString();
-    dnf.style.display = "none";
-    plusTwo.style.display = "none";
-    updateLSData(sessionKey, sessionList);
+  dnf.removeEventListener("click", addDNF);
+  const recentSolve = session.solveList[session.solveList.length - 1];
+  console.log(recentSolve);
+  recentSolve.time = Infinity;
+  recentSolve.penalty = "DNF";
+  console.log(recentSolve);
+  clock.innerHTML = recentSolve.toString();
+  dnf.style.display = "none";
+  plusTwo.style.display = "none";
+  updateLSData(sessionKey, sessionList);
 }
 
 function addPlusTwo() {
-    plusTwo.removeEventListener('click', addPlusTwo);
-    const recentSolve = session.solveList[session.solveList.length - 1];
-    console.log(recentSolve.time);
-    console.log('This line ran');
-    recentSolve.time = recentSolve.time + 2000;
-    recentSolve.penalty = "+2";
-    clock.innerHTML = recentSolve.toString();
-    dnf.style.display = "none";
-    plusTwo.style.display = "none";
+  plusTwo.removeEventListener("click", addPlusTwo);
+  const recentSolve = session.solveList[session.solveList.length - 1];
+  console.log(recentSolve.time);
+  console.log("This line ran");
+  recentSolve.time = recentSolve.time + 2000;
+  recentSolve.penalty = "+2";
+  clock.innerHTML = recentSolve.toString();
+  dnf.style.display = "none";
+  plusTwo.style.display = "none";
+  updateLSData(sessionKey, sessionList);
+}
+
+function addManualSolve(e) {
+  if (e.key === 'Enter') {
+    console.log('this worked')
+    const manualTime = document.querySelector('#name').value;
+    //store solve
+    let currentSolve = new Solve(manualTime, currentScramble);
+    session.add(currentSolve);
     updateLSData(sessionKey, sessionList);
+    //update averages
+    ao5.innerHTML = session.getAverage(5);
+    ao12.innerHTML = session.getAverage(12);
+    //generate new scramble
+    currentScramble = scrambleGen(scrambleNotation);
+    scrambleToHTML(currentScramble);
+    console.log("this entire global code has ran");
+    //active penalty buttons
+    dnf.addEventListener("click", addDNF);
+    plusTwo.addEventListener("click", addPlusTwo);
+    manualTime = ' ';
+  }
+}
+
+//if statment to determine if manual entry is true
+if (settings.manualEntry) {
+  console.log(settings.manualEntry)
+  addEventListener("keydown", addManualSolve);
+} else {
+  //waits for a key down, then sets a delay to run timerReady after delay
+  addEventListener("keydown", setDelay);
 }

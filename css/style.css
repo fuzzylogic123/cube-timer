@@ -30,8 +30,7 @@ body {
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  z-index: 3;
-  pointer-events: none;
+  z-index: 1;
 }
 
 .select {
@@ -202,10 +201,10 @@ body {
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid #9b9b9b;
+  border-bottom: 2px solid #ffffff;
   outline: 0;
-  font-size: 1.3rem;
-  color: #fff;
+  font-size: 5.5rem;
+  color: rgb(255, 255, 255);
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -214,7 +213,7 @@ body {
   color: transparent;
 }
 .form__field:placeholder-shown ~ .form__label {
-  font-size: 1.3rem;
+  font-size: 5.5rem;
   cursor: text;
   top: 20px;
 }
@@ -225,7 +224,6 @@ body {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #9b9b9b;
 }
 
 .form__field:focus {

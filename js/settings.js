@@ -22,9 +22,11 @@ settingsIcon.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
     const manualEntry = document.querySelector('#entryManual');
     const scrambleLen = document.querySelector('#scrambleLength');
+    const backgroundColor = document.querySelector('#backgroundColor');
     backgroundSelection.value = settings.background;
     manualEntry.checked = settings.manualEntry;
     scrambleLen.value = settings.scrambleLen;
+    backgroundColor.value = settings.backgroundColor;
 })
 
 saveChanges.addEventListener('click', () => {
