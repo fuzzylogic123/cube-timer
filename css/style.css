@@ -8,6 +8,20 @@ body {
   background-size: cover;
 }
 
+.backgroundColor {
+  width: 30px;
+  padding: 0px;
+  border: none;
+  margin: 25px;
+  margin-left: 5px;
+  display: inline-flex;
+  height: 15px;
+}
+
+.colorLabel {
+  margin: 25px;
+}
+
 .timer {
   position: relative;
   display: flex;
