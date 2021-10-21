@@ -101,7 +101,6 @@ function addSession() {
 }
 
 function editSession() {
-  console.log('edit session ran')
   const sessionName = document.querySelector('#edit-input');
   const solveTypeInput = document.querySelector('#edit-solve-type');
   const activeIndex = sessionList.active;

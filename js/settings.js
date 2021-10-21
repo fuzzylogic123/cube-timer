@@ -29,7 +29,8 @@ settingsIcon.addEventListener('click', () => {
     backgroundSelection.value = settings.background;
     backgroundColor.value = settings.backgroundColor;
     manualEntry.checked = settings.manualEntry;
-    scrambleLenRef.value = scrambleLen;
+    const sessionType = sessionList.list[sessionList.active].solveType;
+    scrambleLenRef.value = settings.scrambleLen[sessionType];
 })
 
 //when the user saves their changes

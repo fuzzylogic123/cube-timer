@@ -60,7 +60,6 @@ function startTimer() {
 //updates the timer
 function updateTimer() {
   if (!cancelled) {
-    console.log("the timer is still updating");
     let timeElapsed = Date.now() - startTime;
     clock.innerHTML = formatTime(timeElapsed);
     updateTimerHandle = requestAnimationFrame(updateTimer);
@@ -124,7 +123,6 @@ function processSolve(solveTime) {
   //generate new scramble
   currentScramble = scrambleGen(scrambleNotation);
   scrambleToHTML(currentScramble);
-  console.log("this entire global code has ran");
   //active penalty buttons
   dnf.addEventListener("click", addDNF);
   plusTwo.addEventListener("click", addPlusTwo);
@@ -137,7 +135,6 @@ function stopTimer() {
   plusTwo.style.display = "";
   dnf.style.display = "";
   cancelled = true;
-  console.log("timer has been stopped");
   const solveTime = Date.now() - startTime;
   clock.innerHTML = formatTime(solveTime);
   //redisplay all components that were hidden
@@ -159,10 +156,8 @@ function resetTimer() {
 function addDNF() {
   dnf.removeEventListener("click", addDNF);
   const recentSolve = session.solveList[session.solveList.length - 1];
-  console.log(recentSolve);
   recentSolve.time = Infinity;
   recentSolve.penalty = "DNF";
-  console.log(recentSolve);
   if (clock) clock.innerHTML = recentSolve.toString();
   dnf.style.display = "none";
   plusTwo.style.display = "none";
@@ -172,8 +167,6 @@ function addDNF() {
 function addPlusTwo() {
   plusTwo.removeEventListener("click", addPlusTwo);
   const recentSolve = session.solveList[session.solveList.length - 1];
-  console.log(recentSolve.time);
-  console.log("This line ran");
   recentSolve.time = recentSolve.time + 2000;
   recentSolve.penalty = "+2";
   if (clock) clock.innerHTML = recentSolve.toString();
@@ -184,7 +177,6 @@ function addPlusTwo() {
 
 function addManualSolve(e) {
   if (e.key === 'Enter') {
-    console.log('this worked')
     const manualTimeRef = document.querySelector('#name');
     const solveTime = Number(manualTimeRef.value) * 1000;
     //store solve
@@ -196,7 +188,6 @@ function addManualSolve(e) {
 
 //if statment to determine if manual entry is true
 if (settings.manualEntry) {
-  console.log(settings.manualEntry)
   plusTwo.style.display = "";
   dnf.style.display = "";
   addEventListener("keydown", addManualSolve);

@@ -1,7 +1,5 @@
 "use strict"
 
-console.log(settings.scrambleLen);
-
 //generates scramble
 const scrambleNotationList = {
     '2x2': [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]],
@@ -15,12 +13,9 @@ const scrambleNotationList = {
     '3BLD': [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]],
 }
 
-console.log(settings.scrambleLen);
 const sessionType = sessionList.list[sessionList.active].solveType;
 let scrambleLen = settings.scrambleLen[sessionType];
-console.log(scrambleLen);
 let scrambleNotation = scrambleNotationList[sessionList.list[sessionList.active].solveType];
-console.log(scrambleNotation);
 let currentScramble = scrambleGen(scrambleNotation, scrambleLen);
 scrambleToHTML(currentScramble);
 

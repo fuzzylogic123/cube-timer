@@ -276,7 +276,6 @@ class Settings{
     this._scrambleLen[solveType] = len;
   }
   fromData(data) {
-    console.log(data);
     this._background = Number(data._background);
     this._scrambleLen = data._scrambleLen;
     this.manualEntry = data._manualEntry;
