@@ -147,7 +147,7 @@ function stopTimer() {
   document.body.style.cursor = "auto";
   //store solve
   processSolve(solveTime);
-  resetTimer();
+  addEventListener('keyup', resetTimer);
 }
 
 //resets timer function
