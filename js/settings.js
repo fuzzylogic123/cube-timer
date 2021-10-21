@@ -26,9 +26,6 @@ settingsIcon.addEventListener('click', () => {
     const manualEntry = document.querySelector('#entryManual');
     const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
-    //if the background is set to a picture, background color picker is invisible
-    if (settings.background > 2) document.querySelector('#colorPicker').style.display = 'none';
-    console.log(settings.background);
     backgroundSelection.value = settings.background;
     backgroundColor.value = settings.backgroundColor;
     manualEntry.checked = settings.manualEntry;
@@ -68,3 +65,10 @@ function setBackground() {
 }
 
 initPreferences();
+
+const backgroundDropdown = document.querySelector('#backgroundSelection');
+
+backgroundDropdown.addEventListener('change', (e) => {
+        //if the background is set to a picture, background color picker is invisible
+        document.querySelector('#colorPicker').style.display = e.target.value > 1 ? 'none' : '';
+})

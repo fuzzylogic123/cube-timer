@@ -77,16 +77,16 @@ function initDropdown() {
     let selected = i === activeIndex;
     const option = new Option(`${session.name} - ${session.solveType}`, i, false, selected);
     dropdown.appendChild(option);
-    dropdown.addEventListener('change', (e) => {
-      activeIndex = e.target.value;
-      sessionList.active = activeIndex;
-      solveListHTML();
-      settings.scrambleLen = null;
-      console.log(settings)
-      updateLSData(settingsKey, settings);
-      updateLSData(sessionKey, sessionList);
-    });
   }
+  dropdown.addEventListener('change', (e) => {
+    activeIndex = e.target.value;
+    sessionList.active = activeIndex;
+    solveListHTML();
+    settings.scrambleLen = null;
+    console.log(settings.scrambleLen);
+    updateLSData(settingsKey, settings);
+    updateLSData(sessionKey, sessionList);
+  });
 }
 
 function addSession() {
@@ -101,19 +101,25 @@ function addSession() {
   updateLSData(sessionKey, sessionList);
   sessionName.value = '';
   solveType.selectedIndex = null;
+  settings.scrambleLen = null;
+  console.log(settings.scrambleLen);
+  updateLSData(settingsKey, settings);
 }
 
 function editSession() {
+  console.log('edit session ran')
   const sessionName = document.querySelector('#edit-input');
   const solveTypeInput = document.querySelector('#edit-solve-type');
   const activeIndex = sessionList.active;
   const activeSession = sessionList.list[activeIndex]
   activeSession.solveType = solveTypeInput.value;
   activeSession.name = sessionName.value;
-  updateLSData(sessionKey, sessionList);
   initDropdown();
   sessionName.value = '';
   solveTypeInput.selectedIndex = null;
+  settings.scrambleLen = null;
+  console.log(settings.scrambleLen);
+  updateLSData(settingsKey, settings);
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
