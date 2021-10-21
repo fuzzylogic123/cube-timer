@@ -122,6 +122,7 @@ h2 {
   font-size-adjust: 0.58;
   z-index: 4;
   pointer-events: none;
+  display: none;
 }
 
 #tool-bar {
@@ -199,6 +200,7 @@ body {
   margin-top: 10px;
   width: 50%;
   pointer-events: all;
+  display: none;
 }
 
 .form__field {

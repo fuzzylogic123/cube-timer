@@ -64,7 +64,7 @@ function setBackground() {
     }
 }
 
-initPreferences();
+initPreferences()
 
 const backgroundDropdown = document.querySelector('#backgroundSelection');
 

@@ -72,6 +72,7 @@ function initDropdown() {
   activeIndex = sessionList.active;
   const dropdown = document.querySelector('#dropdown');
   dropdown.innerHTML = '';
+  updateLSData(sessionKey, sessionList);
   for (let i = 0; i < listOfSessions.length; i++) {
     const session = listOfSessions[i];
     let selected = i === activeIndex;
@@ -82,7 +83,6 @@ function initDropdown() {
     activeIndex = e.target.value;
     sessionList.active = activeIndex;
     solveListHTML();
-    updateLSData(settingsKey, settings);
     updateLSData(sessionKey, sessionList);
   });
 }
@@ -96,10 +96,8 @@ function addSession() {
   sessionList.active = activeIndex;
   initDropdown();
   solveListHTML();
-  updateLSData(sessionKey, sessionList);
   sessionName.value = '';
   solveType.selectedIndex = null;
-  updateLSData(settingsKey, settings);
 }
 
 function editSession() {
@@ -113,8 +111,6 @@ function editSession() {
   initDropdown();
   sessionName.value = '';
   solveTypeInput.selectedIndex = null;
-  updateLSData(settingsKey, settings);
-  updateLSData(sessionKey, sessionList);
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
@@ -126,7 +122,6 @@ const deleteAll = document.querySelector('#clear-session');
 deleteAll.addEventListener('click', () => {
   if (sessionList.list.length > 1) {
     sessionList.remove(activeIndex);
-    updateLSData(sessionKey, sessionList);
     activeIndex = sessionList.active
     const session = sessionList.list[activeIndex];
     initDropdown();

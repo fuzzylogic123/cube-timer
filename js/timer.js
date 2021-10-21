@@ -17,7 +17,7 @@ let startColor = "#32CD30";
 let holdColor = "#FF0000";
 let defaultColor = "white";
 //retrives DOM elements
-let clock;
+const clock = document.getElementById("clock");
 const ao5 = document.getElementById("ao5");
 const ao12 = document.getElementById("ao12");
 const menus = document.getElementById("tool-bar");
@@ -200,15 +200,11 @@ if (settings.manualEntry) {
   plusTwo.style.display = "";
   dnf.style.display = "";
   addEventListener("keydown", addManualSolve);
-  document.querySelector('.timer').innerHTML = `<div class="form__group field">
-  <input autocomplete="off" type="input" class="form__field" placeholder="Name" name="name" id="name" required />
-  <label for="name" class="form__label">Time (in seconds)</label>
-</div>`;
+  document.querySelector('.form__group').style.display = 'block';
+  document.querySelector('#clock').style.display = 'none';
 
 } else {
   //waits for a key down, then sets a delay to run timerReady after delay
   addEventListener("keydown", setDelay);
-  document.querySelector('.timer').innerHTML = '<h1 id="clock">0.000</h1>'
-  clock = document.getElementById("clock")
-
+  document.querySelector('#clock').style.display = 'block';
 }
