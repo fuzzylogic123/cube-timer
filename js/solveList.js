@@ -82,8 +82,6 @@ function initDropdown() {
     activeIndex = e.target.value;
     sessionList.active = activeIndex;
     solveListHTML();
-    settings.scrambleLen = null;
-    console.log(settings.scrambleLen);
     updateLSData(settingsKey, settings);
     updateLSData(sessionKey, sessionList);
   });
@@ -101,8 +99,6 @@ function addSession() {
   updateLSData(sessionKey, sessionList);
   sessionName.value = '';
   solveType.selectedIndex = null;
-  settings.scrambleLen = null;
-  console.log(settings.scrambleLen);
   updateLSData(settingsKey, settings);
 }
 
@@ -117,8 +113,6 @@ function editSession() {
   initDropdown();
   sessionName.value = '';
   solveTypeInput.selectedIndex = null;
-  settings.scrambleLen = null;
-  console.log(settings.scrambleLen);
   updateLSData(settingsKey, settings);
   updateLSData(sessionKey, sessionList);
 }

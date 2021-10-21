@@ -40,7 +40,7 @@ saveChanges.addEventListener('click', () => {
     const backgroundColor = document.querySelector('#backgroundColor');
     settings.background = backgroundSelection.value;
     settings.manualEntry = manualEntry.checked;
-    settings.scrambleLen = Number(scrambleLen.value);
+    settings.setScrambleLen(sessionList.list[sessionList.active].solveType, Number(scrambleLen.value));
     settings.backgroundColor = backgroundColor.value;
     updateLSData(settingsKey, settings);
     dnf.style.display = "none";

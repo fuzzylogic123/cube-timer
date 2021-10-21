@@ -232,8 +232,20 @@ class SessionList {
   }
 }
 
+const defaultScrambleLen = {
+  '2x2': 9,
+  '3x3': 25,
+  '4x4': 40,
+  '5x5': 60,
+  '6x6': 80,
+  '7x7': 100,
+  'Skewb': 9,
+  'Pyraminx': 25,
+  '3BLD': 25
+}
+
 class Settings{
-  constructor(background = 0, scrambleLen=null, manualEntry = false, backgroundColor = '#000000') {
+  constructor(background = 0, scrambleLen = defaultScrambleLen, manualEntry = false, backgroundColor = '#000000') {
     this._background = background;
     this._scrambleLen = scrambleLen;
     this._manualEntry = manualEntry;
@@ -251,9 +263,6 @@ class Settings{
   get backgroundColor() {
     return this._backgroundColor;
   }
-  set scrambleLen(newLen) {
-    this._scrambleLen = newLen;
-  }
   set manualEntry(bool) {
     this._manualEntry = bool;
   }
@@ -262,10 +271,14 @@ class Settings{
   }
   set backgroundColor(newColor) {
     this._backgroundColor = newColor;
-  } 
+  }
+  setScrambleLen(solveType, len) {
+    this._scrambleLen[solveType] = len;
+  }
   fromData(data) {
+    console.log(data);
     this._background = Number(data._background);
-    this._scrambleLen = Number(data._scrambleLen);
+    this._scrambleLen = data._scrambleLen;
     this.manualEntry = data._manualEntry;
     this.backgroundColor = data._backgroundColor;
   }

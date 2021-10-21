@@ -15,20 +15,10 @@ const scrambleNotationList = {
     '3BLD': [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]],
 }
 
-const defaultScrambleLen = {
-    '2x2': 9,
-    '3x3': 25,
-    '4x4': 40,
-    '5x5': 60,
-    '6x6': 80,
-    '7x7': 100,
-    'Skewb': 9,
-    'Pyraminx': 25,
-    '3BLD': 25
-};
-
 console.log(settings.scrambleLen);
-let scrambleLen = settings.scrambleLen ? settings.scrambleLen : defaultScrambleLen[sessionList.list[sessionList.active].solveType];
+const sessionType = sessionList.list[sessionList.active].solveType;
+let scrambleLen = settings.scrambleLen[sessionType];
+console.log(scrambleLen);
 let scrambleNotation = scrambleNotationList[sessionList.list[sessionList.active].solveType];
 console.log(scrambleNotation);
 let currentScramble = scrambleGen(scrambleNotation, scrambleLen);
