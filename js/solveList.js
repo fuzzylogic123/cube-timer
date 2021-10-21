@@ -120,6 +120,7 @@ function editSession() {
   settings.scrambleLen = null;
   console.log(settings.scrambleLen);
   updateLSData(settingsKey, settings);
+  updateLSData(sessionKey, sessionList);
 }
 
 // document.querySelector('#add-session').addEventListener('click', ()=> {
