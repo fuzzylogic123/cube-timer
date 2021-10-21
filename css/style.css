@@ -104,6 +104,9 @@ h4 {
 h2 {
   font-size: 4vw;
   letter-spacing: 0.2em;
+  line-height: 30px;
+  margin: 50px;
+  margin-top: 0;
 }
 
 .scrambleLetter {
