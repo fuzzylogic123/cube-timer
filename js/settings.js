@@ -26,11 +26,13 @@ settingsIcon.addEventListener('click', () => {
     const manualEntry = document.querySelector('#entryManual');
     const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
+    const backgroundPreview = document.querySelector('#backgroundPreview');
     backgroundSelection.value = settings.background;
     backgroundColor.value = settings.backgroundColor;
     manualEntry.checked = settings.manualEntry;
     const sessionType = sessionList.list[sessionList.active].solveType;
     scrambleLenRef.value = settings.scrambleLen[sessionType];
+    if (backgroundSelection.value > 1) backgroundPreview.src = backgrounds[backgroundSelection.value];
 })
 
 //when the user saves their changes
@@ -70,6 +72,12 @@ initPreferences()
 const backgroundDropdown = document.querySelector('#backgroundSelection');
 
 backgroundDropdown.addEventListener('change', (e) => {
-        //if the background is set to a picture, background color picker is invisible
-        document.querySelector('#colorPicker').style.display = e.target.value > 1 ? 'none' : '';
+    //if the background is set to a picture, background color picker is invisible
+    document.querySelector('#colorPicker').style.display = e.target.value > 1 ? 'none' : '';
+    if (backgroundSelection.value > 2) {
+        backgroundPreview.style.display = 'inline-block'
+        backgroundPreview.src = backgrounds[backgroundSelection.value]
+    } else {
+        backgroundPreview.style.display = 'none'
+    };
 })
