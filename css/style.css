@@ -253,3 +253,9 @@ body {
 .form__field:required, .form__field:invalid {
   box-shadow: none;
 }
+
+#backgroundPreview {
+  height: 100px;
+  width: auto;
+  border-radius: 5px;
+}
