@@ -33,10 +33,9 @@ settingsIcon.addEventListener('click', () => {
     const sessionType = sessionList.list[sessionList.active].solveType;
     scrambleLenRef.value = settings.scrambleLen[sessionType];
     console.log(backgroundSelection.value);
-    if (backgroundSelection.value > 2) {
+    if (backgroundSelection.value > 1) {
         backgroundPreview.src = backgrounds[backgroundSelection.value];
         document.querySelector('#colorPicker').style.display = 'none';
-    } else {
         backgroundPreview.style.display = 'none'
     }
 });
