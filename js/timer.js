@@ -161,6 +161,8 @@ function addDNF() {
   if (clock) clock.innerHTML = recentSolve.toString();
   dnf.style.display = "none";
   plusTwo.style.display = "none";
+  ao5.innerHTML = session.getAverage(5);
+  ao12.innerHTML = session.getAverage(12);
   updateLSData(sessionKey, sessionList);
 }
 
@@ -172,6 +174,8 @@ function addPlusTwo() {
   if (clock) clock.innerHTML = recentSolve.toString();
   dnf.style.display = "none";
   plusTwo.style.display = "none";
+  ao5.innerHTML = session.getAverage(5);
+  ao12.innerHTML = session.getAverage(12);
   updateLSData(sessionKey, sessionList);
 }
 
