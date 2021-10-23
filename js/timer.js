@@ -121,7 +121,7 @@ function processSolve(solveTime) {
   ao5.innerHTML = session.getAverage(5);
   ao12.innerHTML = session.getAverage(12);
   //generate new scramble
-  currentScramble = scrambleGen(scrambleNotation);
+  currentScramble = scrambleGen(scrambleNotation, scrambleLen);
   scrambleToHTML(currentScramble);
   //active penalty buttons
   dnf.addEventListener("click", addDNF);
