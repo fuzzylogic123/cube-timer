@@ -144,7 +144,7 @@ function stopTimer() {
   document.body.style.cursor = "auto";
   //store solve
   processSolve(solveTime);
-  addEventListener('keyup', resetTimer);
+  addEventListener("keyup", resetTimer);
 }
 
 //resets timer function
@@ -176,13 +176,15 @@ function addPlusTwo() {
 }
 
 function addManualSolve(e) {
-  if (e.key === 'Enter') {
-    const manualTimeRef = document.querySelector('#name');
-    const solveTime = Number(manualTimeRef.value) * 1000;
-    //store solve
-    processSolve(solveTime);
-    manualTimeRef.value = '';
-    manualTimeRef.blur();
+  if (e.key === "Enter") {
+    const manualTimeRef = document.querySelector("#name");
+    if (manualTimeRef.value) {
+      const solveTime = Number(manualTimeRef.value) * 1000;
+      //store solve
+      processSolve(solveTime);
+      manualTimeRef.value = "";
+      manualTimeRef.blur();
+    }
   }
 }
 
@@ -191,11 +193,10 @@ if (settings.manualEntry) {
   plusTwo.style.display = "";
   dnf.style.display = "";
   addEventListener("keydown", addManualSolve);
-  document.querySelector('.form__group').style.display = 'block';
-  document.querySelector('#clock').style.display = 'none';
-
+  document.querySelector(".form__group").style.display = "block";
+  document.querySelector("#clock").style.display = "none";
 } else {
   //waits for a key down, then sets a delay to run timerReady after delay
   addEventListener("keydown", setDelay);
-  document.querySelector('#clock').style.display = 'block';
+  document.querySelector("#clock").style.display = "block";
 }
