@@ -176,15 +176,13 @@ function addPlusTwo() {
 }
 
 function addManualSolve(e) {
-  if (e.key === "Enter") {
-    const manualTimeRef = document.querySelector("#name");
-    if (manualTimeRef.value) {
+  const manualTimeRef = document.querySelector("#name");
+  if (e.key === "Enter" && manualTimeRef.value) {
       const solveTime = Number(manualTimeRef.value) * 1000;
       //store solve
       processSolve(solveTime);
       manualTimeRef.value = "";
-      manualTimeRef.blur();
-    }
+      // manualTimeRef.blur();
   }
 }
 
