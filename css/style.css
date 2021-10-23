@@ -9,10 +9,9 @@ body {
   background-position: center;
 }
 
-.backgroundColor {
+.color {
   width: 30px;
   padding: 0px;
-  border: none;
   margin: 20px;
   margin-left: 5px;
   display: inline-flex;

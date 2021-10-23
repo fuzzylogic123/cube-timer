@@ -56,10 +56,10 @@
             <input class="form-check-input manualEntry" type="checkbox" role="switch" id="entryManual">
           </div>
           <br>
-          <form class="form-floating scrambleLength">
+          <div class="form-floating mb-3 scrambleLength">
             <input type="number" class="form-control" id="scrambleLength" placeholder="20" value="20">
             <label for="floatingInputValue">Scramble Length</label>
-          </form>
+          </div>
           <label class="form-check-label back">Background</label>
           <select class="form-select select background" id="backgroundSelection" aria-label="Default select example">
             <optgroup label="Animated"></optgroup>
@@ -77,9 +77,17 @@
             </optgroup>
           </select>
           <img id="backgroundPreview" alt="background">
-          <div class="mb-3" id="colorPicker">
+          <div class="mb-3" id="colorPickerBackground">
             <label for="exampleFormControlInput1" class="form-label colorLabel">Background Colour</label>
-            <input type="color" class="form-control backgroundColor" id="backgroundColor" placeholder="#000000">
+            <input type="color" class="form-control color" id="backgroundColor" placeholder="#000000">
+          </div>
+          <div class="mb-3" id="colorPickerText">
+            <label for="exampleFormControlInput1" class="form-label colorLabel">Text Colour</label>
+            <input type="color" class="form-control color" id="textColor" placeholder="#000000">
+          </div>
+          <div class="form-floating mb-3 scrambleLength">
+            <input type="number" class="form-control" id="holdDownThresh" step="0.001">
+            <label for="floatingInputValue">Hold Down Threshold</label>
           </div>
         </div>
 

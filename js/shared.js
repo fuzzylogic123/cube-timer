@@ -244,12 +244,14 @@ const defaultScrambleLen = {
   '3BLD': 25
 }
 
-class Settings{
-  constructor(background = 0, scrambleLen = defaultScrambleLen, manualEntry = false, backgroundColor = '#000000') {
+class Settings {
+  constructor(background = 0, scrambleLen = defaultScrambleLen, manualEntry = false, backgroundColor = '#000000', holdDownThresh = 400, textColor = '#ffffff') {
     this._background = background;
     this._scrambleLen = scrambleLen;
     this._manualEntry = manualEntry;
     this._backgroundColor = backgroundColor;
+    this._holdDownThresh = holdDownThresh;
+    this._textColor = textColor;
   }
   get scrambleLen() {
     return this._scrambleLen;
@@ -262,6 +264,18 @@ class Settings{
   }
   get backgroundColor() {
     return this._backgroundColor;
+  }
+  get holdDownThresh() {
+    return this._holdDownThresh;
+  }
+  get textColor() {
+    return this._textColor;
+  }
+  set holdDownThresh(newThresh) {
+    this._holdDownThresh = newThresh;
+  }
+  set textColor(newColor) {
+    this._textColor = newColor;
   }
   set manualEntry(bool) {
     this._manualEntry = bool;
@@ -280,6 +294,10 @@ class Settings{
     this._scrambleLen = data._scrambleLen;
     this.manualEntry = data._manualEntry;
     this.backgroundColor = data._backgroundColor;
+    console.log(data);
+    console.log(Number(data._holdDownThresh));
+    this._holdDownThresh = Number(data._holdDownThresh);
+    this._textColor = data._textColor;
   }
 }
 

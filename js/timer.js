@@ -11,11 +11,12 @@ let timerDelay;
 //defines whether or not the timer animation should cease
 let cancelled = false;
 //how long the user must hold space for the timer to initiate
-let spaceDownThreshold = 400;
+const spaceDownThreshold = settings.holdDownThresh;
 //colours for the clock
 let startColor = "#32CD30";
 let holdColor = "#FF0000";
-let defaultColor = "white";
+let defaultColor = settings.textColor;
+document.body.style.color = settings.textColor;
 //retrives DOM elements
 const clock = document.getElementById("clock");
 const ao5 = document.getElementById("ao5");
