@@ -153,13 +153,18 @@ class Session {
   getAverage(numberOfSolves) {
     if (this._solveList.length >= numberOfSolves) {
       //get the most recent n solves
+      console.log(this._solveList);
       let chosenSolves = this._solveList.slice(-numberOfSolves);
+      console.log(chosenSolves);
       let chosenTimes = [];
       for (let i = 0; i < chosenSolves.length; i++) {
         chosenTimes.push(chosenSolves[i].time);
       }
+      console.log(chosenSolves);
       let min = Math.min(...chosenTimes);
+      console.log(min);
       let max = Math.max(...chosenTimes);
+      console.log(max);
       // chosenTimes = chosenTimes.filter(e => e != min && e != max);
       const minMax = [min, max];
       for (let i = 0; i < minMax.length; i++) {
@@ -173,6 +178,7 @@ class Session {
       for (let i = 0; i < chosenTimes.length; i++) {
         sum += chosenTimes[i];
       }
+      console.log(sum);
       const average = sum / chosenTimes.length;
       if (average === Infinity) {
         return "DNF";
