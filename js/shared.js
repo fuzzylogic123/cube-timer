@@ -174,6 +174,7 @@ class Session {
           chosenTimes.splice(index, 1);
         }
       }
+      console.log(chosenTimes);
       let sum = 0;
       for (let i = 0; i < chosenTimes.length; i++) {
         sum += chosenTimes[i];
