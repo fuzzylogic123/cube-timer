@@ -58,6 +58,7 @@ saveChanges.addEventListener('click', () => {
     settings.holdDownThresh = (holdDownThresh.value) * 1000;
     settings.textColor = textColor.value;
     updateLSData(settingsKey, settings);
+    console.log(window.location);
     window.location.reload();
 });
 
