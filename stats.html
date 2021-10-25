@@ -240,8 +240,8 @@
             class="nav-link py-3 border-bottom"
             aria-current="page"
             title="Settings"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
+            data-bs-toggle="modal" 
+            data-bs-target="#exampleModal"
           >
             <svg
               class="text-dark bi"
@@ -504,6 +504,66 @@
           </div>
         </div>
       </div>
+
+      <!--settings modal-->
+  <div class="settings-modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-check-label manEnt" for="flexSwitchCheckDefault">Manual Entry</label>
+        <div class="form-check form-switch manualEntryDiv">
+          <input class="form-check-input manualEntry" type="checkbox" role="switch" id="entryManual">
+        </div>
+        <br>
+        <div class="form-floating mb-3 scrambleLength">
+          <input type="number" class="form-control" id="scrambleLength" placeholder="20" value="20">
+          <label for="floatingInputValue">Scramble Length</label>
+        </div>
+        <label class="form-check-label back">Background</label>
+        <select class="form-select select background" id="backgroundSelection" aria-label="Default select example">
+          <optgroup label="Animated"></optgroup>
+          <option value="0">Matrix</option>
+          <option value="1">Ballz</option>
+          <option value="2">Gradient</option>
+          </optgroup>
+          <optgroup label="Pictures"></optgroup>
+          <option value="3">JellyFish</option>
+          <option value="4">Coloured Smoke</option>
+          <option value="5">Cube</option>
+          <option value="6">Karuana Japanese Fish</option>
+          <option value="7">Orange Spirals</option>
+          <option value="8">Owl</option>
+          </optgroup>
+        </select>
+        <img id="backgroundPreview" alt="background">
+        <div class="mb-3" id="colorPickerBackground">
+          <label for="exampleFormControlInput1" class="form-label colorLabel">Background Colour</label>
+          <input type="color" class="form-control color" id="backgroundColor" placeholder="#000000">
+        </div>
+        <div class="mb-3" id="colorPickerText">
+          <label for="exampleFormControlInput1" class="form-label colorLabel">Text Colour</label>
+          <input type="color" class="form-control color" id="textColor" placeholder="#000000">
+        </div>
+        <div class="form-floating mb-3 scrambleLength">
+          <input type="number" class="form-control" id="holdDownThresh" step="0.001">
+          <label for="floatingInputValue">Hold Down Threshold</label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-dark" id="saveSettings" data-bs-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div class="b-example-divider"></div>
     </main>

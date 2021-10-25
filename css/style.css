@@ -18,10 +18,6 @@ body {
   height: 15px;
 }
 
-.colorLabel {
-  margin: 20px;
-}
-
 .timer {
   position: relative;
   display: flex;
@@ -33,17 +29,21 @@ body {
   pointer-events: none;
 }
 
+.colorLabel {
+  margin: 20px;
+}
+
+.manualEntry:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .select {
   width: auto;
 }
 
 .settings-modal {
   color: black;
-}
-
-.manualEntry:focus {
-  outline: none;
-  box-shadow: none;
 }
 
 .scrambleLength {
