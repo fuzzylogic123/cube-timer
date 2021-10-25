@@ -153,18 +153,13 @@ class Session {
   getAverage(numberOfSolves) {
     if (this._solveList.length >= numberOfSolves) {
       //get the most recent n solves
-      console.log(this._solveList);
       let chosenSolves = this._solveList.slice(-numberOfSolves);
-      console.log(chosenSolves);
       let chosenTimes = [];
       for (let i = 0; i < chosenSolves.length; i++) {
         chosenTimes.push(chosenSolves[i].time);
       }
-      console.log(chosenSolves);
       let min = Math.min(...chosenTimes);
-      console.log(min);
       let max = Math.max(...chosenTimes);
-      console.log(max);
       // chosenTimes = chosenTimes.filter(e => e != min && e != max);
       const minMax = [min, max];
       for (let i = 0; i < minMax.length; i++) {
@@ -174,7 +169,6 @@ class Session {
           chosenTimes.splice(index, 1);
         }
       }
-      console.log(chosenTimes);
       let sum = 0;
       for (let i = 0; i < chosenTimes.length; i++) {
         sum += chosenTimes[i];
@@ -301,8 +295,6 @@ class Settings {
     this._scrambleLen = data._scrambleLen;
     this.manualEntry = data._manualEntry;
     this.backgroundColor = data._backgroundColor;
-    console.log(data);
-    console.log(Number(data._holdDownThresh));
     this._holdDownThresh = Number(data._holdDownThresh);
     this._textColor = data._textColor;
   }
