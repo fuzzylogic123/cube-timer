@@ -3,9 +3,8 @@
 function initPreferences() {
     setBackground();
     document.body.style.backgroundColor = settings.backgroundColor;
-    dnf.style.display = "none";
-    plusTwo.style.display = "none";
-    console.log('this has ran');
+    // dnf.style.display = "none";
+    // plusTwo.style.display = "none";
 }
 
 
