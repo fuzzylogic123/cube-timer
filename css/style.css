@@ -230,7 +230,7 @@ body {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-}
+} 
 
 .form__field:focus {
   padding-bottom: 6px;

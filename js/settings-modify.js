@@ -3,6 +3,18 @@
 const saveChanges = document.querySelector('#saveSettings');
 const settingsIcon = document.querySelector('#settings');
 
+const backgrounds = {
+    0: ['./backgrounds/particles/particles.js', './backgrounds/particles/particles.css'],
+    1: ['./backgrounds/balls/balls.js', './backgrounds/balls/balls.css'],
+    2: ['', 'backgrounds/gradients/gradient.css'],
+    3: ['./img/jellyfish.jpg'],
+    4: ['./img/colored-smoke.jpg'],
+    5: ['./img/cube1.jpg'],
+    6: ['./img/fish.jpg'],
+    7: ['./img/orangeSpirals.jpg'],
+    8: ['./img/owl.jpg']
+};
+
 //when the user clicks to open the settings modal
 settingsIcon.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
@@ -46,8 +58,6 @@ saveChanges.addEventListener('click', () => {
     settings.holdDownThresh = (holdDownThresh.value) * 1000;
     settings.textColor = textColor.value;
     updateLSData(settingsKey, settings);
-    dnf.style.display = "none";
-    plusTwo.style.display = "none";
     window.location.reload();
 });
 
