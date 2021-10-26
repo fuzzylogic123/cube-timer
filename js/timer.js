@@ -4,7 +4,6 @@
 let activeIndex = sessionList.active;
 const session = sessionList.list[activeIndex];
 session.solveList.sort((a, b) => a.date - b.date);
-console.log(session);
 //repeats timer function every specified time interval
 let updateTimerHandle;
 //creates global variable to the timers initilisation
