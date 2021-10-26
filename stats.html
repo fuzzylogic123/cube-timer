@@ -388,6 +388,10 @@
     </div>
     <div id="graphsContent">
       <h1>Statistics</h1>
+      <hr>
+      <div id="session-select-graphs" style="display: inline-block;">
+        <select id="dropdown-graphs" class="form-select" aria-label="Default select example"></select>
+      </div>
       <div class=container>
 
         <div id="graph1-wrapper" class="block">
@@ -408,7 +412,20 @@
           </span>
           <h3 class="infoBlockTitle">Number of Solves</h3>
         </div>
-        
+
+        <div id="normalDistribution" class="block">
+          <span class="infoBlockNumber" id="chance" style="color: lightgreen;">
+            X%
+          </span>
+          <h3 class="infoBlockTitle">Chance of getting a time lower than</h3>
+
+          <div class="field">
+            <input id="userTime" type="text" placeholder="enter desired time here"/>
+            <div class="line"></div>
+          </div>
+
+        </div>
+
         <div id="distGraph-wrapper" class="block">
           <canvas id="distGraph">
 

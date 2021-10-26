@@ -1,5 +1,7 @@
 "use strict"
 
+console.log(solveTimes);
+
 let plotData = {
     labels: labels,
     datasets: [

@@ -248,10 +248,12 @@ input[type=number] {
 }
 
 .container {
+  /* height: 100vh;
+  width: 100vw; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #graphsContent {
@@ -291,4 +293,75 @@ canvas {
   font-weight: 100;
   font-size: 65px;
   line-height: 30px;
+  margin-bottom: 20px;
+}
+
+input {
+  background: 0;
+  border: 0;
+  outline: none;
+  width: 80vw;
+  max-width: 400px;
+  font-size: 1.5em;
+  transition: padding 0.3s 0.2s ease;
+}
+input:focus {
+  padding-bottom: 5px;
+}
+input:focus + .line:after {
+  transform: scaleX(1);
+}
+.field {
+  position: relative;
+}
+.field .line {
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: -8px;
+  background: #bdc3c7;
+}
+.field .line:after {
+  content: " ";
+  position: absolute;
+  float: right;
+  width: 100%;
+  height: 3px;
+  transform: scalex(0);
+  transition: transform 0.3s ease;
+  background: #1abc9c;
+}input {
+  background: 0;
+  border: 0;
+  outline: none;
+  width: 80vw;
+  max-width: 400px;
+  font-size: 1.5em;
+  transition: padding 0.3s 0.2s ease;
+}
+input:focus {
+  padding-bottom: 5px;
+}
+input:focus + .line:after {
+  transform: scaleX(1);
+}
+.field {
+  position: relative;
+}
+.field .line {
+  width: 50%;
+  height: 3px;
+  position: absolute;
+  bottom: -8px;
+  background: #bdc3c7;
+}
+.field .line:after {
+  content: " ";
+  position: absolute;
+  float: right;
+  width: 100%;
+  height: 3px;
+  transform: scalex(0);
+  transition: transform 0.3s ease;
+  background: #1abc9c;
 }
