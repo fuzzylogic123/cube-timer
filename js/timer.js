@@ -34,6 +34,7 @@ plusTwo.style.display = "none";
 //fill averages on screen
 ao5.innerHTML = session.getAverage(5);
 ao12.innerHTML = session.getAverage(12);
+alert("Hugh's arogance is unparalleled");
 
 statIcon.addEventListener("click", () => {
   updateLSData(sessionKey, sessionList);
