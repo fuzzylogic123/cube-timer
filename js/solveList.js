@@ -19,6 +19,19 @@ graphToggle.addEventListener('click', ()=> {
   graphIcon.classList.add('text-light');
 })
 
+solveListToggle.addEventListener('click', ()=> {
+  const solveList = document.querySelector('.solveList');
+  solveList.style.display = 'block';
+  const stats = document.querySelector('#graphsContent');
+  stats.style.display = 'none';
+  solveListToggle.classList.add('bg-secondary');
+  graphToggle.classList.remove('bg-secondary');
+  graphIcon.classList.remove('text-light');
+  graphIcon.classList.add('text-dark');
+  solveListIcon.classList.remove('text-dark');
+  solveListIcon.classList.add('text-light');
+})
+
 function solveListHTML() {
   const tableContents = document.getElementById('table-contents');
   const session = sessionList.list[activeIndex];
