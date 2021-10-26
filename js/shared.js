@@ -173,7 +173,6 @@ class Session {
       for (let i = 0; i < chosenTimes.length; i++) {
         sum += chosenTimes[i];
       }
-      console.log(sum);
       const average = sum / chosenTimes.length;
       if (average === Infinity) {
         return "DNF";

@@ -30,7 +30,6 @@ let max = Math.max(...solveTimes);
 
 let distribution = [];
 let j = 0;
-console.log(distribution);
 
 let currentThreshold = Math.floor(min);
 let solveCount = 0;
@@ -39,17 +38,12 @@ while (solveCount < solveTimes.length) {
     distribution[j] = 0;
     for (let i = 0; i < solveTimes.length; i++) {
         const solveTime = solveTimes[i];
-        console.log(solveTime);
-        console.log(currentThreshold);
         if (solveTime > currentThreshold && solveTime < currentThreshold + 1) {
             distribution[j] += 1;
             solveCount += 1;
-            console.log(solveTime);
         }
     }
     currentThreshold += 1;
     distributionLabels.push(currentThreshold);
     j++;
 }
-console.log(distribution);
-console.log(distributionLabels);

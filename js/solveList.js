@@ -8,12 +8,10 @@ const solveListIcon = document.querySelector('#solveListIcon');
 const graphIcon = document.querySelector('#graphIcon');
 graphToggle.addEventListener('click', ()=> {
   const solveList = document.querySelector('.solveList');
-  console.log(solveList);
   solveList.style.display = 'none';
   const stats = document.querySelector('#graphsContent');
   stats.style.display = 'block';
   graphToggle.classList.add('bg-secondary');
-  console.log(graphToggle.classList);
   solveListToggle.classList.remove('bg-secondary');
   solveListIcon.classList.remove('text-light');
   solveListIcon.classList.add('text-dark');

@@ -1,6 +1,5 @@
 "use strict"
 
-console.log(solveTimes);
 let plotData = {
     labels: labels,
     datasets: [
@@ -52,8 +51,6 @@ let config = {
 
 const canvas = document.getElementById('graph1').getContext('2d');
 const chart1 = new Chart(canvas, config);
-console.log(solveTimes);
-console.log(distributionLabels);
 plotData = {
     labels: distributionLabels,
     datasets: [

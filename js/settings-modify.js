@@ -18,7 +18,6 @@ const backgrounds = {
 //when the user clicks to open the settings modal
 settingsIcon.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
-    console.log(backgroundSelection.value);
     const manualEntry = document.querySelector('#entryManual');
     const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
@@ -58,7 +57,6 @@ saveChanges.addEventListener('click', () => {
     settings.holdDownThresh = (holdDownThresh.value) * 1000;
     settings.textColor = textColor.value;
     updateLSData(settingsKey, settings);
-    console.log(window.location);
     window.location.reload();
 });
 
