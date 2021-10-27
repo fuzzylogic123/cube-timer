@@ -25,12 +25,12 @@ function initDropdownGraphs() {
     });
 }
 
-let session = sessionList.list[activeIndex];
 
 initDropdownGraphs();
 calcStats();
 
 function calcStats() {
+    let session = sessionList.list[activeIndex];
     solveTimes = [];
     for (let i = session.solveList.length - 1; i >= 0; i--) {
         const solveTime = session.solveList[i].time / 1000;
