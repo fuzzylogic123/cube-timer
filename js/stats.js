@@ -69,7 +69,7 @@ function calcStats() {
         distribution[j] = 0;
         for (let i = 0; i < solveTimes.length; i++) {
             const solveTime = solveTimes[i];
-            if (solveTime > currentThreshold && solveTime < currentThreshold + 1) {
+            if (solveTime >= currentThreshold && solveTime < currentThreshold + 1) {
                 distribution[j] += 1;
                 solveCount += 1;
             }
