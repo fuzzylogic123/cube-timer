@@ -38,7 +38,6 @@ function calcStats() {
             solveTimes.push(solveTime);
         }
     }
-    console.log(solveTimes);
     labels = Array.from({ length: solveTimes.length }, (_, i) => i + 1);
 
     const average = (array) => array.reduce((a, b) => a + b) / array.length;
@@ -106,5 +105,3 @@ function calcStats() {
     });
 
 }
-
-console.log(solveTimes);
