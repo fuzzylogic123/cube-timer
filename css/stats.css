@@ -296,7 +296,7 @@ canvas {
   margin-bottom: 20px;
 }
 
-input {
+#userTime {
   background: 0;
   border: 0;
   outline: none;
@@ -305,10 +305,10 @@ input {
   font-size: 1.5em;
   transition: padding 0.3s 0.2s ease;
 }
-input:focus {
+#userTime:focus {
   padding-bottom: 5px;
 }
-input:focus + .line:after {
+#userTime:focus + .line:after {
   transform: scaleX(1);
 }
 .field {
@@ -330,7 +330,7 @@ input:focus + .line:after {
   transform: scalex(0);
   transition: transform 0.3s ease;
   background: #1abc9c;
-}input {
+}#userTime {
   background: 0;
   border: 0;
   outline: none;
@@ -339,10 +339,10 @@ input:focus + .line:after {
   font-size: 1.5em;
   transition: padding 0.3s 0.2s ease;
 }
-input:focus {
+#userTime:focus {
   padding-bottom: 5px;
 }
-input:focus + .line:after {
+#userTime:focus + .line:after {
   transform: scaleX(1);
 }
 .field {
