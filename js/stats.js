@@ -25,12 +25,12 @@ function initDropdownGraphs() {
     });
 }
 
-let session = sessionList.list[activeIndex];
 
 initDropdownGraphs();
 calcStats();
 
 function calcStats() {
+    let session = sessionList.list[activeIndex];
     solveTimes = [];
     for (let i = session.solveList.length - 1; i >= 0; i--) {
         const solveTime = session.solveList[i].time / 1000;
@@ -38,7 +38,6 @@ function calcStats() {
             solveTimes.push(solveTime);
         }
     }
-    console.log(solveTimes);
     labels = Array.from({ length: solveTimes.length }, (_, i) => i + 1);
 
     const average = (array) => array.reduce((a, b) => a + b) / array.length;
@@ -70,7 +69,7 @@ function calcStats() {
         distribution[j] = 0;
         for (let i = 0; i < solveTimes.length; i++) {
             const solveTime = solveTimes[i];
-            if (solveTime > currentThreshold && solveTime < currentThreshold + 1) {
+            if (solveTime >= currentThreshold && solveTime < currentThreshold + 1) {
                 distribution[j] += 1;
                 solveCount += 1;
             }
@@ -107,5 +106,3 @@ function calcStats() {
     });
 
 }
-
-console.log(solveTimes);
