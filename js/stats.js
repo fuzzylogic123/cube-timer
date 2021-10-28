@@ -101,6 +101,7 @@ function calcStats() {
     const timeInput = document.querySelector('#userTime');
     timeInput.addEventListener('change', () => {
         const sd = getStandardDeviation(solveTimes);
+        console.log('standard deviation:', sd);
         const chanceRef = document.querySelector('#chance');
         chanceRef.innerHTML = (ncdf(timeInput.value, averageTime, sd) * 100).toFixed(2) + '%';
     });
