@@ -17,10 +17,11 @@ function initDropdownGraphs() {
         const option = new Option(`${session.name} - ${session.solveType}`, i, false, selected);
         dropdown.appendChild(option);
     }
-    dropdown.addEventListener('change', (e) => {
-        activeIndex = e.target.value;
+    dropdown.addEventListener('change', (e) => { 
+        activeIndex = Number(e.target.value);
         sessionList.active = activeIndex;
         calcStats();
+        updateGraphs(solveTimes, distribution, distributionLabels, labels);
         updateLSData(sessionKey, sessionList);
     });
 }

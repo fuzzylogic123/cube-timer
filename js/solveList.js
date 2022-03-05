@@ -17,6 +17,8 @@ graphToggle.addEventListener('click', ()=> {
   solveListIcon.classList.add('text-dark');
   graphIcon.classList.remove('text-dark');
   graphIcon.classList.add('text-light');
+  initDropdownGraphs();
+  updateGraphs(solveTimes, distribution, distributionLabels, labels);
 })
 
 solveListToggle.addEventListener('click', ()=> {
@@ -30,6 +32,7 @@ solveListToggle.addEventListener('click', ()=> {
   graphIcon.classList.add('text-dark');
   solveListIcon.classList.remove('text-dark');
   solveListIcon.classList.add('text-light');
+  initDropdown();
 })
 
 function solveListHTML() {
@@ -110,7 +113,7 @@ function initDropdown() {
     dropdown.appendChild(option);
   }
   dropdown.addEventListener('change', (e) => {
-    activeIndex = e.target.value;
+    activeIndex = Number(e.target.value);
     sessionList.active = activeIndex;
     solveListHTML();
     updateLSData(sessionKey, sessionList);

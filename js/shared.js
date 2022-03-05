@@ -198,8 +198,8 @@ class Session {
 
 class SessionList {
   constructor(sessions = [], activeIndex = 0) {
-    this._sessionList = sessions;
-    this._activeIndex = activeIndex;
+    this._sessionList = Number(sessions);
+    this._activeIndex = Number(activeIndex);
   }
   get list() {
     return this._sessionList;
