@@ -294,6 +294,11 @@ canvas {
   font-size: 65px;
   line-height: 30px;
   margin-bottom: 20px;
+  line-height: 67px;
+}
+
+#normalDistribution {
+  width: 100%;
 }
 
 #userTime {

@@ -198,7 +198,7 @@ class Session {
 
 class SessionList {
   constructor(sessions = [], activeIndex = 0) {
-    this._sessionList = Number(sessions);
+    this._sessionList = sessions;
     this._activeIndex = Number(activeIndex);
   }
   get list() {
@@ -308,6 +308,7 @@ if (checkLSData(sessionKey)) {
   sessionList = new SessionList();
   sessionList.fromData(data);
 } else {
+  console.log("new session was created")
   sessionList = new SessionList([new Session("Session 1", "3x3")]);
 }
 
