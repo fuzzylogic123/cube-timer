@@ -18,6 +18,7 @@ graphToggle.addEventListener('click', ()=> {
   graphIcon.classList.remove('text-dark');
   graphIcon.classList.add('text-light');
   initDropdownGraphs();
+  calcStats();
   updateGraphs(solveTimes, distribution, distributionLabels, labels);
 })
 

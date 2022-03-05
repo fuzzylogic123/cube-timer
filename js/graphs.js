@@ -6,6 +6,7 @@ let chart2 = null;
 
 
 const updateGraphs = (solveTimes, distribution, distributionLabels, labels) => {
+    console.log("update graphs ran")
     if (chart1 && chart2) {
         chart1.destroy();
         chart2.destroy();
