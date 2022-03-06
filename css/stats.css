@@ -7,11 +7,13 @@
   padding: 20px;
   width: 100%;
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .main-content::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
+  /* Safari and Chrome */
 }
 
 .table {
@@ -67,11 +69,9 @@
 ratios: 9, 12, 15*/
 .bg {
   animation: slide 27s ease-in-out infinite alternate;
-  background-image: linear-gradient(
-    -60deg,
-    rgb(31, 31, 31) 50%,
-    rgb(255, 255, 255) 50%
-  );
+  background-image: linear-gradient(-60deg,
+      rgb(31, 31, 31) 50%,
+      rgb(255, 255, 255) 50%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -107,6 +107,7 @@ ratios: 9, 12, 15*/
   0% {
     transform: translateX(-25%);
   }
+
   100% {
     transform: translateX(25%);
   }
@@ -222,13 +223,15 @@ ratios: 9, 12, 15*/
 /* hide arrows on number field */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+  -moz-appearance: textfield;
+  /* Firefox */
 }
 
 #backgroundPreview {
@@ -237,31 +240,28 @@ input[type=number] {
   border-radius: 5px;
 }
 
-#graph1-wrapper {
-  height: 50vh;
-  width: 50vw;
+.graph-wrapper {
+  padding: 3rem;
 }
 
-#distGraph-wrapper {
-  height: 50vh;
-  width: 50vw;
+.css-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
-.container {
-  /* height: 100vh;
-  width: 100vw; */
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
+.card-wide {
+  grid-column: span 2 / auto;
 }
+
 
 #graphsContent {
   display: none;
   padding: 20px;
   width: 100%;
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 canvas {
@@ -269,104 +269,95 @@ canvas {
   height: 100%;
 }
 
-.infoBlock {
-  height: 25vh;
-  width: 15vw;
-}
-
 .block {
-  margin-bottom: 1.5rem;
+  transition: transform ease-out 500ms;
+  text-align: center;
+  margin: 1rem;
+  padding: 3rem;
   border-color: #edf2f9;
   -webkit-box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
-  box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
-  padding: 30px;
+  box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 20%);
   border-radius: 10px;
 }
 
+.block:hover {
+  transform: scale(1.03);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .infoBlockNumber {
-  font-size: 120px;
-  font-weight: 500;
+  font-size: 120px !important;
+  font-weight: 700;
+  color: white;
   /* line-height: 30px; */
 }
 
-.infoBlockTitle {
+/* .infoBlockTitle {
   font-weight: 100;
   font-size: 65px;
   line-height: 30px;
   margin-bottom: 20px;
   line-height: 67px;
-}
-
-#normalDistribution {
-  width: 100%;
-}
+} */
 
 #userTime {
-  background: 0;
-  border: 0;
+  width: 30rem;
+  border: none;
+  border-bottom: 1px solid #FBAB7E;
   outline: none;
-  width: 80vw;
-  max-width: 400px;
-  font-size: 1.5em;
-  transition: padding 0.3s 0.2s ease;
+  font-size: 3rem;
+  font-weight: 900;
+  font-size: 52px;
+  background: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
 }
-#userTime:focus {
-  padding-bottom: 5px;
+
+
+.crystalline-gradient {
+  background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
 }
-#userTime:focus + .line:after {
-  transform: scaleX(1);
+
+.pink-fish-gradient {
+  background-image: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
 }
-.field {
-  position: relative;
+
+.yellow-gradient {
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+
 }
-.field .line {
-  width: 100%;
-  height: 3px;
-  position: absolute;
-  bottom: -8px;
-  background: #bdc3c7;
+
+
+.blue-gradient {
+  background-image: linear-gradient(135deg, #3C8CE7 10%, #00EAFF 100%);
 }
-.field .line:after {
-  content: " ";
-  position: absolute;
-  float: right;
-  width: 100%;
-  height: 3px;
-  transform: scalex(0);
-  transition: transform 0.3s ease;
-  background: #1abc9c;
-}#userTime {
-  background: 0;
-  border: 0;
-  outline: none;
-  width: 80vw;
-  max-width: 400px;
-  font-size: 1.5em;
-  transition: padding 0.3s 0.2s ease;
+
+.text-gradient-pink {
+  background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
-#userTime:focus {
-  padding-bottom: 5px;
+
+.text-gradient-yellow {
+  background: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
-#userTime:focus + .line:after {
-  transform: scaleX(1);
-}
-.field {
-  position: relative;
-}
-.field .line {
-  width: 50%;
-  height: 3px;
-  position: absolute;
-  bottom: -8px;
-  background: #bdc3c7;
-}
-.field .line:after {
-  content: " ";
-  position: absolute;
-  float: right;
-  width: 100%;
-  height: 3px;
-  transform: scalex(0);
-  transition: transform 0.3s ease;
-  background: #1abc9c;
+
+.block-title {
+  font-weight: 900;
+  font-size: 52px;
+  letter-spacing: 2px;
 }

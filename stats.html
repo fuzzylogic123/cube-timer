@@ -389,49 +389,66 @@
     <div id="graphsContent">
       <h1>Statistics</h1>
       <hr>
-      <div id="session-select-graphs" style="display: inline-block;">
+      <div id="session-select-graphs" style="display: inline-block; margin: 2rem;">
         <select id="dropdown-graphs" class="form-select" aria-label="Default select example"></select>
       </div>
-      <div class=container>
 
-        <div id="graph1-wrapper" class="block">
+
+      <div class=css-grid>
+
+        <div class="block card-wide graph-wrappert">
           <canvas id="graph1">
           </canvas>
         </div>
 
-        <div id="infoBlock" class="block">
-          <span class="infoBlockNumber" id="average" style="color: #B5EAD7;;">
+        <div class="block flex-center yellow-gradient">
+          <div class="block-content infoBlockNumber">
+            <span id="average">
 
-          </span>
-          <h3 class="infoBlockTitle">average</h3>
-        </div>
-
-        <div id="numberOfSolvesBlock" class="block">
-          <span class="infoBlockNumber" id="numberOfSolves" style="color: bisque;">
-
-          </span>
-          <h3 class="infoBlockTitle">Number <br/> of Solves</h3>
-        </div>
-
-        
-        <div id="distGraph-wrapper" class="block">
-          <canvas id="distGraph">
-            
-          </canvas>
-        </div>
-        
-        <div id="normalDistribution" class="block">
-          <span class="infoBlockNumber" id="chance" style="color: lightgreen;">
-            X%
-          </span>
-          <h3 class="infoBlockTitle">Chance of getting a time lower than</h3>
-  
-          <div class="field">
-            <input id="userTime" type="text" placeholder="enter desired time here"/>
-            <div class="line"></div>
+            </span>
+            <h3 class="block-title">average</h3>
           </div>
-  
         </div>
+
+        <div class="block flex-center">
+          <div class="block-content infoBlockNumber">
+            <span class="infoBlockNumber text-gradient-pink" id="numberOfSolves">
+
+            </span>
+            <h3 class="text-gradient-pink block-title">Number of Solves</h3>
+          </div>
+        </div>
+
+
+        <div class="block card-wide graph-wrapper">
+          <div>
+            <canvas id="distGraph">
+
+            </canvas>
+          </div>
+        </div>
+
+        <div id="normalDistribution" class="block card-wide">
+          <div class="flex-center">
+            <div>
+              <span class="infoBlockNumber text-gradient-yellow" id="chance">
+                X%
+              </span>
+              <h3 class="text-gradient-yellow block-title">Chance of getting a time lower than:</h3>
+              <input id="userTime" type="number" placeholder="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="block flex-center pink-fish-gradient">
+          <div class="block-content infoBlockNumber">
+            <h3 class="block-title">Standard Deviation</h3>
+            <span id="standard-deviation">
+
+            </span>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -443,7 +460,7 @@
     integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="/js/graphs.js"></script>
+  <script src="/js/graphs.js"></script>
   <script src="./sidebars/sidebars.js"></script>
   <script src="../js/shared.js"></script>
   <script src="../js/solveList.js"></script>

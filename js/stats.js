@@ -54,8 +54,11 @@ function calcStats() {
         averageRef.innerHTML = 'N/A'
     }
 
-    const solveNumRef = document.querySelector('#numberOfSolves').innerHTML = session.solveList.length;
+    document.querySelector('#numberOfSolves').innerHTML = session.solveList.length;
 
+    //getting standard deviation
+    const sd = getStandardDeviation(solveTimes);
+    document.querySelector('#standard-deviation').innerHTML = sd.toFixed(2)
     //solve distibution
     const INCREMENT_WIDTH = 10;
 
@@ -102,7 +105,6 @@ function calcStats() {
 
     const timeInput = document.querySelector('#userTime');
     timeInput.addEventListener('change', () => {
-        const sd = getStandardDeviation(solveTimes);
         console.log('standard deviation:', sd);
         const chanceRef = document.querySelector('#chance');
         chanceRef.innerHTML = (ncdf(timeInput.value, averageTime, sd) * 100).toFixed(2) + '%';
