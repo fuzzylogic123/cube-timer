@@ -252,7 +252,9 @@ input[type=number] {
 
 .card-wide {
   grid-column: span 2 / auto;
+  grid-auto-rows: minmax(min-content, max-content);
 }
+
 
 
 #graphsContent {
@@ -278,6 +280,7 @@ canvas {
   -webkit-box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
   box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 20%);
   border-radius: 10px;
+  color: white;
 }
 
 .block:hover {
@@ -291,7 +294,7 @@ canvas {
 }
 
 .infoBlockNumber {
-  font-size: 120px !important;
+  font-size: 120px;
   font-weight: 700;
   color: white;
   /* line-height: 30px; */
@@ -306,11 +309,10 @@ canvas {
 } */
 
 #userTime {
-  width: 30rem;
+  width: 70%;
   border: none;
   border-bottom: 1px solid #FBAB7E;
   outline: none;
-  font-size: 3rem;
   font-weight: 900;
   font-size: 52px;
   background: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
@@ -360,4 +362,31 @@ canvas {
   font-weight: 900;
   font-size: 52px;
   letter-spacing: 2px;
+}
+
+@media only screen and (max-width: 700px) {
+  .css-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .block-title {
+    font-size: 30px;
+  }
+
+  .infoBlockNumber {
+    font-size: 50px;
+  }
+
+  .block {
+    padding: 10px
+  }
+
+  .too-big-for-phone {
+    display: none;
+  }
+
+  .card-wide {
+    grid-column: auto;
+    grid-auto-rows: minmax(min-content, max-content);
+  }
 }
