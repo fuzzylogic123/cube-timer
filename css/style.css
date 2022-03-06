@@ -142,6 +142,19 @@ h2 {
   pointer-events: none;
 }
 
+@media only screen and (max-width: 768px), screen and (max-height: 700px) {
+
+  .scrambleLetter {
+    font-size: 1.3rem;
+    margin: 0.5rem;
+  }
+
+  #scramble {
+    margin-top: 6vh;
+  }
+  
+}
+
 .icon {
   font-size: 40px;
   opacity: 0.8;
@@ -153,7 +166,8 @@ h2 {
 }
 
 body {
-  overflow: hidden; /* Hide scrollbars */
+  overflow: hidden;
+  /* Hide scrollbars */
 }
 
 .penalty {
@@ -215,10 +229,12 @@ body {
   background: transparent;
   transition: border-color 0.2s;
 }
+
 .form__field::placeholder {
   color: transparent;
 }
-.form__field:placeholder-shown ~ .form__label {
+
+.form__field:placeholder-shown~.form__label {
   font-size: 5.5rem;
   cursor: text;
   top: 20px;
@@ -230,7 +246,7 @@ body {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-} 
+}
 
 .form__field:focus {
   padding-bottom: 6px;
@@ -239,7 +255,8 @@ body {
   border-image: linear-gradient(to right, #11998e, #38ef7d);
   border-image-slice: 1;
 }
-.form__field:focus ~ .form__label {
+
+.form__field:focus~.form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -263,11 +280,13 @@ body {
 /* hide arrows on number field */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+  -moz-appearance: textfield;
+  /* Firefox */
 }
