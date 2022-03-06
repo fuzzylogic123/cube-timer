@@ -233,7 +233,7 @@ class SessionList {
 }
 
 const defaultScrambleLen = {
-  '2x2': 9,
+  '2x2': 11,
   '3x3': 25,
   '4x4': 40,
   '5x5': 60,
