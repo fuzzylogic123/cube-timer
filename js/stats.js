@@ -37,7 +37,7 @@ function calcStats() {
     solveTimes = [];
     for (let i = session.solveList.length - 1; i >= 0; i--) {
         const solveTime = session.solveList[i].time / 1000;
-        if (!session.solveList[i].penalty) {
+        if (session.solveList[i].penalty !== 'DNF') {
             solveTimes.push(solveTime);
         }
     }
