@@ -1,5 +1,19 @@
 "use strict";
 
+import getScramble from "./cubing.js"
+
+let currentScramble = "...";
+
+const updateScramble = async () => {
+  removeEventListener("keyup", updateScramble);
+  const sessionType = sessionList.list[sessionList.active].solveType;
+  let newScramble = await getScramble(sessionType);
+  currentScramble = newScramble
+  return newScramble;
+}
+
+currentScramble = await updateScramble();
+
 
 let activeIndex = sessionList.active;
 const session = sessionList.list[activeIndex];
@@ -104,6 +118,8 @@ function timerReady() {
   document.body.style.cursor = "none";
 
   addEventListener("keyup", confirmStart);
+  addEventListener("keyup", updateScramble);
+  console.log("update scramble was called");
 }
 
 //starts the timer
@@ -117,6 +133,7 @@ function confirmStart(e) {
 }
 
 function processSolve(solveTime) {
+  console.log(currentScramble);
   let currentSolve = new Solve(solveTime, currentScramble);
   session.add(currentSolve);
   updateLSData(sessionKey, sessionList);
@@ -124,8 +141,7 @@ function processSolve(solveTime) {
   ao5.innerHTML = session.getAverage(5);
   ao12.innerHTML = session.getAverage(12);
   //generate new scramble
-  currentScramble = scrambleGen(scrambleNotation, scrambleLen);
-  scrambleToHTML(currentScramble);
+  // scrambleToHTML(currentScramble);
   //active penalty buttons
   dnf.addEventListener("click", addDNF);
   plusTwo.addEventListener("click", addPlusTwo);

@@ -1,4 +1,4 @@
-"use strict"
+// "use strict"
 
 //generates scramble
 const scrambleNotationList = {
@@ -13,17 +13,17 @@ const scrambleNotationList = {
     '3BLD': [["R", "R'", "R2"], ["L", "L'", "L2"], ["F", "F'", "F2"], ["B", "B'", "B2"], ["U", "U'", "U2"], ["D", "D'", "D2"]],
 }
 
-const sessionType = sessionList.list[sessionList.active].solveType;
-let scrambleLen = settings.scrambleLen[sessionType];
-let scrambleNotation = scrambleNotationList[sessionList.list[sessionList.active].solveType];
-let currentScramble = scrambleGen(scrambleNotation, scrambleLen);
-scrambleToHTML(currentScramble);
+// const sessionType = sessionList.list[sessionList.active].solveType;
+// let scrambleLen = settings.scrambleLen[sessionType];
+// let scrambleNotation = scrambleNotationList[sessionList.list[sessionList.active].solveType];
+// // let currentScramble = scrambleGen(scrambleNotation, scrambleLen);
+// scrambleToHTML(currentScramble);
 
 function selectRandom(array) {
     return Math.floor(Math.random() * array.length);
 }
 
-//function to generate a new scramble
+// function to generate a new scramble
 function scrambleGen(scrambleNotation, len = 25) {
     let scramble = [];
     let removed;
@@ -40,17 +40,8 @@ function scrambleGen(scrambleNotation, len = 25) {
     return scramble.join(' ');
 }
 
-//converts scramble array to HTML
-function scrambleToHTML(scramble) {
-    scramble = scramble.split(' ');
-    const scrambleRef = document.getElementById('scramble');
-    scrambleRef.innerHTML = '';
-    let h2 = document.createElement("h2");
-    scrambleRef.appendChild(h2);
-    for (let i = 0; i < scramble.length; i++) {
-        const newDiv = document.createElement("div");
-        newDiv.classList.add('scrambleLetter');
-        newDiv.innerHTML = scramble[i];
-        h2.appendChild(newDiv);
-    }
-}
+console.log(scrambleGen(scrambleNotationList["3x3"]));
+
+
+// //converts scramble array to HTML
+
