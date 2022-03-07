@@ -143,22 +143,22 @@ function confirmStartTouch() {
 
 function stopTimerTouch() {
   removeEventListener("touchstart", stopTimerTouch);
-  plusTwo.style.display = "";
-  dnf.style.display = "";
   cancelled = true;
   const solveTime = Date.now() - startTime;
   clock.innerHTML = formatTime(solveTime);
   //redisplay all components that were hidden
-  scramble.style.display = "";
-  averages.style.display = "";
-  menus.style.display = "";
-  document.body.style.cursor = "auto";
   //store solve
   processSolve(solveTime);
   addEventListener("touchend", resetTimerTouch);
 }
 
 function resetTimerTouch() {
+  plusTwo.style.display = "";
+  dnf.style.display = "";
+  scramble.style.display = "";
+  averages.style.display = "";
+  menus.style.display = "";
+  document.body.style.cursor = "auto";
   removeEventListener("touchend", resetTimerTouch);
   addEventListener("touchstart", setDelayTouch);
 }
@@ -249,15 +249,11 @@ function processSolve(solveTime) {
 //runs when space is clicked to stop timer
 function stopTimer() {
   removeEventListener("keydown", stopTimer);
-  plusTwo.style.display = "";
-  dnf.style.display = "";
   cancelled = true;
   const solveTime = Date.now() - startTime;
   clock.innerHTML = formatTime(solveTime);
   //redisplay all components that were hidden
-  scramble.style.display = "";
-  averages.style.display = "";
-  menus.style.display = "";
+
   document.body.style.cursor = "auto";
   //store solve
   processSolve(solveTime);
@@ -266,6 +262,11 @@ function stopTimer() {
 
 //resets timer function
 function resetTimer() {
+  plusTwo.style.display = "";
+  dnf.style.display = "";
+  scramble.style.display = "";
+  averages.style.display = "";
+  menus.style.display = "";
   removeEventListener("keyup", resetTimer);
   addEventListener("keydown", setDelay);
 }
