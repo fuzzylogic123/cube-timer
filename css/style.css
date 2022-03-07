@@ -146,8 +146,25 @@ h2 {
   animation: fadeIn 2s;
 }
 
-.large-cube {
-  font-size: 1.3rem;
+.large-cube .scrambleLetter {
+  font-size: 1.5rem;
+  margin: 0.4rem;
+}
+
+#scramble.large-cube {
+  margin-top: 0.1rem;
+}
+
+.medium-cube {
+  margin: 0.1rem;
+}
+.medium-cube .scrambleLetter {
+  font-size: 2.5rem;
+  margin: 0.6rem;
+}
+
+#scramble.medium-cube {
+  margin-top: 3rem;
 }
 
 @keyframes fadeIn {
@@ -160,7 +177,7 @@ h2 {
   }
 }
 
-@media only screen and (max-width: 768px), screen and (max-height: 700px) {
+@media only screen and (max-width: 768px), screen and (max-height: 600px) {
 
   .scrambleLetter {
     font-size: 1.3rem;
