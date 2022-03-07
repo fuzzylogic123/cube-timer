@@ -287,10 +287,11 @@ body {
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid;
+  border-color: inherit;
   outline: 0;
   font-size: 5.5rem;
-  color: rgb(255, 255, 255);
+  color: inherit;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -318,11 +319,11 @@ body {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  /* border-image: linear-gradient(to right, #11998e, #38ef7d); */
   border-image-slice: 1;
 }
 
-.form__field:focus~.form__label {
+/* .form__field:focus~.form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -330,7 +331,7 @@ body {
   font-size: 1rem;
   color: #11998e;
   font-weight: 700;
-}
+} */
 
 /* reset input */
 .form__field:required, .form__field:invalid {
