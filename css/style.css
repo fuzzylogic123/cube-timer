@@ -146,6 +146,10 @@ h2 {
   animation: fadeIn 2s;
 }
 
+.large-cube {
+  font-size: 1.3rem;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -166,6 +170,37 @@ h2 {
   #scramble {
     margin-top: 6vh;
   }
+
+  .large-cube {
+    font-size: 0.3rem;
+    margin: 0;
+    line-height: 0;
+    
+  }
+
+  .large-cube .scrambleLetter {
+    font-size: 0.7rem;
+    margin: 0.1rem;
+    line-height: 0;
+  }
+
+  #scramble.large-cube {
+    margin-top: 0.1rem;
+  }
+
+  .medium-cube {
+    font-size: 0.8rem;
+    margin: 0.1rem;
+  }
+  .medium-cube .scrambleLetter {
+    font-size: 1rem;
+    margin: 0.2rem;
+  }
+
+  #scramble.medium-cube {
+    margin-top: 0.15rem;
+  }
+
 
 }
 

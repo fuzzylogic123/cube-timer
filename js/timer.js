@@ -8,6 +8,11 @@ let currentScramble = "...";
 const updateScramble = async () => {
   removeEventListener("keyup", updateScramble);
   const sessionType = sessionList.list[sessionList.active].solveType;
+  if (["6x6", "7x7"].includes(sessionType)) {
+    document.querySelector("#scramble").classList.add('large-cube');
+  } else if (["4x4", "5x5"].includes(sessionType)) {
+    document.querySelector('#scramble').classList.add('medium-cube')
+  }
   let newScramble = await getScramble(sessionType);
   nextScramble = newScramble
   return newScramble;
