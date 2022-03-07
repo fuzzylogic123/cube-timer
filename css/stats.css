@@ -366,7 +366,9 @@ canvas {
 
 @media only screen and (max-width: 700px) {
   .css-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
   }
 
   .block-title {
@@ -384,9 +386,21 @@ canvas {
   .too-big-for-phone {
     display: none;
   }
+}
 
-  .card-wide {
-    grid-column: auto;
-    grid-auto-rows: minmax(min-content, max-content);
+@media only screen and (max-width: 900px) and (min-width: 700px){
+  .css-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 3rem;
+  }
+
+  
+  .block {
+    padding: 0.5rem;
+    margin: 0;
+  }
+  .infoBlockNumber {
+    font-size: 80px;
+
   }
 }
