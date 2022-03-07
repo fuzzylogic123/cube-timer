@@ -19,7 +19,7 @@ const backgrounds = {
 settingsIcon.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
     const manualEntry = document.querySelector('#entryManual');
-    const scrambleLenRef = document.querySelector('#scrambleLength');
+    // const scrambleLenRef = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
     const backgroundPreview = document.querySelector('#backgroundPreview');
     const textColor = document.querySelector('#textColor');
@@ -30,7 +30,7 @@ settingsIcon.addEventListener('click', () => {
     textColor.value = settings.textColor;
     manualEntry.checked = settings.manualEntry;
     const sessionType = sessionList.list[sessionList.active].solveType;
-    scrambleLenRef.value = settings.scrambleLen[sessionType];
+    // scrambleLenRef.value = settings.scrambleLen[sessionType];
     if (backgroundSelection.value > 1) {
         document.querySelector('#colorPickerBackground').style.display = 'none';
     }
@@ -46,13 +46,13 @@ settingsIcon.addEventListener('click', () => {
 saveChanges.addEventListener('click', () => {
     const backgroundSelection = document.querySelector('#backgroundSelection');
     const manualEntry = document.querySelector('#entryManual');
-    const scrambleLen = document.querySelector('#scrambleLength');
+    // const scrambleLen = document.querySelector('#scrambleLength');
     const backgroundColor = document.querySelector('#backgroundColor');
     const textColor = document.querySelector('#textColor');
     const holdDownThresh = document.querySelector('#holdDownThresh');
     settings.background = backgroundSelection.value;
     settings.manualEntry = manualEntry.checked;
-    settings.setScrambleLen(sessionList.list[sessionList.active].solveType, Number(scrambleLen.value));
+    // settings.setScrambleLen(sessionList.list[sessionList.active].solveType, Number(scrambleLen.value));
     settings.backgroundColor = backgroundColor.value;
     settings.holdDownThresh = (holdDownThresh.value) * 1000;
     settings.textColor = textColor.value;

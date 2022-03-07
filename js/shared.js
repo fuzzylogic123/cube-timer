@@ -245,16 +245,13 @@ const defaultScrambleLen = {
 }
 
 class Settings {
-  constructor(background = 0, scrambleLen = defaultScrambleLen, manualEntry = false, backgroundColor = '#000000', holdDownThresh = 400, textColor = '#ffffff') {
+  constructor(background = 0, manualEntry = false, backgroundColor = '#000000', holdDownThresh = 400, textColor = '#ffffff') {
     this._background = background;
-    this._scrambleLen = scrambleLen;
+    // this._scrambleLen = scrambleLen;
     this._manualEntry = manualEntry;
     this._backgroundColor = backgroundColor;
     this._holdDownThresh = holdDownThresh;
     this._textColor = textColor;
-  }
-  get scrambleLen() {
-    return this._scrambleLen;
   }
   get manualEntry() {
     return this._manualEntry;
@@ -286,12 +283,8 @@ class Settings {
   set backgroundColor(newColor) {
     this._backgroundColor = newColor;
   }
-  setScrambleLen(solveType, len) {
-    this._scrambleLen[solveType] = len;
-  }
   fromData(data) {
     this._background = Number(data._background);
-    this._scrambleLen = data._scrambleLen;
     this.manualEntry = data._manualEntry;
     this.backgroundColor = data._backgroundColor;
     this._holdDownThresh = Number(data._holdDownThresh);

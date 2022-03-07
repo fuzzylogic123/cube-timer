@@ -2,17 +2,16 @@
 
 import getScramble from "./cubing.js"
 
+let nextScramble = "...";
 let currentScramble = "...";
 
 const updateScramble = async () => {
   removeEventListener("keyup", updateScramble);
   const sessionType = sessionList.list[sessionList.active].solveType;
   let newScramble = await getScramble(sessionType);
-  currentScramble = newScramble
+  nextScramble = newScramble
   return newScramble;
 }
-
-currentScramble = await updateScramble();
 
 
 let activeIndex = sessionList.active;
@@ -52,6 +51,19 @@ statIcon.addEventListener("click", () => {
   updateLSData(sessionKey, sessionList);
   window.location.href = "./stats.html";
 });
+
+if (settings.manualEntry) {
+  plusTwo.style.display = "";
+  dnf.style.display = "";
+  document.querySelector(".form__group").style.display = "block";
+  document.querySelector("#clock").style.display = "none";
+} else {
+  //waits for a key down, then sets a delay to run timerReady after delay
+  document.querySelector("#clock").style.display = "block";
+}
+
+
+currentScramble = await updateScramble();
 
 /*timer code*/
 function formatTime(totalMiliSec) {
@@ -135,6 +147,9 @@ function confirmStart(e) {
 function processSolve(solveTime) {
   console.log(currentScramble);
   let currentSolve = new Solve(solveTime, currentScramble);
+  console.log(currentScramble);
+  currentScramble = nextScramble;
+  console.log(currentScramble)
   session.add(currentSolve);
   updateLSData(sessionKey, sessionList);
   //update averages
@@ -204,6 +219,7 @@ function addManualSolve(e) {
       const solveTime = Number(manualTimeRef.value) * 1000;
       //store solve
       processSolve(solveTime);
+      addEventListener("keyup", updateScramble);
       manualTimeRef.value = "";
       // manualTimeRef.blur();
   }
@@ -211,13 +227,8 @@ function addManualSolve(e) {
 
 //if statment to determine if manual entry is true
 if (settings.manualEntry) {
-  plusTwo.style.display = "";
-  dnf.style.display = "";
   addEventListener("keydown", addManualSolve);
-  document.querySelector(".form__group").style.display = "block";
-  document.querySelector("#clock").style.display = "none";
 } else {
   //waits for a key down, then sets a delay to run timerReady after delay
   addEventListener("keydown", setDelay);
-  document.querySelector("#clock").style.display = "block";
 }

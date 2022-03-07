@@ -17,26 +17,27 @@
 <body>
   <div id="particles-js"></div>
   <div id="scramble">
+
   </div>
   <div class="timer">
-    <h1 id="clock">0.000</h1>
+    <h1 class="fadeIn" id="clock">0.000</h1>
 
-    <div class="form__group field">
+    <div class="fadeIn form__group field">
       <input autocomplete="off" type="number" class="form__field" placeholder="Name" name="name" id="name" required />
       <label for="name" class="form__label">Time (in seconds)</label>
     </div>
   </div>
 
-  <div id="averages">
+  <div  class="fadeIn" id="averages">
     <button class="penalty" id="DNF">DNF</button>
     <button class="penalty" id="plusTwo">+2</button>
     <div id="actual-averages">
-      <h4>Ao5: <span id="ao5"></span></h4>
+      <h4>Ao5: <span id="ao5">--</span></h4>
       <br>
-      <h4>Ao12: <span id="ao12"></span></h4>
+      <h4>Ao12: <span id="ao12">--</span></h4>
     </div>
   </div>
-  <div id="tool-bar">
+  <div class="fadeIn" id="tool-bar">
     <i id="stat-icon" class="icon bi bi-clipboard-data"></i>
     <br />
     <i class="icon bi bi-gear" id="settings" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
@@ -57,10 +58,6 @@
             <input class="form-check-input manualEntry" type="checkbox" role="switch" id="entryManual">
           </div>
           <br>
-          <div class="form-floating mb-3 scrambleLength">
-            <input type="number" class="form-control" id="scrambleLength" placeholder="20" value="20">
-            <label for="floatingInputValue">Scramble Length</label>
-          </div>
           <label class="form-check-label back">Background</label>
           <select class="form-select select background" id="backgroundSelection" aria-label="Default select example">
             <optgroup label="Animated"></optgroup>
@@ -106,8 +103,7 @@
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script> -->
-  <script src="./js/cubing.js" type="module"></script>
+  <!-- <script src="./js/cubing.js" type="module" defer></script> -->
   <script src="./js/shared.js"></script>
   <script src="./js/scramble.js"></script>
   <script src="./js/timer.js" type="module"></script>

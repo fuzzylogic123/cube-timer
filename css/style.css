@@ -142,6 +142,20 @@ h2 {
   pointer-events: none;
 }
 
+.fadeIn {
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width: 768px), screen and (max-height: 700px) {
 
   .scrambleLetter {
@@ -152,7 +166,7 @@ h2 {
   #scramble {
     margin-top: 6vh;
   }
-  
+
 }
 
 .icon {

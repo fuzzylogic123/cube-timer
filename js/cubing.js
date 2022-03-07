@@ -1,5 +1,5 @@
-import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
-
+// import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
+import { randomScrambleForEvent } from 'https://cdn.skypack.dev/cubing/scramble';
 
 function scrambleToHTML(scramble) {
     scramble = scramble.split(' ');
@@ -7,6 +7,7 @@ function scrambleToHTML(scramble) {
     scrambleRef.innerHTML = '';
     let h2 = document.createElement("h2");
     scrambleRef.appendChild(h2);
+    scrambleRef.classList.add('fadeIn');
     for (let i = 0; i < scramble.length; i++) {
         const newDiv = document.createElement("div");
         newDiv.classList.add('scrambleLetter');
