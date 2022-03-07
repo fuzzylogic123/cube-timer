@@ -28,6 +28,7 @@ let updateTimerHandle;
 let startTime;
 //global timeout handler
 let timerDelay;
+let timerDelayTouch;
 //defines whether or not the timer animation should cease
 let cancelled = false;
 //how long the user must hold space for the timer to initiate
@@ -85,6 +86,83 @@ function formatTime(totalMiliSec) {
 }
 
 //starts the timer and sets callback function to update the timer every time the browser screen refreshes
+function isTouchDevice() {
+  return (('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    (navigator.msMaxTouchPoints > 0));
+}
+
+function startTimerComputer() {
+  addEventListener("keydown", setDelay);
+}
+
+function startTimerTouch() {
+  addEventListener("touchstart", setDelayTouch);
+}
+
+function setDelayTouch() {
+  console.log("the screen was clicked")
+  removeEventListener("touchstart", setDelayTouch);
+  clock.style.color = holdColor;
+  timerDelayTouch = setTimeout(timerReadyTouch, spaceDownThreshold);
+  //If the user releases the space bar before the timing threshold, then timerReady will not run
+  addEventListener("touchend", clearDelayTouch);
+}
+
+function timerReadyTouch() {
+  // console.clear()
+  removeEventListener("touchend", clearDelayTouch);
+  clock.style.color = startColor;
+  //everything is hidden to simplify the timer
+  scramble.style.display = "none";
+  averages.style.display = "none";
+  menus.style.display = "none";
+  plusTwo.style.display = "none";
+  dnf.style.display = "none";
+  document.body.style.cursor = "none";
+
+  addEventListener("touchend", confirmStartTouch);
+  addEventListener("touchend", updateScramble);
+  console.log("update scramble was called");
+}
+
+function clearDelayTouch() {
+  removeEventListener("touchend", clearDelayTouch);
+  clearTimeout(timerDelayTouch);
+  clock.style.color = defaultColor;
+  addEventListener("touchstart", setDelayTouch);
+}
+
+function confirmStartTouch() {
+  removeEventListener("touchend", confirmStartTouch);
+  removeEventListener("touchend", updateScramble);
+  clock.style.color = defaultColor;
+  startTimer();
+  addEventListener("touchstart", stopTimerTouch);
+}
+
+function stopTimerTouch() {
+  removeEventListener("touchstart", stopTimerTouch);
+  plusTwo.style.display = "";
+  dnf.style.display = "";
+  cancelled = true;
+  const solveTime = Date.now() - startTime;
+  clock.innerHTML = formatTime(solveTime);
+  //redisplay all components that were hidden
+  scramble.style.display = "";
+  averages.style.display = "";
+  menus.style.display = "";
+  document.body.style.cursor = "auto";
+  //store solve
+  processSolve(solveTime);
+  addEventListener("touchend", resetTimerTouch);
+}
+
+function resetTimerTouch() {
+  removeEventListener("touchend", resetTimerTouch);
+  addEventListener("touchstart", setDelayTouch);
+}
+
 function startTimer() {
   cancelled = false;
   startTime = Date.now();
@@ -221,12 +299,12 @@ function addPlusTwo() {
 function addManualSolve(e) {
   const manualTimeRef = document.querySelector("#name");
   if (e.key === "Enter" && manualTimeRef.value) {
-      const solveTime = Number(manualTimeRef.value) * 1000;
-      //store solve
-      processSolve(solveTime);
-      addEventListener("keyup", updateScramble);
-      manualTimeRef.value = "";
-      // manualTimeRef.blur();
+    const solveTime = Number(manualTimeRef.value) * 1000;
+    //store solve
+    processSolve(solveTime);
+    addEventListener("keyup", updateScramble);
+    manualTimeRef.value = "";
+    // manualTimeRef.blur();
   }
 }
 
@@ -235,5 +313,10 @@ if (settings.manualEntry) {
   addEventListener("keydown", addManualSolve);
 } else {
   //waits for a key down, then sets a delay to run timerReady after delay
-  addEventListener("keydown", setDelay);
+  if (isTouchDevice()) {
+    startTimerTouch();
+    console.log("this is a touch device")
+  } else {
+    startTimerComputer();
+  }
 }
