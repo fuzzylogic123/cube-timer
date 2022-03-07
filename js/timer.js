@@ -262,8 +262,11 @@ function stopTimer() {
 
 //resets timer function
 function resetTimer() {
-  plusTwo.style.display = "";
-  dnf.style.display = "";
+  console.log("buttons should be reinstated");
+  console.log(plusTwo);
+  console.log(dnf);
+  plusTwo.style.display = "block";
+  dnf.style.display = "block";
   scramble.style.display = "";
   averages.style.display = "";
   menus.style.display = "";
