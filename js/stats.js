@@ -34,6 +34,7 @@ calcStats();
 
 function calcStats() {
     let session = sessionList.list[activeIndex];
+    console.log(session)
     solveTimes = [];
     for (let i = session.solveList.length - 1; i >= 0; i--) {
         const solveTime = session.solveList[i].time / 1000;
@@ -41,6 +42,7 @@ function calcStats() {
             solveTimes.push(solveTime);
         }
     }
+    console.log(solveTimes);
     labels = Array.from({ length: solveTimes.length }, (_, i) => i + 1);
 
     const average = (array) => array.reduce((a, b) => a + b) / array.length;
@@ -97,6 +99,7 @@ function calcStats() {
     }
 
     function getStandardDeviation(array) {
+        if (array.length === 0) return 0
         const n = array.length
         const mean = array.reduce((a, b) => a + b) / n
         return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
