@@ -7,6 +7,7 @@ let currentScramble = "...";
 
 const updateScramble = async () => {
   removeEventListener("keyup", updateScramble);
+  removeEventListener("touchend", updateScramble);
   const sessionType = sessionList.list[sessionList.active].solveType;
   if (["6x6", "7x7"].includes(sessionType)) {
     document.querySelector("#scramble").classList.add('large-cube');
@@ -135,7 +136,6 @@ function clearDelayTouch() {
 
 function confirmStartTouch() {
   removeEventListener("touchend", confirmStartTouch);
-  removeEventListener("touchend", updateScramble);
   clock.style.color = defaultColor;
   startTimer();
   addEventListener("touchstart", stopTimerTouch);
@@ -262,8 +262,11 @@ function stopTimer() {
 
 //resets timer function
 function resetTimer() {
-  plusTwo.style.display = "";
-  dnf.style.display = "";
+  console.log("buttons should be reinstated");
+  console.log(plusTwo);
+  console.log(dnf);
+  plusTwo.style.display = "block";
+  dnf.style.display = "block";
   scramble.style.display = "";
   averages.style.display = "";
   menus.style.display = "";
