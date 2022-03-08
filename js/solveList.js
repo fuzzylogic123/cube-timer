@@ -7,12 +7,14 @@ const graphToggle = document.querySelector('#graphContentToggle');
 const solveListIcon = document.querySelector('#solveListIcon');
 const graphIcon = document.querySelector('#graphIcon');
 graphToggle.addEventListener('click', ()=> {
+  const session = sessionList.list[activeIndex];
+  session.solveList.sort((a, b) => b.date - a.date);
   const solveList = document.querySelector('.solveList');
   solveList.style.display = 'none';
   const stats = document.querySelector('#graphsContent');
   stats.style.display = 'block';
   graphToggle.classList.add('bg-secondary');
-  solveListToggle.classList.remove('bg-secondary');
+  solveListToggle.classList.remove('bg-secondary'); 
   solveListIcon.classList.remove('text-light');
   solveListIcon.classList.add('text-dark');
   graphIcon.classList.remove('text-dark');
