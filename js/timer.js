@@ -113,6 +113,7 @@ function setDelayTouch() {
 function timerReadyTouch() {
   // console.clear()
   removeEventListener("touchend", clearDelayTouch);
+  removeEventListener("keyup", clearDelay);
   clock.style.color = startColor;
   //everything is hidden to simplify the timer
   scramble.style.display = "none";
@@ -124,6 +125,8 @@ function timerReadyTouch() {
 
   addEventListener("touchend", confirmStartTouch);
   addEventListener("touchend", updateScramble);
+  addEventListener("keyup", confirmStart);
+  addEventListener("keyup", updateScramble);
   console.log("update scramble was called");
 }
 
