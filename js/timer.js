@@ -146,6 +146,7 @@ function confirmStartTouch() {
 
 function stopTimerTouch() {
   removeEventListener("touchstart", stopTimerTouch);
+  removeEventListener("keydown", stopTimer);
   cancelled = true;
   const solveTime = Date.now() - startTime;
   clock.innerHTML = formatTime(solveTime);
@@ -153,6 +154,7 @@ function stopTimerTouch() {
   //store solve
   processSolve(solveTime);
   addEventListener("touchend", resetTimerTouch);
+  addEventListener("keyup", resetTimer);
 }
 
 function resetTimerTouch() {
