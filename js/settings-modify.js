@@ -21,7 +21,7 @@ const backgrounds = {
     14: ['img/eggplant.jpg'],
     15: ['img/beach.jpg'],
     16: ['img/coffee.jpg'],
-    17: ['img/sky.jpg']
+    17: ['img/sky.jpg'],
 };
 
 //when the user clicks to open the settings modal
