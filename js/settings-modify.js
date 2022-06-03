@@ -13,7 +13,7 @@ const backgrounds = {
     6: ['./img/fish.jpg'],
     7: ['./img/orangeSpirals.jpg'],
     8: ['./img/owl.jpg'],
-    9: ['img/sun?.jpg'],
+    9: ['img/sun.jpg'],
     10: ['img/leaves.jpg'],
     11: ['img/poly.jpg'],
     12: ['img/hills.jpg'],
