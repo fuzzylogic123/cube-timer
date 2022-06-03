@@ -18,7 +18,6 @@ const backgrounds = {
     11: ['img/poly.jpg'],
     12: ['img/hills.jpg'],
     13: ['img/ocean.jpg'],
-    14: ['img/eggplant.jpg'],
     15: ['img/beach.jpg'],
     16: ['img/coffee.jpg'],
     17: ['img/sky.jpg'],
