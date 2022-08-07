@@ -1,5 +1,5 @@
-// import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
-import { randomScrambleForEvent } from 'https://cdn.skypack.dev/cubing/scramble';
+import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
+// import { randomScrambleForEvent } from 'https://cdn.skypack.dev/cubing/scramble';
 
 function scrambleToHTML(scramble) {
     scramble = scramble.split(' ');
